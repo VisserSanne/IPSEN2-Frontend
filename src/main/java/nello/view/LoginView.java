@@ -158,6 +158,7 @@ public class LoginView extends AbstractFXMLView<LoginController> implements Logi
         registerButton.setVisible(isVisible);
     }
 
+    // merge test
     private void toggleStagePassword(boolean isVisible) {
         passwordField.setVisible(isVisible);
         loginButton.setVisible(isVisible);
