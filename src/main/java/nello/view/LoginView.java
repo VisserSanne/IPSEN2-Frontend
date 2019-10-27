@@ -47,6 +47,7 @@ public class LoginView extends AbstractView implements Initializable {
         System.out.println("clicked on register");
     }
 
+    // ik doe dit om de merge zichtbaar te krijgen.
     public void onLoginButtonClick() {
         System.out.println("clicked on login");
         System.out.println("textfield text " + textfieldEmail.getText());
