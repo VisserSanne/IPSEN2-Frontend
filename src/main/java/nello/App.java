@@ -7,6 +7,8 @@ import javafx.stage.Stage;
  * Hello world!
  */
 public class App extends Application {
+
+
     public static void main(String[] args) {
         System.out.println("Hello World!");
         launch(args);
@@ -14,6 +16,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Nello nello = new Nello(primaryStage);
+        Nello nello = new Nello();
+        nello.setStage(primaryStage);
+        nello.show();
     }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0"
+            style="-fx-background-color: f5f5f5;" xmlns="http://javafx.com/javafx/8.0.211"
+            fx:controller="nello.view.LoginView">
+    <center>
+        <AnchorPane maxHeight="270.0" maxWidth="444.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="mainMessage" layoutX="170.0" layoutY="21.0" text="Inloggen">
+                    <font>
+                        <Font name="Arial Bold" size="25.0"/>
+                    </font>
+                </Label>
+                <TextField id="textfield-email" fx:id="textfieldEmail" layoutX="60.0" layoutY="110.0" minHeight="37.0"
+                           minWidth="335.0" onKeyReleased="#onTextFieldChange" text="Email">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </TextField>
+                <Label id="label-reset-password" layoutX="60.0" layoutY="155.0" onMouseClicked="#onResetButtonClick"
+                       text="wachtwoord vergeten?" textFill="#401664">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Label>
+                <Button id="button-register" layoutX="60.0" layoutY="206.0" mnemonicParsing="false"
+                        onMouseClicked="#onRegisterButtonClick" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: d0cece;" text="Registreren" textFill="#401664">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Button>
+                <Button id="button-login" layoutX="260.0" layoutY="206.0" mnemonicParsing="false"
+                        onMouseClicked="#onLoginButtonClick" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: f47321;" text="Aanmelden" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Button>
+                <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="60.0" layoutY="61.0" prefHeight="25.0"
+                       prefWidth="334.0" text="error_message"/>
+            </children>
+            <effect>
+                <DropShadow color="#00000055"/>
+            </effect>
+        </AnchorPane>
+    </center>
+</BorderPane>

@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.Cursor?>
+<?import javafx.scene.*?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0"
-            style="-fx-background-color: f5f5f5;" xmlns="http://javafx.com/javafx/8.0.211"
-            fx:controller="nello.view.LoginView">
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0"
+            style="-fx-background-color: f5f5f5;" xmlns="http://javafx.com/javafx/8.0.211">
     <center>
         <AnchorPane maxHeight="270.0" maxWidth="444.0" prefHeight="200.0" prefWidth="200.0"
                     style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
@@ -20,24 +18,43 @@
                         <Font name="Arial Bold" size="25.0"/>
                     </font>
                 </Label>
-                <TextField id="textfield-email" fx:id="textfieldEmail" layoutX="60.0" layoutY="110.0" minHeight="37.0"
-                           minWidth="335.0" onKeyReleased="#onTextFieldChange" text="Email">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                </TextField>
-                <Label id="label-reset-password" layoutX="60.0" layoutY="155.0" onMouseClicked="#onResetButtonClick"
-                       text="wachtwoord vergeten?" textFill="#401664">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="CLOSED_HAND"/>
-                    </cursor>
-                </Label>
-                <Button id="button-register" layoutX="60.0" layoutY="206.0" mnemonicParsing="false"
-                        onMouseClicked="#onRegisterButtonClick" prefHeight="34.0" prefWidth="135.0"
-                        style="-fx-background-color: d0cece;" text="Registreren" textFill="#401664">
+                <VBox layoutX="60.0" layoutY="110.0" prefHeight="64.0" prefWidth="335.0" spacing="5.0">
+                    <children>
+                        <TextField id="textfield-email" fx:id="textField" minHeight="37.0" minWidth="335.0"
+                                   onKeyReleased="#onTextFieldChange" promptText="Email">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </TextField>
+                        <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="-30.0" minHeight="37.0"
+                                       minWidth="335.0" onKeyReleased="#onPasswordFieldChange" promptText="wachtwoord"
+                                       visible="false">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <VBox.margin>
+                                <Insets top="-42.0"/>
+                            </VBox.margin>
+                        </PasswordField>
+                        <Label id="label-reset-password" fx:id="resetPasswordLabel" onMouseClicked="#onResetButtonClick"
+                               text="wachtwoord vergeten?" textFill="#401664" visible="false">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="CLOSED_HAND"/>
+                            </cursor>
+                        </Label>
+                    </children>
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                </VBox>
+                <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="60.0" layoutY="61.0" prefHeight="25.0"
+                       prefWidth="334.0" text="error_message"/>
+                <Button id="button-register" fx:id="registerButton" layoutX="60.0" layoutY="206.0"
+                        mnemonicParsing="false" onMouseClicked="#onRegisterButtonClick" prefHeight="34.0"
+                        prefWidth="135.0" style="-fx-background-color: d0cece;" text="Registreren" textFill="#401664">
                     <font>
                         <Font name="Arial" size="14.0"/>
                     </font>
@@ -45,7 +62,17 @@
                         <Cursor fx:constant="CLOSED_HAND"/>
                     </cursor>
                 </Button>
-                <Button id="button-login" layoutX="260.0" layoutY="206.0" mnemonicParsing="false"
+                <Button id="button-register" fx:id="backToEmailButton" layoutX="60.0" layoutY="206.0"
+                        mnemonicParsing="false" onMouseClicked="#onBackToEmail" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: d0cece;" text="Terug" textFill="#401664" visible="false">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Button>
+                <Button id="button-login" fx:id="loginButton" layoutX="260.0" layoutY="206.0" mnemonicParsing="false"
                         onMouseClicked="#onLoginButtonClick" prefHeight="34.0" prefWidth="135.0"
                         style="-fx-background-color: f47321;" text="Aanmelden" textFill="WHITE">
                     <font>
@@ -55,8 +82,16 @@
                         <Cursor fx:constant="CLOSED_HAND"/>
                     </cursor>
                 </Button>
-                <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="60.0" layoutY="61.0" prefHeight="25.0"
-                       prefWidth="334.0" text="error_message"/>
+                <Button id="button-login" fx:id="nextButton" layoutX="260.0" layoutY="206.0" mnemonicParsing="false"
+                        onMouseClicked="#onNextButtonClick" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: f47321;" text="Volgende" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Button>
             </children>
             <effect>
                 <DropShadow color="#00000055"/>
