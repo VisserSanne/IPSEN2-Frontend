@@ -124,11 +124,11 @@ public class LoginView implements FXMLView<LoginController>, LoginObserver, Init
         System.out.println("updateding view");
 
         this.errorMessage.setText(observable.getErrorMessage().toString());
-        System.out.println(observable.getCredentials().getEmailAdders());
+        System.out.println(observable.getCredentials().getEmail());
         System.out.println(observable.getCredentials().getPassword());
 
         // update email field
-        textField.setText(observable.getCredentials().getEmailAdders());
+        textField.setText(observable.getCredentials().getEmail());
         textField.positionCaret(textField.getText().length());
 
 

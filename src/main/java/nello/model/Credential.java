@@ -2,15 +2,15 @@ package nello.model;
 
 public class Credential {
 
-    private String emailAdders = "";
+    private String email = "";
     private String password = "";
 
-    public String getEmailAdders() {
-        return emailAdders;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailAdders(String emailAdders) {
-        this.emailAdders = emailAdders;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -23,6 +23,6 @@ public class Credential {
 
     @Override
     public String toString() {
-        return emailAdders + ", " + password;
+        return email + ", " + password;
     }
 }

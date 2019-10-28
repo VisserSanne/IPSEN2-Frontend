@@ -15,6 +15,8 @@ public class LoginModel implements LoginObservable {
     private Credential credential = new Credential();
     private Phase currentPhase = Phase.EMAIL;
 
+    private String authToken;
+
     public void registerObserver(LoginObserver observer) {
         observerList.add(observer);
     }
@@ -24,7 +26,7 @@ public class LoginModel implements LoginObservable {
     }
 
     public void updateEmail(String email) {
-        this.credential.setEmailAdders(email);
+        this.credential.setEmail(email);
         notifyObservers();
     }
 
@@ -65,5 +67,11 @@ public class LoginModel implements LoginObservable {
         }
     }
 
+    public String getAuthToken() {
+        return authToken;
+    }
 
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
 }
