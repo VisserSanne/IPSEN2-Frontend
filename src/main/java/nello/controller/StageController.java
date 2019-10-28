@@ -4,9 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import nello.factories.ViewFactory;
 import nello.util.ResourceUtil;
-import nello.view.AbstractFXMLView;
+import nello.view.BeforeDisplay;
 import nello.view.FXMLView;
 
 import java.io.IOException;
@@ -17,36 +16,21 @@ public class StageController {
 
     private final FXMLLoader fxmlLoader;
     private static Logger logger = Logger.getLogger(StageController.class.getCanonicalName());
-    private final ViewFactory viewFactory;
-    private MainController mainController;
     private Stage primaryStage;
     private Scene mainScene;
 
-    public StageController(MainController mainController) {
-        this.mainController = mainController;
+    public StageController() {
         this.fxmlLoader = new FXMLLoader();
-        this.viewFactory = new ViewFactory();
-
     }
 
     private Pane rootOf(FXMLView view) throws IOException {
-        // get controller
-        IController controller = mainController.getController(view.getController());
-
-        //get view
-        AbstractFXMLView viewController = viewFactory.createView(view);
-
-        viewController.setController(controller); // weird warning
-        viewController.onCreate();
-
-        URL resourcePath = ResourceUtil.get(viewController.getFxmlPath());
+        URL resourcePath = ResourceUtil.get(view.getFXMLPath());
         fxmlLoader.setLocation(resourcePath);
-        fxmlLoader.setController(viewController);
-        viewController.beforeDisplay();
+        fxmlLoader.setController(view);
         return fxmlLoader.load();
     }
 
-    public void setStage(Stage primaryStage) {
+    public void prepareStage(Stage primaryStage) {
         this.mainScene = new Scene(new Pane());
         this.primaryStage = primaryStage;
         primaryStage.setScene(mainScene);
@@ -64,13 +48,18 @@ public class StageController {
         this.primaryStage.close();
     }
 
-    public void loadView(FXMLView startView) {
+    public void loadView(FXMLView view) {
         try {
-            Pane root = rootOf(startView);
+            Pane root = rootOf(view);
+
+            if (view instanceof BeforeDisplay) {
+                ((BeforeDisplay) view).beforeShow();
+            }
+
             this.mainScene.setRoot(root);
 
         } catch (IOException e) {
-            logger.severe("Failed to load view: " + startView);
+            logger.severe("Failed to load view: " + view.getFXMLPath());
             e.printStackTrace();
         }
     }

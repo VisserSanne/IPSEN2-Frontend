@@ -6,14 +6,12 @@ import nello.observer.LoginObserver;
 
 public class LoginController implements IController {
 
-    private final HTTPController httpController;
-    private final StageController stageController;
+    private MainController mainController;
     private LoginModel model;
 
 
-    public LoginController(HTTPController httpController, StageController stageController, LoginModel model) {
-        this.httpController = httpController;
-        this.stageController = stageController;
+    public LoginController(MainController mainController, LoginModel model) {
+        this.mainController = mainController;
         this.model = model;
     }
 

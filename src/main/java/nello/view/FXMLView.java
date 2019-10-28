@@ -1,26 +1,13 @@
 package nello.view;
 
-import nello.controller.LoginController;
+import nello.controller.IController;
 
-public enum FXMLView {
+public interface FXMLView<C extends IController> {
 
-    LOGIN("/view/LoginView.fxml", LoginController.class);
+    String getFXMLPath();
 
-    private String fxmlPath;
-    private Class<?> controller;
+    C getController();
 
-    FXMLView(String fxmlPath, Class<?> controller) {
-        this.fxmlPath = fxmlPath;
-        this.controller = controller;
-    }
-
-    public Class<?> getController() {
-        return controller;
-    }
-
-    @Override
-    public String toString() {
-        return fxmlPath;
-    }
+    void setController(C controller);
 
 }

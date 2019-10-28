@@ -8,6 +8,8 @@ import java.util.List;
 
 public class LoginModel implements LoginObservable {
 
+    public enum Phase {EMAIL, PASSWORD}
+
     private ViewMessage errorMessage = ViewMessage.EMPTY_STRING;
     private List<LoginObserver> observerList = new ArrayList<>();
     private Credential credential = new Credential();
@@ -63,6 +65,5 @@ public class LoginModel implements LoginObservable {
         }
     }
 
-    public enum Phase {EMAIL, PASSWORD}
 
 }

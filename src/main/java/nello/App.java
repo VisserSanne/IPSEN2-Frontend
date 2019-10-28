@@ -10,14 +10,14 @@ public class App extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Hello Nello!");
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Nello nello = new Nello();
-        nello.setStage(primaryStage);
-        nello.show();
+        nello.shine(primaryStage);
+        nello.shine();
     }
 }

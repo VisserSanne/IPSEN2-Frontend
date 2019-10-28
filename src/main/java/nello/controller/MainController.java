@@ -1,22 +1,30 @@
 package nello.controller;
 
-import nello.factories.ControllerFactory;
+import nello.model.LoginModel;
 
 public class MainController {
 
 
-    private final HTTPController httpController;
-    private final StageController stageController;
-    private final ControllerFactory factory;
+    private static MainController instance;
+    private HTTPController httpController;
+    private StageController stageController;
+    private LoginController loginController;
 
-    public MainController() {
-        this.factory = new ControllerFactory(this);
-        this.httpController = new HTTPController();
-        this.stageController = new StageController(this);
+
+    private MainController() {
+        registerControllers();
     }
 
-    public <T> IController getController(Class<T> type) {
-        return factory.create(type.getSimpleName());
+    public static MainController getInstance() {
+        if (instance == null)
+            instance = new MainController();
+        return instance;
+    }
+
+    private void registerControllers() {
+        httpController = new HTTPController();
+        stageController = new StageController();
+        loginController = new LoginController(this, new LoginModel());
     }
 
     public HTTPController getHttpController() {
@@ -25,5 +33,9 @@ public class MainController {
 
     public StageController getStageController() {
         return stageController;
+    }
+
+    public LoginController getLoginController() {
+        return loginController;
     }
 }

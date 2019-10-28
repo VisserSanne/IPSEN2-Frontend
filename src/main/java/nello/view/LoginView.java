@@ -1,6 +1,7 @@
 package nello.view;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import nello.controller.LoginController;
+import nello.controller.MainController;
 import nello.model.LoginModel;
 import nello.observable.LoginObservable;
 import nello.observer.LoginObserver;
@@ -18,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LoginView extends AbstractFXMLView<LoginController> implements LoginObserver {
+public class LoginView implements FXMLView<LoginController>, LoginObserver, Initializable, BeforeDisplay {
 
     @FXML
     private BorderPane root;
@@ -49,17 +51,18 @@ public class LoginView extends AbstractFXMLView<LoginController> implements Logi
 
     @FXML
     private Button nextButton;
-    private boolean command;
 
+    private final String fxmlPath;
+    private LoginController controller;
 
     public LoginView() {
-        super(FXMLView.LOGIN);
-
+        this.fxmlPath = "/view/LoginView.fxml";
+        this.controller = MainController.getInstance().getLoginController();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        getController().registerObserver(this);
+        this.controller.registerObserver(this);
 
         // clear all textfields
         this.errorMessage.setText("");
@@ -80,7 +83,7 @@ public class LoginView extends AbstractFXMLView<LoginController> implements Logi
             return;
         }
 //        System.out.println(textField.getText());
-        getController().onEmailChange(textField.getText());
+        this.controller.onEmailChange(textField.getText());
     }
 
     public void onPasswordFieldChange(KeyEvent keyEvent) {
@@ -92,11 +95,11 @@ public class LoginView extends AbstractFXMLView<LoginController> implements Logi
             this.onLoginButtonClick();
             return;
         }
-        getController().onPasswordChange(passwordField.getText());
+        this.controller.onPasswordChange(passwordField.getText());
     }
 
     public void onResetButtonClick(MouseEvent mouseEvent) {
-        getController().onResetButtonClick();
+        this.controller.onResetButtonClick();
     }
 
     public void onRegisterButtonClick(MouseEvent mouseEvent) {
@@ -105,15 +108,15 @@ public class LoginView extends AbstractFXMLView<LoginController> implements Logi
 
     // ik doe dit om de merge zichtbaar te krijgen.
     public void onLoginButtonClick() {
-        getController().onLoginButtonClick();
+        this.controller.onLoginButtonClick();
     }
 
     public void onNextButtonClick() {
-        getController().onNextButtonClick();
+        this.controller.onNextButtonClick();
     }
 
     public void onBackToEmail() {
-        getController().onBackToEmail();
+        this.controller.onBackToEmail();
     }
 
     @Override
@@ -164,5 +167,25 @@ public class LoginView extends AbstractFXMLView<LoginController> implements Logi
         passwordField.setVisible(isVisible);
         loginButton.setVisible(isVisible);
         backToEmailButton.setVisible(isVisible);
+    }
+
+    @Override
+    public String getFXMLPath() {
+        return fxmlPath;
+    }
+
+    @Override
+    public LoginController getController() {
+        return controller;
+    }
+
+    @Override
+    public void setController(LoginController controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public void beforeShow() {
+        System.out.println("called");
     }
 }
