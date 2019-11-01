@@ -23,6 +23,6 @@ public class Credential {
 
     @Override
     public String toString() {
-        return emailAdders + ", " + password;
+        return String.format("credentials { email: '%s' | password: '%s' }", emailAdders, password);
     }
 }
