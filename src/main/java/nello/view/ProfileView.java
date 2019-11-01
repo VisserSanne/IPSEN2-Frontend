@@ -81,16 +81,16 @@ public class ProfileView implements FXMLView<ProfileController> {
 
     @Override
     public String getFXMLPath() {
-        return null;
+        return fxmlPath;
     }
 
     @Override
     public ProfileController getController() {
-        return null;
+        return controller;
     }
 
     @Override
     public void setController(ProfileController controller) {
-
+        this.controller = controller;
     }
 }
