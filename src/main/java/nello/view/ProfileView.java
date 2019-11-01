@@ -1,6 +1,8 @@
 package nello.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,10 +14,32 @@ import java.awt.event.MouseEvent;
 public class ProfileView implements FXMLView<ProfileController> {
 
     @FXML
+    private MenuBar menuWindow;
+
+    @FXML
+    private Menu menuBarExpriments;
+
+    @FXML
     private TextField textRole;
+
+    public void setTextRole(TextField textRole) {
+        this.textRole = textRole;
+    }
 
     @FXML
     private TextField textFullName;
+
+    public void setTextEmail(TextField textEmail) {
+        this.textEmail = textEmail;
+    }
+
+    public void setTextInitials(TextField textInitials) {
+        this.textInitials = textInitials;
+    }
+
+    public void setTextFullName(TextField textFullName) {
+        this.textFullName = textFullName;
+    }
 
     @FXML
     private TextField textInitials;

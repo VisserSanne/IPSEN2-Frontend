@@ -8,7 +8,7 @@ public class ProfileModel {
     private String emailAddress;
     private String bio;
 
-    public ProfileModel(String role, String fullName, String initials, String emailAddress, String bio) {
+    public ProfileModel() {
         this.role = role;
         this.fullName = fullName;
         this.initials = initials;
