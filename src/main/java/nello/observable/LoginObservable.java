@@ -2,15 +2,25 @@ package nello.observable;
 
 import nello.model.Credential;
 import nello.model.LoginModel;
-import nello.model.ViewMessage;
+import nello.observer.LoginObserver;
 
 public interface LoginObservable {
 
     LoginModel.Phase getCurrentPhase();
 
-    ViewMessage getErrorMessage();
+    String getMessage();
 
     Credential getCredentials();
 
+    /**
+     * notify all observers
+     */
     void notifyObservers();
+
+    /**
+     * register observers and notify them on registration.
+     *
+     * @param observer {@link LoginObserver} loginObserver
+     */
+    void registerObserver(LoginObserver observer);
 }

@@ -7,30 +7,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginModel implements LoginObservable {
+    /**
+     * global login message
+     */
+    private String message;
+    /**
+     * observers list.
+     */
+    private List<LoginObserver> observerList;
+    /**
+     * user login credentials
+     */
+    private Credential credential;
+    /**
+     * currentPhase of this model.
+     */
+    private Phase currentPhase;
 
-    public enum Phase {EMAIL, PASSWORD}
+    /**
+     * construct a new LoginModel
+     */
+    public LoginModel() {
+        this.message = "";
+        this.currentPhase = Phase.EMAIL;
+        this.observerList = new ArrayList<>();
+        this.credential = new Credential();
+    }
 
-    private ViewMessage errorMessage = ViewMessage.EMPTY_STRING;
-    private List<LoginObserver> observerList = new ArrayList<>();
-    private Credential credential = new Credential();
-    private Phase currentPhase = Phase.EMAIL;
-
-    private String authToken;
-
-    public void registerObserver(LoginObserver observer) {
-        observerList.add(observer);
+    public void setEmailAddress(String email) {
+        this.credential.setEmailAdders(email);
+        notifyObservers();
     }
 
     public Credential getCredential() {
         return credential;
     }
 
-    public void updateEmail(String email) {
-        this.credential.setEmail(email);
-        notifyObservers();
-    }
-
-    public void updatePassword(String password) {
+    public void setPassword(String password) {
         this.credential.setPassword(password);
         notifyObservers();
     }
@@ -46,13 +59,8 @@ public class LoginModel implements LoginObservable {
     }
 
     @Override
-    public ViewMessage getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(ViewMessage message) {
-        this.errorMessage = message;
-        notifyObservers();
+    public String getMessage() {
+        return message;
     }
 
     @Override
@@ -67,11 +75,23 @@ public class LoginModel implements LoginObservable {
         }
     }
 
-    public String getAuthToken() {
-        return authToken;
+    public void setMessage(String message) {
+        this.message = message;
+        notifyObservers();
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    @Override
+    public void registerObserver(LoginObserver observer) {
+        // register observer
+        observerList.add(observer);
+
+        // notify him on latest updates
+        observer.update(this);
     }
+
+    /**
+     * Login phases
+     */
+    public enum Phase {EMAIL, PASSWORD}
+
 }

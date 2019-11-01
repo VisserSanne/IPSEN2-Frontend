@@ -1,60 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0"
-            style="-fx-background-color: f5f5f5;" xmlns="http://javafx.com/javafx/8.0.211">
-    <center>
-        <AnchorPane maxHeight="270.0" maxWidth="444.0" prefHeight="200.0" prefWidth="200.0"
-                    style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0"
+            style="-fx-background-color: f8f8f8;" xmlns="http://javafx.com/javafx/8.0.211">
+    <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="367.0" layoutY="435.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../img/login/Polygon_2.png"/>
+            </image>
+        </ImageView>
+        <ImageView layoutX="881.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/login/Polygon_3.png"/>
+            </image>
+        </ImageView>
+        <Pane layoutX="472.0" layoutY="261.0" prefHeight="267.0" prefWidth="451.0" style="-fx-background-color: #fff;">
             <children>
-                <Label fx:id="mainMessage" layoutX="170.0" layoutY="21.0" text="Inloggen">
+                <Label layoutX="173.0" layoutY="14.0" text="Inloggen">
                     <font>
                         <Font name="Arial Bold" size="25.0"/>
                     </font>
                 </Label>
-                <VBox layoutX="60.0" layoutY="110.0" prefHeight="64.0" prefWidth="335.0" spacing="5.0">
-                    <children>
-                        <TextField id="textfield-email" fx:id="textField" minHeight="37.0" minWidth="335.0"
-                                   onKeyReleased="#onTextFieldChange" promptText="Email">
-                            <font>
-                                <Font size="14.0"/>
-                            </font>
-                        </TextField>
-                        <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="-30.0" minHeight="37.0"
-                                       minWidth="335.0" onKeyReleased="#onPasswordFieldChange" promptText="wachtwoord"
-                                       visible="false">
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets top="-42.0"/>
-                            </VBox.margin>
-                        </PasswordField>
-                        <Label id="label-reset-password" fx:id="resetPasswordLabel" onMouseClicked="#onResetButtonClick"
-                               text="wachtwoord vergeten?" textFill="#401664" visible="false">
-                            <font>
-                                <Font size="14.0"/>
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="CLOSED_HAND"/>
-                            </cursor>
-                        </Label>
-                    </children>
-                    <opaqueInsets>
-                        <Insets/>
-                    </opaqueInsets>
-                </VBox>
-                <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="60.0" layoutY="61.0" prefHeight="25.0"
-                       prefWidth="334.0" text="error_message"/>
-                <Button id="button-register" fx:id="registerButton" layoutX="60.0" layoutY="206.0"
-                        mnemonicParsing="false" onMouseClicked="#onRegisterButtonClick" prefHeight="34.0"
-                        prefWidth="135.0" style="-fx-background-color: d0cece;" text="Registreren" textFill="#401664">
+                <Label fx:id="message" alignment="CENTER" layoutX="100.0" layoutY="44.0" prefHeight="37.0"
+                       prefWidth="250.0" text="message" textAlignment="CENTER" wrapText="true"/>
+            </children>
+            <effect>
+                <DropShadow color="#00000041"/>
+            </effect>
+        </Pane>
+        <Pane fx:id="emailPane" layoutX="472.0" layoutY="344.0" prefHeight="150.0" prefWidth="451.0" visible="false">
+            <children>
+                <TextField id="textfield-email" fx:id="textfieldEmail" layoutX="60.0" layoutY="15.0" minHeight="37.0"
+                           minWidth="335.0" onKeyReleased="#onEmailChange" promptText="Email">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </TextField>
+                <Button id="button-register" layoutX="60.0" layoutY="110.0" mnemonicParsing="false"
+                        onMouseClicked="#onRegisterButtonClick" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: d0cece;" text="Registreren" textFill="#401664">
                     <font>
                         <Font name="Arial" size="14.0"/>
                     </font>
@@ -62,27 +53,7 @@
                         <Cursor fx:constant="CLOSED_HAND"/>
                     </cursor>
                 </Button>
-                <Button id="button-register" fx:id="backToEmailButton" layoutX="60.0" layoutY="206.0"
-                        mnemonicParsing="false" onMouseClicked="#onBackToEmail" prefHeight="34.0" prefWidth="135.0"
-                        style="-fx-background-color: d0cece;" text="Terug" textFill="#401664" visible="false">
-                    <font>
-                        <Font name="Arial" size="14.0"/>
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="CLOSED_HAND"/>
-                    </cursor>
-                </Button>
-                <Button id="button-login" fx:id="loginButton" layoutX="260.0" layoutY="206.0" mnemonicParsing="false"
-                        onMouseClicked="#onLoginButtonClick" prefHeight="34.0" prefWidth="135.0"
-                        style="-fx-background-color: f47321;" text="Aanmelden" textFill="WHITE">
-                    <font>
-                        <Font name="Arial" size="14.0"/>
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="CLOSED_HAND"/>
-                    </cursor>
-                </Button>
-                <Button id="button-login" fx:id="nextButton" layoutX="260.0" layoutY="206.0" mnemonicParsing="false"
+                <Button id="button-login" layoutX="260.0" layoutY="110.0" mnemonicParsing="false"
                         onMouseClicked="#onNextButtonClick" prefHeight="34.0" prefWidth="135.0"
                         style="-fx-background-color: f47321;" text="Volgende" textFill="WHITE">
                     <font>
@@ -92,10 +63,67 @@
                         <Cursor fx:constant="CLOSED_HAND"/>
                     </cursor>
                 </Button>
+                <Label layoutX="60.0" layoutY="-6.0" prefHeight="17.0" prefWidth="63.0" text="Email"/>
             </children>
-            <effect>
-                <DropShadow color="#00000055"/>
-            </effect>
-        </AnchorPane>
-    </center>
-</BorderPane>
+        </Pane>
+        <Pane fx:id="passwordPane" layoutX="472.0" layoutY="344.0" prefHeight="150.0" prefWidth="451.0" visible="false">
+            <children>
+                <Label id="label-reset-password" layoutX="60.0" layoutY="54.0" onMouseClicked="#onResetButtonClick"
+                       text="wachtwoord vergeten?" textFill="#401664">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Label>
+                <PasswordField fx:id="passwordField" layoutX="60.0" layoutY="15.0" onKeyReleased="#onPasswordChange"
+                               prefHeight="37.0" prefWidth="334.0" promptText="password"/>
+                <Button id="button-register" layoutX="60.0" layoutY="110.0" mnemonicParsing="false"
+                        onMouseClicked="#onBackButtonClick" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: d0cece;" text="Terug" textFill="#401664">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Button>
+                <Button id="button-login" layoutX="260.0" layoutY="110.0" mnemonicParsing="false"
+                        onMouseClicked="#onLoginButtonClick" prefHeight="34.0" prefWidth="135.0"
+                        style="-fx-background-color: f47321;" text="Aanmelden" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="14.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="CLOSED_HAND"/>
+                    </cursor>
+                </Button>
+                <Label layoutX="60.0" layoutY="-6.0" prefHeight="17.0" prefWidth="63.0" text="password"/>
+            </children>
+        </Pane>
+        <ImageView cache="true" layoutX="89.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/login/out_of_box.png"/>
+            </image>
+        </ImageView>
+        <ImageView layoutX="245.0" layoutY="611.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/login/lamp.png"/>
+            </image>
+        </ImageView>
+        <ImageView layoutX="1104.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/login/destillaat.png"/>
+            </image>
+        </ImageView>
+        <ImageView layoutX="1105.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/login/e_mc_2.png"/>
+            </image>
+        </ImageView>
+    </children>
+    <effect>
+        <DropShadow color="#00000055"/>
+    </effect>
+</AnchorPane>

@@ -2,16 +2,15 @@ package nello.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import nello.controller.LoginController;
 import nello.controller.MainController;
+import nello.model.Credential;
 import nello.model.LoginModel;
 import nello.observable.LoginObservable;
 import nello.observer.LoginObserver;
@@ -20,153 +19,137 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LoginView implements FXMLView<LoginController>, LoginObserver, Initializable, BeforeDisplay {
+public class LoginView implements FXMLView<LoginController>, LoginObserver, Initializable {
 
+    /**
+     * path to fxml file
+     */
+    private final String fxmlPath;
+    /**
+     * email input field
+     */
     @FXML
-    private BorderPane root;
-
-    @FXML
-    private Label mainMessage;
-
-    @FXML
-    private Label errorMessage;
-
-    @FXML
-    private TextField textField;
-
+    private TextField textfieldEmail;
+    /**
+     * password input field
+     */
     @FXML
     private PasswordField passwordField;
-
+    /**
+     * info message
+     */
     @FXML
-    private Label resetPasswordLabel;
-
+    private Label message;
+    /**
+     * pane for all email related nodes.
+     */
     @FXML
-    private Button backToEmailButton;
-
+    private Pane emailPane;
+    /**
+     * pane for all password related nodes.
+     */
     @FXML
-    private Button registerButton;
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button nextButton;
-
-    private final String fxmlPath;
+    private Pane passwordPane;
+    /**
+     * controller for this view.
+     */
     private LoginController controller;
 
+    /**
+     * construct a new login view.
+     */
     public LoginView() {
         this.fxmlPath = "/view/LoginView.fxml";
         this.controller = MainController.getInstance().getLoginController();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        this.controller.registerObserver(this);
-
-        // clear all textfields
-        this.errorMessage.setText("");
-        this.textField.setText("");
-        this.passwordField.setText("");
-
-        // remove focus from textfield
-        this.textField.setFocusTraversable(false);
-    }
-
-    public void onTextFieldChange(KeyEvent keyEvent) {
-        // if ctrl is down ignore all
-        if (keyEvent.isControlDown())
-            return;
-
-        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.TAB) {
-            this.onNextButtonClick();
-            return;
+    public void onEmailChange(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            onNextButtonClick();
         }
-//        System.out.println(textField.getText());
-        this.controller.onEmailChange(textField.getText());
-    }
 
-    public void onPasswordFieldChange(KeyEvent keyEvent) {
-        // if ctrl is down ignore all
-        if (keyEvent.isControlDown())
-            return;
-
-        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.TAB) {
-            this.onLoginButtonClick();
-            return;
+        if (event.getCode() == KeyCode.TAB) {
+            getController().onEmailChange(textfieldEmail.getText());
         }
-        this.controller.onPasswordChange(passwordField.getText());
     }
 
-    public void onResetButtonClick(MouseEvent mouseEvent) {
-        this.controller.onResetButtonClick();
+    public void onPasswordChange(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            onLoginButtonClick();
+        }
+
+        if (event.getCode() == KeyCode.TAB) {
+            getController().onPasswordChange(textfieldEmail.getText());
+        }
     }
 
-    public void onRegisterButtonClick(MouseEvent mouseEvent) {
-        System.out.println("clicked on register");
-    }
-
-    // ik doe dit om de merge zichtbaar te krijgen.
-    public void onLoginButtonClick() {
-        this.controller.onLoginButtonClick();
+    public void onRegisterButtonClick() {
+        System.out.println("called");
     }
 
     public void onNextButtonClick() {
-        this.controller.onNextButtonClick();
+        getController().onEmailChange(textfieldEmail.getText());
+        getController().onNextButtonClick();
     }
 
-    public void onBackToEmail() {
-        this.controller.onBackToEmail();
+    public void onBackButtonClick() {
+        getController().onBackButtonClick();
+    }
+
+    public void onResetButtonClick() {
+        getController().onPasswordResetRequest();
+    }
+
+    public void onLoginButtonClick() {
+        getController().onPasswordChange(passwordField.getText());
+        getController().onLoginButtonClick();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        // clear main message
+        message.setText("");
+
+        // register to observable
+        getController().registerObserver(this);
     }
 
     @Override
     public void update(LoginObservable observable) {
-        System.out.println("updateding view");
-
-        this.errorMessage.setText(observable.getErrorMessage().toString());
-        System.out.println(observable.getCredentials().getEmail());
-        System.out.println(observable.getCredentials().getPassword());
-
-        // update email field
-        textField.setText(observable.getCredentials().getEmail());
-        textField.positionCaret(textField.getText().length());
-
-
-        // update password field
-        passwordField.setText(observable.getCredentials().getPassword());
-        passwordField.positionCaret(passwordField.getText().length());
-
-        // update phase
-        onPhaseChange(observable.getCurrentPhase());
-
+        updateCredential(observable.getCredentials());
+        message.setText(observable.getMessage());
+        updatePhase(observable.getCurrentPhase());
     }
 
-    private void onPhaseChange(LoginModel.Phase currentPhase) {
+    /**
+     * update the view based on the phase.
+     *
+     * @param currentPhase {@link nello.model.LoginModel.Phase} login phase
+     */
+    private void updatePhase(LoginModel.Phase currentPhase) {
         switch (currentPhase) {
             case EMAIL:
-                toggleEmailStage(true);
-                toggleStagePassword(false);
-                textField.setFocusTraversable(true);
+                emailPane.setVisible(true);
+                passwordPane.setVisible(false);
                 break;
             case PASSWORD:
-                toggleEmailStage(false);
-                toggleStagePassword(true);
-                passwordField.setFocusTraversable(true);
+                emailPane.setVisible(false);
+                passwordPane.setVisible(true);
                 break;
         }
     }
 
-    private void toggleEmailStage(boolean isVisible) {
-        textField.setVisible(isVisible);
-        nextButton.setVisible(isVisible);
-        registerButton.setVisible(isVisible);
-    }
-
-    // merge test
-    private void toggleStagePassword(boolean isVisible) {
-        passwordField.setVisible(isVisible);
-        loginButton.setVisible(isVisible);
-        backToEmailButton.setVisible(isVisible);
+    /**
+     * update login credential in view.
+     *
+     * @param credentials {@link Credential} login credentials
+     */
+    private void updateCredential(Credential credentials) {
+        this.textfieldEmail.setText(credentials.getEmailAdders());
+        this.textfieldEmail.positionCaret(textfieldEmail.getLength());
+        this.passwordField.setText(credentials.getPassword());
+        this.passwordField.positionCaret(passwordField.getLength());
     }
 
     @Override
@@ -184,8 +167,4 @@ public class LoginView implements FXMLView<LoginController>, LoginObserver, Init
         this.controller = controller;
     }
 
-    @Override
-    public void beforeShow() {
-        System.out.println("called");
-    }
 }
