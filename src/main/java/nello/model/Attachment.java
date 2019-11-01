@@ -49,4 +49,44 @@ public class Attachment {
         this.uploadDate = uploadDate;
     }
 
+    public long getExperimentId() {
+        return experimentId;
+    }
+
+    public long getFileId() {
+        return fileId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getUploaderId() {
+        return uploaderId;
+    }
+
+    public Blob getFileData() {
+        return fileData;
+    }
+
+    public FileType getFileType() {
+        return fileType;
+    }
+
+    public boolean isMainPhoto() {
+        return isMainPhoto;
+    }
+
+    public void setIsMainPhoto(boolean isMainPhoto) {
+     this.isMainPhoto = isMainPhoto;
+    }
+
+    public Date getUploadDate() {
+        return uploadDate;
+    }
+
 }

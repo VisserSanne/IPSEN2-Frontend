@@ -70,7 +70,7 @@ public class Experiment {
     public boolean isLocked;
 
     public Experiment(long id, Category category, Phase phase, String businessOwner, String description, String name,
-                      String statusColor, Date createDate, Date endDate, String status, ArrayList<Log> logs,
+                      String statusColor, Date createDate, String status, ArrayList<Log> logs,
                       ArrayList<Attachment> attachments, boolean isLocked) {
 
         this.id = id;
@@ -81,7 +81,7 @@ public class Experiment {
         this.name = name;
         this.statusColor = statusColor;
         this.createDate = createDate;
-        this.endDate = endDate;
+        this.endDate = null;
         this.status = status;
         this.logs = logs;
         this.attachments = attachments;
@@ -92,38 +92,30 @@ public class Experiment {
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
 
-    @NotNull
     public Category getCategory() {return category;}
     public void setCategory(Category category) {this.category = category;}
 
-    @NotNull
     public Phase getPhase() {return phase;};
     public void setPhase(Phase phase) {this.phase = phase;}
 
-    @NotNull
     public String getBusinessOwner() {return businessOwner;}
     public void setBusinessOwner(String businessOwner) {this.businessOwner = businessOwner;}
 
-    @NotNull
     public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
 
-    @NotNull
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
 
-    @NotNull
     public String getStatusColor() {return statusColor;}
     public void setStatusColor(String statusColor) {this.statusColor = statusColor;}
 
-    @NotNull
     public Date getCreateDate() {return createDate;}
     public void setCreateDate(Date createDate) {this.createDate = createDate;}
 
     public Date getEndDate() {return endDate;}
     public void setEndDate(Date endDate) {this.endDate = endDate;}
 
-    @NotNull
     public String getStatus() {return status;}
     public void setStatus(String status) {this.status = status;}
 
@@ -131,7 +123,6 @@ public class Experiment {
 //    public String getLog() {return log;}
 //    public void setLog(String log) {this.log = log;}
 
-    @NotNull
     public boolean isLocked() {return isLocked;}
     public void setLocked(boolean isLocked) {this.isLocked = isLocked;}
 
