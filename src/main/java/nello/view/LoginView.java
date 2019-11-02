@@ -146,7 +146,7 @@ public class LoginView implements FXMLView<LoginController>, LoginObserver, Init
      * @param credentials {@link Credential} login credentials
      */
     private void updateCredential(Credential credentials) {
-        this.textfieldEmail.setText(credentials.getEmailAdders());
+        this.textfieldEmail.setText(credentials.getEmail());
         this.textfieldEmail.positionCaret(textfieldEmail.getLength());
         this.passwordField.setText(credentials.getPassword());
         this.passwordField.positionCaret(passwordField.getLength());

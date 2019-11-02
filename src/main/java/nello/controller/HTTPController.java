@@ -22,21 +22,32 @@ public class HTTPController {
         this.gson = new Gson();
     }
 
-    public <T> T post(ResourceRoute route, Object model, Class<T> type) {
+    /**
+     * Send a post request to the given route, and convert model to json.
+     *
+     * @param route {@link ResourceRoute} route to path
+     * @param model {@link Object} post data
+     * @return {@link Response} server response
+     */
+    public Response post(ResourceRoute route, Object model) {
 
         // convert to JSON
         String json = gson.toJson(model);
 
-        // build request
+        // build and send request.
         Response response = target
                 .path(route.toString())
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(json, MediaType.APPLICATION_JSON));
 
-        // convert to responce object.
-        return gson.fromJson(response.readEntity(String.class), type);
-
+        return response;
     }
 
+    private Response get(ResourceRoute route) {
+        Response response = target.path(route.toString())
+                .request(MediaType.APPLICATION_JSON)
+                .get();
 
+        return response;
+    }
 }

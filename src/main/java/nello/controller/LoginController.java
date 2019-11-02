@@ -3,6 +3,8 @@ package nello.controller;
 import nello.model.LoginModel;
 import nello.observer.LoginObserver;
 
+import javax.ws.rs.core.Response;
+
 public class LoginController implements IController {
 
     private MainController mainController;
@@ -27,8 +29,21 @@ public class LoginController implements IController {
      * check if email is allowed to login, and update phase if needed.
      */
     public void onNextButtonClick() {
+        HTTPController http = mainController.getHttpController();
         // http request check email exist/user whitelisted.
-        model.setCurrentPhase(LoginModel.Phase.PASSWORD);
+        Response response = http.post(ResourceRoute.LOGIN_EMAIL, model.getCredential());
+        switch (response.getStatus()) {
+            case 200: // status OK
+                model.clearMessage();
+                model.setCurrentPhase(LoginModel.Phase.PASSWORD);
+                break;
+            case 401: // status UNAUTHORIZED
+                model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");
+                break;
+            case 403: // status FORBIDDEN
+                model.setMessage("U heeft nog geen toegang tot dit systeem. Ashna moet u nog toestemming geven.");
+                break;
+        }
     }
 
     /**
@@ -43,7 +58,23 @@ public class LoginController implements IController {
      */
     public void onLoginButtonClick() {
         System.out.println(String.format("user tries to login with email and password %s", model.getCredential()));
-        model.setMessage("Inloggen is helaas nog niet mogelijk, probeer het bij trello");
+        HTTPController http = mainController.getHttpController();
+        Response response = http.post(ResourceRoute.LOGIN, model.getCredential());
+        switch (response.getStatus()) {
+            case 200: // status OK
+                model.clearMessage();
+                String token = response.readEntity(String.class);
+                System.out.println(String.format("acquired login token: %s", token));
+//                http.register(HTTPAuthorizationHeader.class);
+                break;
+            case 401: // status UNAUTHORIZED
+                model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");
+                break;
+            case 403: // status FORBIDDEN
+                model.setMessage("U heeft nog geen toegang tot dit systeem. Ashna moet u nog toestemming geven.");
+                break;
+        }
+
     }
 
     /**

@@ -35,7 +35,7 @@ public class LoginModel implements LoginObservable {
     }
 
     public void setEmailAddress(String email) {
-        this.credential.setEmailAdders(email);
+        this.credential.setEmail(email);
         notifyObservers();
     }
 
@@ -87,6 +87,10 @@ public class LoginModel implements LoginObservable {
 
         // notify him on latest updates
         observer.update(this);
+    }
+
+    public void clearMessage() {
+        this.setMessage("");
     }
 
     /**
