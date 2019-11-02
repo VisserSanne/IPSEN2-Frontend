@@ -35,18 +35,35 @@ public class HTTPController {
         String json = gson.toJson(model);
 
         // build and send request.
-        Response response = target
+        return target
                 .path(route.toString())
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(json, MediaType.APPLICATION_JSON));
-
-        return response;
     }
 
     private Response get(ResourceRoute route) {
-        Response response = target.path(route.toString())
+        return target.path(route.toString())
                 .request(MediaType.APPLICATION_JSON)
                 .get();
+    }
+
+    public Response delete(ResourceRoute route) {
+        // build and send request.
+
+        return target.path(route.toString())
+                .request(MediaType.APPLICATION_JSON)
+                .delete();
+    }
+
+    public Response put(ResourceRoute route, Object model) {
+        // convert to JSON
+        String json = gson.toJson(model);
+
+        // build and send request.
+        Response response = target
+                .path(route.toString())
+                .request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(json, MediaType.APPLICATION_JSON));
 
         return response;
     }
