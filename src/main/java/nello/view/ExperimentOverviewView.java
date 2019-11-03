@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import nello.controller.ExperimentOverviewController;
 import nello.controller.MainController;
 
@@ -19,6 +22,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentOverviewContro
 
     private static final String DATA_FOR_RANDOM_STRING = "abcdefghijklmnopqrstuvwxyz";
     private final String fxmlPath;
+
     @FXML
     public StackPane dummy_user;
     @FXML
@@ -43,6 +47,10 @@ public class ExperimentOverviewView implements FXMLView<ExperimentOverviewContro
     public FlowPane incomeFlowPane;
     @FXML
     private HBox userList;
+
+    @FXML
+    private VBox networkMemberVbox;
+
     private ExperimentOverviewController controller;
 
     public ExperimentOverviewView() {
@@ -89,34 +97,41 @@ public class ExperimentOverviewView implements FXMLView<ExperimentOverviewContro
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.titleLabel.setText("Marktplaats Expertise");
-        this.descriptionLabel.setText("Expertisebank, marktplaats of talentenbank: de Om'er wil mensen makkelijk en snel kunnen vinden op expertise, kennis of talent");
+        this.titleLabel.setText(generateRandomString(30));
+        this.descriptionLabel.setText(generateRandomString(125));
         this.descriptionLabel.setWrapText(true);
-        this.statusLabel.setText("Exploratie fase: gesprek met leverancier app p-direct staat gebpland, HR development is aangehaakt");
+        this.statusLabel.setText(generateRandomString(125));
         this.businessOwnerLabel.setText("Ashna Wiar");
         this.lastModified.setText(String.format(this.lastModified.getText(), "Ashna Wiar", new Date().toString()));
         // hide 'geen' text
         this.costLabel.setText("");
         this.incomeLabel.setText("");
-        Label new_cost = new Label("20k funding");
-        new_cost.getStyleClass().add("label-finance");
-        Label new_cost_2 = new Label("40k funding");
-        new_cost_2.getStyleClass().add("label-finance");
-        this.costFlowPane.getChildren().addAll(new_cost, new_cost_2);
 
         for (int i = 0; i < 5; i++) {
             Label c = new Label(generateRandomString(10));
-            c.getStyleClass().add("label-finance");
+            c.getStyleClass().add("tag-finance");
             this.costFlowPane.getChildren().add(c);
         }
 
         for (int i = 0; i < 5; i++) {
             Label c = new Label(generateRandomString(10));
-            c.getStyleClass().add("label-finance");
+            c.getStyleClass().add("tag-finance");
             this.incomeFlowPane.getChildren().add(c);
         }
 
+        for (int i = 0; i < 10; i++) {
+            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
+            Line line = new Line(0, 0, 255, 0);
+            line.setStroke(Color.web("#cecece"));
+            networkMemberVbox.getChildren().addAll(n, line);
 
+        }
+
+
+    }
+
+    private boolean randomBoolean() {
+        return Math.random() < 0.5;
     }
 
 }
