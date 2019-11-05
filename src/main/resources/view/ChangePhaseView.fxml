@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="260.0" style="-fx-background-color: ffffff; -fx-border-radius: 4px;" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="32.0" prefWidth="185.0">
+         <children>
+            <Line endX="170.0" endY="-10.0" layoutX="78.0" layoutY="58.0" startX="-70.0" startY="-10.0" stroke="#c9c9c9" />
+            <Label layoutX="73.0" layoutY="17.0" maxHeight="1.7976931348623157E308" text="Fasen aanpassen">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="229.0" layoutY="13.0">
+               <image>
+                  <Image url="@../AppData/Local/Temp/Rar$DRa28568.22106/1x/round_close_black_24dp.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="36.0" prefWidth="260.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f3f3f3" height="38.0" layoutX="11.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="241.0" />
+            <Label layoutX="23.0" layoutY="32.0" text="Experimenten" />
+            <Text fill="#848484" layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="36.0" prefWidth="260.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f3f3f3" height="38.0" layoutX="11.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="241.0" />
+            <Label layoutX="23.0" layoutY="32.0" text="Idee" />
+            <Text fill="#848484" layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fasen">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#5dc745" height="26.0" layoutX="14.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="73.0" />
+            <Text fill="WHITE" layoutX="30.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opslaan">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <DropShadow height="15.0" radius="7.0" width="15.0" />
+   </effect>
+</VBox>
