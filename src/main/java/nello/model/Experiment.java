@@ -1,19 +1,16 @@
 package nello.model;
 
-import com.sun.istack.internal.NotNull;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Experiment implements ExperimentObservable {
 
     public enum Category {
-        INWERKING(1), AFGEROND(2), VASTEDIENST(3);
+        INWERKING(1), HALLOFFAME(2), CEMENTARY(3), VASTEDIENST(4);
         private int category;
 
         Category(int category) {
@@ -60,15 +57,41 @@ public class Experiment implements ExperimentObservable {
 
     }
 
+    public enum StatusColor {
+
+        GROEN(1), ORANJE(2), ROOD(3);
+
+        private int statusColor;
+
+        StatusColor(int statusColor) {
+            this.statusColor = statusColor;
+        }
+
+        public static StatusColor getById(int statusColorId) {
+            for (StatusColor statusColor : values()) {
+                if (statusColor.getValue() == statusColorId) {
+                    return statusColor;
+                }
+            }
+            // If no statuscolor is defined the standard is "GROEN"
+            return StatusColor.GROEN;
+        }
+
+        public int getValue(){
+            return statusColor;
+        }
+
+    }
+
     private long id;
     private Category category;
     private Phase phase;
     private String businessOwner;
     private String description;
     private String name;
-    private String statusColor;
+    private StatusColor statusColor;
     private LocalDate createDate;
-    private Date endDate;
+    private LocalDate endDate;
     private String status;
     private List<Log> logs;
     private List<Attachment> attachments;
@@ -77,7 +100,7 @@ public class Experiment implements ExperimentObservable {
     private List<ExperimentObserver> observerList;
 
     public Experiment(long id, Category category, Phase phase, String businessOwner, String description, String name,
-                      String statusColor, LocalDate createDate, String status, ArrayList<Log> logs,
+                      StatusColor statusColor, LocalDate createDate, String status, ArrayList<Log> logs,
                       ArrayList<Attachment> attachments, boolean isLocked) {
 
         this.id = id;
@@ -88,7 +111,6 @@ public class Experiment implements ExperimentObservable {
         this.name = name;
         this.statusColor = statusColor;
         this.createDate = createDate;
-        this.endDate = null;
         this.status = status;
         this.logs = logs;
         this.attachments = attachments;
@@ -144,16 +166,16 @@ public class Experiment implements ExperimentObservable {
         notifyObservers();
     }
 
-    public String getStatusColor() {return statusColor;}
-    public void setStatusColor(String statusColor) {
+    public StatusColor getStatusColor() {return statusColor;}
+    public void setStatusColor(StatusColor statusColor) {
         this.statusColor = statusColor;
         notifyObservers();
     }
 
     public LocalDate getCreateDate() {return createDate;}
 
-    public Date getEndDate() {return endDate;}
-    public void setEndDate(Date endDate) {
+    public LocalDate getEndDate() {return endDate;}
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
         notifyObservers();
     }

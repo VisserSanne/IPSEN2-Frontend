@@ -5,7 +5,6 @@ import nello.model.Experiment;
 import nello.model.Log;
 import nello.observer.ExperimentObserver;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,9 +16,9 @@ public interface ExperimentObservable {
     String getBusinessOwner();
     String getDescription();
     String getName();
-    String getStatusColor();
+    Experiment.StatusColor getStatusColor();
     LocalDate getCreateDate();
-    Date getEndDate();
+    LocalDate getEndDate();
     String getStatus();
     List<Log> getLogs();
     List<Attachment> getAttachments();

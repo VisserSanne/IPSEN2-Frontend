@@ -40,15 +40,15 @@ public class ExperimentController implements IController {
         Experiment.Phase phase = null;
 
         if(isService) {
-            category = Experiment.Category.getById(3);
+            category = Experiment.Category.getById(4);
             phase = Experiment.Phase.getById(5);
         } else {
             category = Experiment.Category.getById(1);
             phase = Experiment.Phase.getById(1);
         }
 
-        new Experiment(generateId(), category, phase, businessOwner, description, name, "GREEN", getDate(),
-                null, new ArrayList<Log>(), new ArrayList<Attachment>(), false);
+        new Experiment(generateId(), category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
+                getDate(),null, new ArrayList<Log>(), new ArrayList<Attachment>(), false);
 
     }
 
@@ -77,13 +77,24 @@ public class ExperimentController implements IController {
         return 100000 + random.nextInt(900000);
     }
 
-    public void endExperiment(boolean succesfull) {
+    /**
+     * Sets the state of an experiment to ended, with the correct phase
+     *
+     * @param successful boolean that is given by the view if the experiment has succeeded
+     * @author Valerie Timmerman
+     */
 
-        if(succesfull) {
+    public void endExperiment(boolean successful) {
 
+        if(successful) {
+            experiment.setCategory(Experiment.Category.getById(2));
         } else {
-
+            experiment.setCategory(Experiment.Category.getById(3));
         }
+
+        experiment.setPhase(Experiment.Phase.getById(4));
+        experiment.setStatusColor(Experiment.StatusColor.getById(1));
+        experiment.setEndDate(getDate());
 
     }
 
