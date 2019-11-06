@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.DashboardModel;
 import nello.model.LoginModel;
+import nello.model.ProfileModel;
 
 public class MainController {
 
@@ -10,7 +11,7 @@ public class MainController {
     private StageController stageController;
     private LoginController loginController;
     private DashboardController dashboardController;
-
+    private ProfileController profileController;
 
     private MainController() {
         registerControllers();
@@ -27,6 +28,7 @@ public class MainController {
         stageController = new StageController();
         loginController = new LoginController(this, new LoginModel());
         dashboardController = new DashboardController(this, new DashboardModel());
+        profileController = new ProfileController(this, new ProfileModel());
     }
 
     public HTTPController getHttpController() {
@@ -43,5 +45,9 @@ public class MainController {
 
     public DashboardController getDashboardController() {
         return dashboardController;
+    }
+
+    public ProfileController getProfileController() {
+        return profileController;
     }
 }
