@@ -60,6 +60,7 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
         this.textFieldUserRole.setText(o.getUser().getUserRole().getName());
         this.textFieldEmail.setText(o.getUser().getEmail());
         this.textFieldFullName.setText(o.getUser().getNetworkMember().getName());
+        this.textFieldInitials.setText(o.getUser().getNetworkMember().getInitials());
     }
 
     @Override
