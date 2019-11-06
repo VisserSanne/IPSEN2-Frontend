@@ -1,6 +1,7 @@
 package nello.controller;
 
 import nello.model.ProfileModel;
+import nello.model.User;
 
 public class ProfileController implements IController {
     private MainController mainController;
@@ -10,4 +11,25 @@ public class ProfileController implements IController {
         this.mainController = mainController;
         this.profileModel = profileModel;
     }
+
+    public void onSaveButtonClick(){
+        HTTPController http = mainController.getHttpController();
+        User user = profileModel.getUser();
+        //
+    }
+
+    public void onEmailChange(String email){
+        //
+    }
+
+    public void onFullNameChange(String fullName){
+        //
+    }
+
+
+
+
+
+
+
 }

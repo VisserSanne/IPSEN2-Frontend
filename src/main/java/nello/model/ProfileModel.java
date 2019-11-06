@@ -1,39 +1,44 @@
 package nello.model;
 
-public class ProfileModel {
+import nello.observable.ProfileObservable;
+import nello.observer.ProfileObserver;
 
-    private String role;
-    private String fullName;
-    private String initials;
-    private String emailAddress;
-    private String bio;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProfileModel implements ProfileObservable {
+
+    private User user;
+    private List<ProfileObserver> observerList;
 
     public ProfileModel() {
-        this.role = role;
-        this.fullName = fullName;
-        this.initials = initials;
-        this.emailAddress = emailAddress;
-        this.bio = bio;
+        observerList = new ArrayList<>();
+        this.user = null;
     }
 
-    public String getRole() {
-        return role;
+    @Override
+    public User getUser() {
+        return user;
     }
 
-    public String getFullName() {
-        return fullName;
+    public void setUser(User user) {
+        this.user = user;
+        this.notifyObservers();
     }
 
-    public String getInitials() {
-        return initials;
+    @Override
+    public void registerObserver(ProfileObserver o) {
+        if(o != null)
+            observerList.add(o);
+
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
+    @Override
+    public void notifyObservers() {
+        for (ProfileObserver o : observerList) {
+            if(o != null)
+                o.update(this);
+        }
 
-    public String getBio() {
-        return bio;
     }
-
 }
