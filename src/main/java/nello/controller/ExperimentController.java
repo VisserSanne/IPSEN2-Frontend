@@ -46,7 +46,7 @@ public class ExperimentController implements IController {
             phase = Experiment.Phase.getById(1);
         }
 
-        new Experiment(generateId(), category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
+        new Experiment( category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
                 getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
 
     }
@@ -61,19 +61,6 @@ public class ExperimentController implements IController {
     public LocalDate getDate() {
         LocalDateTime today = LocalDateTime.now();
         return today.toLocalDate();
-    }
-
-    /**
-     * Generates a random number of 6 digits long as id
-     *
-     * @return long id
-     * @author Valerie Timmerman
-     */
-
-    public long generateId() {
-        //TODO: make something better
-        Random random = new Random();
-        return 100000 + random.nextInt(900000);
     }
 
     /**

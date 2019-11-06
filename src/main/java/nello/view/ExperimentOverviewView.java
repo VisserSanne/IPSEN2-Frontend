@@ -122,13 +122,13 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
             this.incomeFlowPane.getChildren().add(c);
         }
 
-//        for (int i = 0; i < 10; i++) {
-//            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
-//            Line line = new Line(0, 0, 255, 0);
-//            line.setStroke(Color.web("#cecece"));
-//            networkMemberVbox.getChildren().addAll(n, line);
-//
-//        }
+        for (int i = 0; i < 10; i++) {
+            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
+            Line line = new Line(0, 0, 255, 0);
+            line.setStroke(Color.web("#cecece"));
+            networkMemberVbox.getChildren().addAll(n, line);
+
+        }
 
         getController().registerObserver(this);
 
