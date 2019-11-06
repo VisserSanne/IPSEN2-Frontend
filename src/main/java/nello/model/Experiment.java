@@ -5,6 +5,7 @@ import nello.observer.ExperimentObserver;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Experiment implements ExperimentObservable {
@@ -127,7 +128,15 @@ public class Experiment implements ExperimentObservable {
         this.costs = costs;
         this.isLocked = isLocked;
         this.lastModified = lastModified;
+        this.observerList = new ArrayList<>();
 
+
+    }
+
+    public Experiment() {
+        this(Category.INWERKING, Phase.IDEE, "", "", "", StatusColor.GROEN, LocalDate.now(),
+                LocalDate.now(), "", new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                false, LocalDateTime.now());
     }
 
     @Override
@@ -155,7 +164,10 @@ public class Experiment implements ExperimentObservable {
         notifyObservers();
     }
 
-    public Phase getPhase() {return phase;};
+    public Phase getPhase() {
+        return phase;
+    }
+
     public void setPhase(Phase phase) {
         this.phase = phase;
         notifyObservers();

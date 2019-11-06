@@ -44,8 +44,8 @@
                         </StackPane>
                     </children>
                 </HBox>
-                <VBox layoutX="20.0" layoutY="102.0" maxHeight="402.0" maxWidth="315.0" minHeight="402.0"
-                      minWidth="275.0" prefHeight="402.0" prefWidth="275.0">
+                <VBox layoutX="20.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0"
+                      minWidth="275.0" prefHeight="599.0" prefWidth="275.0">
                     <children>
                         <Label fx:id="titleLabel" alignment="TOP_LEFT" maxHeight="40.0" prefWidth="340.0"
                                text="Experiment Title" wrapText="true">
@@ -92,7 +92,7 @@
                                 <Insets top="10.0"/>
                             </padding>
                         </Label>
-                        <ScrollPane id="finance_scrollPane" prefHeight="154.0" prefWidth="315.0">
+                        <ScrollPane id="finance_scrollPane" prefHeight="441.0" prefWidth="275.0">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="260.0">
                                     <children>
@@ -152,8 +152,8 @@
                         </ScrollPane>
                     </children>
                 </VBox>
-                <VBox layoutX="342.0" layoutY="102.0" maxHeight="402.0" maxWidth="315.0" minHeight="402.0"
-                      minWidth="275.0" prefHeight="402.0" prefWidth="314.0">
+                <VBox layoutX="342.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0"
+                      minWidth="275.0" prefHeight="599.0" prefWidth="314.0">
                     <children>
                         <Label fx:id="titleLabel1" alignment="TOP_LEFT" maxHeight="40.0" prefWidth="340.0"
                                text="Netwerk" wrapText="true">
@@ -182,11 +182,15 @@
                                 <Insets top="10.0"/>
                             </padding>
                         </Label>
-                        <ScrollPane id="finance_scrollPane" prefHeight="154.0" prefWidth="315.0">
+                        <ScrollPane id="finance_scrollPane" prefHeight="371.0" prefWidth="314.0">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="260.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="298.0">
                                     <children>
-                                        <VBox maxWidth="315.0" minWidth="255.0" prefHeight="140.0" prefWidth="255.0"/>
+                                        <VBox fx:id="logVbox" maxWidth="315.0" minWidth="255.0" prefWidth="299.0">
+                                            <padding>
+                                                <Insets top="10.0"/>
+                                            </padding>
+                                        </VBox>
                                     </children>
                                 </AnchorPane>
                             </content>
