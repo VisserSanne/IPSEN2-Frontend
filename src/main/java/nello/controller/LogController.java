@@ -20,8 +20,7 @@ public class LogController implements IController {
 
     public void addLogItem(long id, String status, String person) {
         Log log = new Log(id, status, person, LocalDateTime.now());
-        HTTPController httpController = mainController.getHttpController();
-        httpController.post(ResourceRoute.LOG_CREATE, log);
+        mainController.getHttpController().post(ResourceRoute.LOG_CREATE, log);
     }
 
     public void setLog(Log log) {this.log = log;}
