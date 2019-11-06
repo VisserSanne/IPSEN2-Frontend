@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.LoginModel;
 import nello.model.ProfileModel;
+import nello.model.UserRegistrationModel;
 
 public class MainController {
 
@@ -12,6 +13,8 @@ public class MainController {
     private LoginController loginController;
     private ProfileController profileController;
     private ExperimentController experimentController;
+    private UserRegistrationController userRegistrationController;
+    private UserController userController;
 
 
     private MainController() {
@@ -30,6 +33,8 @@ public class MainController {
         loginController = new LoginController(this, new LoginModel());
         experimentController = new ExperimentController(this);
         profileController = new ProfileController(this, new ProfileModel());
+        userRegistrationController = new UserRegistrationController(this, new UserRegistrationModel());
+        userController = new UserController(this);
 
     }
 
@@ -53,4 +58,11 @@ public class MainController {
         return experimentController;
     }
 
+    public UserRegistrationController getUserRegistrationController() {
+        return userRegistrationController;
+    }
+
+    public UserController getUserController() {
+        return userController;
+    }
 }

@@ -1,26 +1,36 @@
 package nello.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Date;
 
 public class User {
-
     private long id;
+
+    @Expose
     private NetworkMember networkMember;
+
+    @Expose
     private String email;
+
+    @Expose
     private String password;
+
+    @Expose
     private UserRole role;
+
     private Date createDate;
 
+    public User() {
+        this.networkMember = new NetworkMember("", false);
+    }
+
     public User(
-            long id,
             NetworkMember networkMember,
             String email,
             String password,
             UserRole role,
-            Date createDate)
-
-    {
-        this.id = id;
+            Date createDate) {
         this.networkMember = networkMember;
         this.email = email;
         this.password = password;
@@ -59,5 +69,9 @@ public class User {
 
     public void setUserRole(UserRole role) {
         this.role = role;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

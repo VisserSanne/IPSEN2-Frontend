@@ -2,6 +2,7 @@ package nello.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nello.util.ResourceUtil;
@@ -22,6 +23,7 @@ public class StageController {
     private Pane rootOf(FXMLView view) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         URL resourcePath = ResourceUtil.get(view.getFXMLPath());
+        System.out.println(resourcePath);
         fxmlLoader.setLocation(resourcePath);
         fxmlLoader.setController(view);
         return fxmlLoader.load();
@@ -30,6 +32,7 @@ public class StageController {
     public void prepareStage(Stage primaryStage) {
         this.mainScene = new Scene(new Pane());
         this.primaryStage = primaryStage;
+        primaryStage.getIcons().add(new Image(ResourceUtil.get("/img/login/logo_nello.png").toExternalForm()));
         primaryStage.setScene(mainScene);
     }
 

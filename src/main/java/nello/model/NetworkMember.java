@@ -1,11 +1,17 @@
 package nello.model;
 
+import com.google.gson.annotations.Expose;
+
 public class NetworkMember {
-    private Boolean isBusiness;
     private long id;
+
+    @Expose
     private String name;
 
-    public NetworkMember(long id, String name, Boolean isBusiness) {
+    @Expose
+    private Boolean isBusiness;
+
+    public NetworkMember(String name, Boolean isBusiness) {
         this.id = id;
         this.name = name;
         this.isBusiness = isBusiness;
