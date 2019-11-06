@@ -28,16 +28,20 @@ public class ProfileModel implements ProfileObservable {
 
     @Override
     public void registerObserver(ProfileObserver o) {
-        if(o != null)
+        if (o != null) {
             observerList.add(o);
+            o.update(this);
+        }
 
     }
 
     @Override
     public void notifyObservers() {
         for (ProfileObserver o : observerList) {
-            if(o != null)
+            if (o != null){
+                System.out.println(user.getEmail());
                 o.update(this);
+            }
         }
 
     }

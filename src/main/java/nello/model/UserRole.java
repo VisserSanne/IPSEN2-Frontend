@@ -1,14 +1,16 @@
 package nello.model;
 
 public enum UserRole {
-    GUEST(1),
-    WORKER(2),
-    ADMIN(3);
+    GUEST(1, "Gastgebruiker"),
+    WORKER(2, "TestlabOM medewerker"),
+    ADMIN(3, "Administrator");
 
     private final int role;
+    private final String name;
 
-    UserRole(int role) {
+    UserRole(int role, String name) {
         this.role = role;
+        this.name = name;
     }
 
     public static UserRole getById(int roleId) {
@@ -22,6 +24,10 @@ public enum UserRole {
 
     public int getValue() {
         return role;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

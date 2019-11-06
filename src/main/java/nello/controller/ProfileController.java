@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.ProfileModel;
 import nello.model.User;
+import nello.observer.ProfileObserver;
 
 public class ProfileController implements IController {
     private MainController mainController;
@@ -27,9 +28,7 @@ public class ProfileController implements IController {
     }
 
 
-
-
-
-
-
+    public void registerObserver(ProfileObserver observer) {
+        profileModel.registerObserver(observer);
+    }
 }

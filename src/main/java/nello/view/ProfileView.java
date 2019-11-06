@@ -1,20 +1,23 @@
 package nello.view;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import nello.controller.MainController;
 import nello.controller.ProfileController;
 import nello.observable.ProfileObservable;
 import nello.observer.ProfileObserver;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ProfileView implements FXMLView<ProfileController>, ProfileObserver {
+public class ProfileView implements FXMLView<ProfileController>, Initializable, ProfileObserver {
 
     @FXML
-    private TextField textFieldRole;
+    private TextField textFieldUserRole;
 
     @FXML
     private TextField textFieldFullName;
@@ -27,21 +30,6 @@ public class ProfileView implements FXMLView<ProfileController>, ProfileObserver
 
     @FXML
     private Button buttonSave;
-
-    @FXML
-    private void onEmailChange(KeyEvent event) {
-        this.controller.onEmailChange(textFieldEmail.getText());
-    }
-
-    @FXML
-    private void onFullNameChange(KeyEvent event) {
-        this.controller.onFullNameChange(textFieldFullName.getText());
-    }
-
-    @FXML
-    private void onSaveButtonClick(MouseEvent event) {
-        this.controller.onSaveButtonClick();
-    }
 
     private final String fxmlPath;
     private ProfileController controller;
@@ -68,7 +56,23 @@ public class ProfileView implements FXMLView<ProfileController>, ProfileObserver
 
     @Override
     public void update(ProfileObservable o) {
+        System.out.println(o.getUser());
+        this.textFieldUserRole.setText(o.getUser().getUserRole().getName());
         this.textFieldEmail.setText(o.getUser().getEmail());
         this.textFieldFullName.setText(o.getUser().getNetworkMember().getName());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getController().registerObserver(this);
+    }
+
+    public void onFullNameChange(KeyEvent keyEvent) {
+    }
+
+    public void onEmailChange(KeyEvent keyEvent) {
+    }
+
+    public void onSaveButtonClick(MouseEvent mouseEvent) {
     }
 }
