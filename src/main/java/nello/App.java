@@ -2,6 +2,7 @@ package nello;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import nello.util.ResourceUtil;
 
 /**
  * Hello world!

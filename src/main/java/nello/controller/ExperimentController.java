@@ -46,7 +46,7 @@ public class ExperimentController implements IController {
             phase = Experiment.Phase.getById(1);
         }
 
-        new Experiment(generateId(), category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
+        new Experiment(generateId(), category, phase, businessOwner, description, name, Experiment.StatusColor.GROEN,
                 getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
 
     }
@@ -92,7 +92,7 @@ public class ExperimentController implements IController {
         }
 
         experiment.setPhase(Experiment.Phase.getById(4));
-        experiment.setStatusColor(Experiment.StatusColor.getById(1));
+        experiment.setStatusColor(Experiment.StatusColor.GROEN);
         experiment.setEndDate(getDate());
 
     }
