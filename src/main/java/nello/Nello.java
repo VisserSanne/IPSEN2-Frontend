@@ -5,7 +5,6 @@ import nello.controller.ExperimentController;
 import nello.controller.LoginController;
 import nello.controller.MainController;
 import nello.controller.StageController;
-import nello.model.Experiment;
 import nello.view.ExperimentOverviewView;
 import nello.view.FXMLView;
 import nello.view.LoginView;
@@ -31,8 +30,8 @@ public class Nello {
         StageController stageController = mainController.getStageController();
         stageController.prepareStage(primaryStage);
         stageController.loadView(START_VIEW);
-        mainController.getExperimentController().setExperiment(new Experiment());
-        stageController.loadPopup(EXPERIMENT_OVERVIEW_CONTROLLER_FXML_VIEW);
+//        mainController.getExperimentController().setExperiment(new Experiment());
+//        stageController.loadPopup(EXPERIMENT_OVERVIEW_CONTROLLER_FXML_VIEW);
     }
 
     public void shine() {

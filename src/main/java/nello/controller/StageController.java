@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nello.util.ResourceUtil;
 import nello.view.BeforeDisplay;
+import nello.view.FXMLPopup;
 import nello.view.FXMLView;
 
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class StageController {
         this.primaryStage.close();
     }
 
+
     public void loadView(FXMLView view) {
         try {
             Pane root = rootOf(view);
@@ -61,13 +63,33 @@ public class StageController {
         }
     }
 
-    public void loadPopup(FXMLView startView) {
+    public void displayPopup(FXMLPopup view, double x, double y) {
         try {
-            Pane root = rootOf(startView);
+            Pane root = rootOf(view);
+            root.setLayoutX(x);
+            root.setLayoutY(y);
 
-            ((Pane) this.primaryStage.getScene().getRoot()).getChildren().add(root);
+            if (view instanceof BeforeDisplay) {
+                ((BeforeDisplay) view).beforeShow();
+            }
+
+            ((Pane) this.mainScene.getRoot()).getChildren().add(focus(root));
+
         } catch (IOException e) {
+            logger.severe("Failed to load view: " + view.getFXMLPath());
             e.printStackTrace();
         }
     }
+
+    private Pane focus(Pane root) {
+        Pane pane = new Pane();
+        pane.setMinWidth(1366);
+        pane.setMinHeight(768);
+        pane.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
+        pane.getChildren().add(root);
+//        pane.setOnMouseClicked(event -> closeView(pane));
+        return pane;
+    }
+
+
 }
