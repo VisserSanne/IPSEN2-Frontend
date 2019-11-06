@@ -29,14 +29,6 @@ public class ProfileView implements FXMLView<ProfileController> {
     @FXML
     private TextField textFullName;
 
-    public void setTextEmail(TextField textEmail) {
-        this.textEmail = textEmail;
-    }
-
-    public void setTextInitials(TextField textInitials) {
-        this.textInitials = textInitials;
-    }
-
     public void setTextFullName(TextField textFullName) {
         this.textFullName = textFullName;
     }
@@ -44,8 +36,16 @@ public class ProfileView implements FXMLView<ProfileController> {
     @FXML
     private TextField textInitials;
 
+    public void setTextInitials(TextField textInitials) {
+        this.textInitials = textInitials;
+    }
+
     @FXML
     private TextField textEmail;
+
+    public void setTextEmail(TextField textEmail) {
+        this.textEmail = textEmail;
+    }
 
     @FXML
     private Label labelRole;
@@ -66,32 +66,32 @@ public class ProfileView implements FXMLView<ProfileController> {
     private Button buttonSave;
 
     @FXML
-    void inputTextBio(MouseEvent event) {
+    private void inputTextBio(MouseEvent event) {
 
     }
 
     @FXML
-    void inputTextEmail(MouseEvent event) {
+    private void inputTextEmail(MouseEvent event) {
 
     }
 
     @FXML
-    void inputTextFullName(MouseEvent event) {
+    private void inputTextFullName(MouseEvent event) {
 
     }
 
     @FXML
-    void inputTextInitials(MouseEvent event) {
+    private void inputTextInitials(MouseEvent event) {
 
     }
 
     @FXML
-    void inputTextRole(MouseEvent event) {
+    private void inputTextRole(MouseEvent event) {
 
     }
 
     @FXML
-    void onSaveButtonClick(MouseEvent event) {
+    private void onSaveButtonClick(MouseEvent event) {
 
     }
 
