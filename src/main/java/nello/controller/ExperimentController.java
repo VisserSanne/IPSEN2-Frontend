@@ -1,14 +1,11 @@
 package nello.controller;
 
-import nello.model.Attachment;
 import nello.model.Experiment;
-import nello.model.Log;
 import nello.observer.ExperimentObserver;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ExperimentController implements IController {
 
@@ -83,6 +80,8 @@ public class ExperimentController implements IController {
         experiment.setPhase(Experiment.Phase.getById(4));
         experiment.setStatusColor(Experiment.StatusColor.getById(1));
         experiment.setEndDate(getDate());
+
+        mainController.getHttpController().put(ResourceRoute.EXPERIMENT_UPDATE, experiment);
 
     }
 
