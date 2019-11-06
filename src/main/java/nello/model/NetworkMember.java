@@ -35,4 +35,21 @@ public class NetworkMember {
         this.isBusiness = business;
     }
 
+    public String getInitials() {
+        String[] tokens = this.name.split(" ");
+        String firstName = tokens[0];
+        String lastName = tokens[tokens.length -1];
+        String initials = "";
+        if(tokens.length > 0) {
+            String[] firstToken = firstName.split("");
+            String firstInitial = firstToken[0];
+
+            String[] lastToken = lastName.split("");
+            String lastInitial = lastToken[0];
+
+            initials = firstInitial+ "." +lastInitial+ ".";
+        }
+        return initials;
+    }
+
 }
