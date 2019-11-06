@@ -9,6 +9,7 @@ public class MainController {
     private HTTPController httpController;
     private StageController stageController;
     private LoginController loginController;
+    private ExperimentController experimentController;
 
 
     private MainController() {
@@ -25,6 +26,7 @@ public class MainController {
         httpController = new HTTPController();
         stageController = new StageController();
         loginController = new LoginController(this, new LoginModel());
+        experimentController = new ExperimentController(this);
     }
 
     public HTTPController getHttpController() {
@@ -38,4 +40,9 @@ public class MainController {
     public LoginController getLoginController() {
         return loginController;
     }
+
+    public ExperimentController getExperimentController() {
+        return experimentController;
+    }
+
 }

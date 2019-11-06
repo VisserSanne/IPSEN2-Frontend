@@ -4,7 +4,7 @@ import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Experiment implements ExperimentObservable {
@@ -57,6 +57,12 @@ public class Experiment implements ExperimentObservable {
 
     }
 
+    /**
+     * This Enum is for the status colors, green, orange and red
+     *
+     * @author Valerie Timmerman
+     */
+
     public enum StatusColor {
 
         GROEN(1), ORANJE(2), ROOD(3);
@@ -95,13 +101,16 @@ public class Experiment implements ExperimentObservable {
     private String status;
     private List<Log> logs;
     private List<Attachment> attachments;
+    private List<String> incomes;
+    private List<String> costs;
     private boolean isLocked;
+    private LocalDateTime lastModified;
 
     private List<ExperimentObserver> observerList;
 
     public Experiment(long id, Category category, Phase phase, String businessOwner, String description, String name,
-                      StatusColor statusColor, LocalDate createDate, String status, ArrayList<Log> logs,
-                      ArrayList<Attachment> attachments, boolean isLocked) {
+                      StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
+                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified) {
 
         this.id = id;
         this.category = category;
@@ -111,10 +120,14 @@ public class Experiment implements ExperimentObservable {
         this.name = name;
         this.statusColor = statusColor;
         this.createDate = createDate;
+        this.endDate = endDate;
         this.status = status;
         this.logs = logs;
         this.attachments = attachments;
+        this.incomes = incomes;
+        this.costs = costs;
         this.isLocked = isLocked;
+        this.lastModified = lastModified;
 
     }
 
@@ -198,9 +211,27 @@ public class Experiment implements ExperimentObservable {
         notifyObservers();
     }
 
+    public List<String> getIncomes() {return incomes;}
+    public void setIncomes(List<String> incomes) {
+        this.incomes = incomes;
+        notifyObservers();
+    }
+
+    public List<String> getCosts() {return costs;}
+    public void setCosts(List<String> costs) {
+        this.costs = costs;
+        notifyObservers();
+    }
+
     public boolean isLocked() {return isLocked;}
     public void setLocked(boolean isLocked) {
         this.isLocked = isLocked;
+        notifyObservers();
+    }
+
+    public LocalDateTime getLastModified() {return lastModified;}
+    public void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
         notifyObservers();
     }
 

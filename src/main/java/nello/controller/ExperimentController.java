@@ -15,9 +15,8 @@ public class ExperimentController implements IController {
     private MainController mainController;
     private Experiment experiment;
 
-    public ExperimentController(MainController mainController, Experiment experiment) {
+    public ExperimentController(MainController mainController) {
         this.mainController = mainController;
-        this.experiment = experiment;
     }
 
     public void registerObserver(ExperimentObserver observer) {
@@ -48,7 +47,7 @@ public class ExperimentController implements IController {
         }
 
         new Experiment(generateId(), category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
-                getDate(),null, new ArrayList<Log>(), new ArrayList<Attachment>(), false);
+                getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
 
     }
 
