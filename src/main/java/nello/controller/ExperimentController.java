@@ -15,9 +15,8 @@ public class ExperimentController implements IController {
     private MainController mainController;
     private Experiment experiment;
 
-    public ExperimentController(MainController mainController, Experiment experiment) {
+    public ExperimentController(MainController mainController) {
         this.mainController = mainController;
-        this.experiment = experiment;
     }
 
     public void registerObserver(ExperimentObserver observer) {
@@ -47,8 +46,10 @@ public class ExperimentController implements IController {
             phase = Experiment.Phase.getById(1);
         }
 
-        new Experiment(generateId(), category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
-                getDate(),null, new ArrayList<Log>(), new ArrayList<Attachment>(), false);
+        Experiment experiment = new Experiment( category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
+                getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
+
+        mainController.getHttpController().post(ResourceRoute.EXPERIMENT_CREATE, experiment);
 
     }
 
@@ -62,19 +63,6 @@ public class ExperimentController implements IController {
     public LocalDate getDate() {
         LocalDateTime today = LocalDateTime.now();
         return today.toLocalDate();
-    }
-
-    /**
-     * Generates a random number of 6 digits long as id
-     *
-     * @return long id
-     * @author Valerie Timmerman
-     */
-
-    public long generateId() {
-        //TODO: make something better
-        Random random = new Random();
-        return 100000 + random.nextInt(900000);
     }
 
     /**
