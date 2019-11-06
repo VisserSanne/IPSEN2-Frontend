@@ -46,8 +46,10 @@ public class ExperimentController implements IController {
             phase = Experiment.Phase.getById(1);
         }
 
-        new Experiment( category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
+        Experiment experiment = new Experiment( category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
                 getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
+
+        mainController.getHttpController().post(ResourceRoute.EXPERIMENT_CREATE, experiment);
 
     }
 

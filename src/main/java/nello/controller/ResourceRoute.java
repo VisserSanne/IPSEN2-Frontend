@@ -1,7 +1,8 @@
 package nello.controller;
 
 public enum ResourceRoute {
-    LOGIN("/login"), LOGIN_EMAIL("/login/email");
+    LOGIN("/login"), LOGIN_EMAIL("/login/email"),
+    EXPERIMENT_CREATE("experiments/create");
 
     private String route;
 
