@@ -14,10 +14,11 @@ public class UserInitialsComponent extends StackPane {
 
     private static Node[] createChildren(String initials) {
         Circle circle = new Circle();
-        circle.setRadius(15);
+        circle.setRadius(12.5);
         circle.setFill(Color.web("#ba81eb"));
         Label l = new Label(initials);
-
+        l.setTextFill(Color.WHITE);
+        l.setStyle("-fx-font-size: 11px;");
 
         return new Node[]{circle, l};
 

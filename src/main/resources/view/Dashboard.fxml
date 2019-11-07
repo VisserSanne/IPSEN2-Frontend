@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@../css/Dashboard.css" />
    </stylesheets>
    <children>
-      <TextField layoutX="14.0" layoutY="14.0" />
-      <Button layoutX="192.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
-      <ScrollPane layoutX="27.0" layoutY="154.0" maxWidth="360.0" minHeight="559.0" minWidth="360.0" prefHeight="605.0" prefWidth="360.0" style="-fx-padding: 10px ">
+       <TextField layoutX="22.0" layoutY="14.0" prefHeight="27.0" prefWidth="244.0"/>
+       <Button layoutX="278.0" layoutY="14.0" mnemonicParsing="false" text="Button"/>
+       <ScrollPane layoutX="24.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
+                   style="-fx-padding: 10px " AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0"
+                   AnchorPane.topAnchor="114.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="340.0" style="-fx-background-color: white;">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="275.0"
+                        style="-fx-background-color: transparent;">
                <children>
-                  <VBox fx:id="phaseIdeeVbox" prefWidth="343.0"></VBox>
+                   <VBox fx:id="phaseIdeeVbox" prefHeight="100.0" prefWidth="292.0" spacing="10.0"
+                         style="-fx-background-color: transparent;">
+                       <children>
+                           <HBox prefHeight="100.0" prefWidth="282.0"/>
+                       </children>
+                   </VBox>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Label layoutX="27.0" layoutY="120.0" prefHeight="34.0" prefWidth="360.0" style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Label">
+       <Label layoutX="20.0" layoutY="82.0" maxWidth="330.0" prefHeight="34.0" prefWidth="315.0"
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Idee" AnchorPane.leftAnchor="22.0"
+              AnchorPane.topAnchor="80.0">
+           <padding>
+               <Insets left="10.0"/>
+           </padding>
+       </Label>
+       <Label layoutX="356.0" layoutY="83.0" maxWidth="320.0" prefHeight="34.0" prefWidth="315.0"
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Lab in"
+              AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="80.0">
+           <padding>
+               <Insets left="10.0"/>
+           </padding>
+       </Label>
+       <Label layoutX="694.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="320.0" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="34.0" prefWidth="315.0"
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Lab uit"
+              AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="80.0">
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
+       <Label layoutX="1029.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="320.0" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="34.0" prefWidth="315.0"
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="vastedienst"
+              AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="80.0">
+           <padding>
+               <Insets left="10.0"/>
+           </padding>
+       </Label>
+       <Button layoutX="1220.0" layoutY="28.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" text="menu"/>
    </children>
 </AnchorPane>

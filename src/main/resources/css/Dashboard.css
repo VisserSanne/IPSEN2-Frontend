@@ -30,18 +30,22 @@ ScrollPane {
     -fx-padding: 0 10px 0 0;
 }
 
-.scroll-pane .scroll-bar:horizontal {
+.scroll-pane .scroll-bar:horizontal, .scroll-bar:vertical {
     -fx-background-color: #efefef;
     -fx-background-insets: 2, 0;
     -fx-background-radius: 100px;
 }
 
 .scroll-pane .scroll-bar:horizontal .increment-arrow,
-.scroll-pane .scroll-bar:horizontal .decrement-arrow {
+.scroll-pane .scroll-bar:horizontal .decrement-arrow,
+.scroll-pane .scroll-bar:vertical .increment-arrow,
+.scroll-pane .scroll-bar:vertical .decrement-arrow {
     -fx-padding: -2px;
+    -fx-arrows-visible: none;
 }
 
-.scroll-pane .scroll-bar:horizontal .thumb {
+.scroll-pane .scroll-bar:horizontal .thumb,
+.scroll-pane .scroll-bar:vertical .thumb {
     -fx-background-color: #ba81eb;
 
     -fx-background-radius: 2em;

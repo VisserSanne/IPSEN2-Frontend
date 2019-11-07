@@ -40,11 +40,16 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
         //long id, Category category, Phase phase, String businessOwner, String description, String name,
         //                      StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
         //                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified
-        Experiment e = new Experiment(1, Experiment.Category.INWERKING, Experiment.Phase.IDEE, "Ashna Wiar",
-                "this is a example text", "Thomas hersen experiment", Experiment.StatusColor.GROEN, LocalDate.now(), null,
-        null, null, null, null, null, false, null);
 
-        phaseIdeeVbox.getChildren().addAll(new ExperimentComponent(e));
+        for (int i = 0; i < 10; i++) {
+            Experiment e = new Experiment(1, Experiment.Category.INWERKING, Experiment.Phase.IDEE, "Ashna Wiar",
+                    "this is a example text", "Thomas hersen experiment", Experiment.StatusColor.GROEN, LocalDate.now(), null,
+                    null, null, null, null, null, false, null);
+            ExperimentComponent component = new ExperimentComponent(this, e);
+
+            phaseIdeeVbox.getChildren().addAll(component);
+        }
+
 
 
     }
@@ -67,5 +72,9 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     @Override
     public void update(DashboardObservable observable) {
 
+    }
+
+    public void onComponentOptionClick(Experiment experiment) {
+        System.out.println("clicked on :" + experiment.getId());
     }
 }
