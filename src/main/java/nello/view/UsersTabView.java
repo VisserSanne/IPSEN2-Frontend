@@ -1,16 +1,13 @@
 package nello.view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import nello.controller.MainController;
 import nello.controller.UsersTabController;
 import nello.observable.UsersTabObservable;
 import nello.observer.UsersTabObserver;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
