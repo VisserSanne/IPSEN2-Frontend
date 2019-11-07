@@ -13,6 +13,7 @@ public class MainController {
     private LoginController loginController;
     private AddMembersController addMembersController;
     private ProfileController profileController;
+    private ChangePhaseController changePhaseController;
 
 
     private MainController() {
@@ -31,6 +32,7 @@ public class MainController {
         loginController = new LoginController(this, new LoginModel());
         addMembersController = new AddMembersController(this, new AddMembersModel());
         profileController = new ProfileController(this, new ProfileModel());
+        changePhaseController = new ChangePhaseController(this);
     }
 
     public HTTPController getHttpController() {
@@ -53,4 +55,7 @@ public class MainController {
         return profileController;
     }
 
+    public ChangePhaseController getChangePhaseController() {
+        return changePhaseController;
+    }
 }
