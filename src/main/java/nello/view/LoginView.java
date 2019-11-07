@@ -84,7 +84,7 @@ public class LoginView implements FXMLView<LoginController>, LoginObserver, Init
     }
 
     public void onRegisterButtonClick() {
-        System.out.println("called");
+        getController().onRegisterButtonClick();
     }
 
     public void onNextButtonClick() {

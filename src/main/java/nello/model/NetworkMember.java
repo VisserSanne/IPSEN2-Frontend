@@ -12,7 +12,7 @@ public class NetworkMember {
     private Boolean isBusiness;
 
     public NetworkMember(String name, Boolean isBusiness) {
-        this.id = id;
+        this.name = name;
         this.isBusiness = isBusiness;
     }
 
@@ -32,4 +32,11 @@ public class NetworkMember {
         this.isBusiness = business;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

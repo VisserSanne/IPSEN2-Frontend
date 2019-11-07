@@ -1,8 +1,13 @@
 package nello.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import nello.model.NetworkMember;
 import nello.model.User;
 import nello.model.UserRole;
+
+import javax.ws.rs.core.Response;
+
 
 public class UserController {
 
@@ -18,6 +23,10 @@ public class UserController {
         NetworkMember networkMember = new NetworkMember(name, false);
         User user = new User(networkMember, email, password, UserRole.GUEST);
 
-        mainController.getHttpController().post("/user/create", user);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String userJson = gson.toJson(user);
+        System.out.println(userJson);
+        Response response = mainController.getHttpController().post("/users", user);
+        System.out.println(response.readEntity(String.class));
     }
 }

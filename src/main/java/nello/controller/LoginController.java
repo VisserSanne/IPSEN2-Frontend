@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.LoginModel;
 import nello.observer.LoginObserver;
+import nello.view.UserRegistrationView;
 
 import javax.ws.rs.core.Response;
 
@@ -109,5 +110,9 @@ public class LoginController implements IController {
      */
     public void onPasswordResetRequest() {
         // http email reset mail.
+    }
+
+    public void onRegisterButtonClick() {
+        mainController.getStageController().loadView(new UserRegistrationView());
     }
 }
