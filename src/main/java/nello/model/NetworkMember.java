@@ -3,11 +3,13 @@ package nello.model;
 public class NetworkMember {
     private Boolean isBusiness;
     private long id;
-    private String name;
+    private String firstName;
+    private String lastName;
 
-    public NetworkMember(long id, String name, Boolean isBusiness) {
+    public NetworkMember(long id, String firstName, String lastName, Boolean isBusiness) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.isBusiness = isBusiness;
     }
 
@@ -19,12 +21,20 @@ public class NetworkMember {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Boolean isBusiness() {
@@ -36,19 +46,16 @@ public class NetworkMember {
     }
 
     public String getInitials() {
-        String[] tokens = this.name.split(" ");
-        String firstName = tokens[0];
-        String lastName = tokens[tokens.length -1];
-        String initials = "";
-        if(tokens.length > 0) {
-            String[] firstToken = firstName.split("");
-            String firstInitial = firstToken[0];
+        String[] firstToken = firstName.split("");
+        String firstInitial = firstToken[0];
 
-            String[] lastToken = lastName.split("");
-            String lastInitial = lastToken[0];
+        String[] multiLastName = lastName.split(" ");
+        String singleLastName = multiLastName[multiLastName.length -1];
+        String[] lastToken = singleLastName.split("");
+        String lastInitial = lastToken[0];
 
-            initials = firstInitial+ "." +lastInitial+ ".";
-        }
+        String initials = firstInitial+lastInitial;
+
         return initials;
     }
 

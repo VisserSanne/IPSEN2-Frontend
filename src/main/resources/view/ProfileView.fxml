@@ -8,13 +8,17 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField id="textFullName" fx:id="textFieldUserRole" disable="true" layoutX="620.0" layoutY="200.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="660.0" />
-      <TextField id="textFullName" fx:id="textFieldFullName" layoutX="620.0" layoutY="362.0" onKeyReleased="#onFullNameChange" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="660.0" />
+      <TextField id="textFullName" fx:id="textFieldFirstName" layoutX="620.0" layoutY="362.0" prefHeight="31.0" prefWidth="311.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="989.0" />
       <TextField fx:id="textFieldInitials" disable="true" layoutX="620.0" layoutY="280.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="660.0" />
-      <TextField fx:id="textFieldEmail" layoutX="620.0" layoutY="446.0" onKeyReleased="#onEmailChange" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="660.0" />
+      <TextField fx:id="textFieldEmail" layoutX="620.0" layoutY="446.0" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="660.0" />
       <Label layoutX="620.0" layoutY="179.0" text="Rol" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="1278.0" />
-      <Label layoutX="620.0" layoutY="341.0" prefHeight="21.0" prefWidth="112.0" text="Volledige naam" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="1188.0" />
+      <Label layoutX="620.0" layoutY="341.0" prefHeight="21.0" prefWidth="74.0" text="Voornaam" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="1226.0" />
       <Label layoutX="620.0" layoutY="259.0" prefHeight="21.0" prefWidth="60.0" text="Initialen" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="1240.0" />
       <Label layoutX="620.0" layoutY="425.0" prefHeight="21.0" prefWidth="85.0" text="E-mailadres" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="1215.0" />
-      <Button fx:id="buttonSave" layoutX="626.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#onSaveButtonClick" text="Opslaan" />
+      <Button fx:id="buttonSave" layoutX="626.0" layoutY="580.0" mnemonicParsing="false" onMouseClicked="#onSaveButtonClick" text="Opslaan" AnchorPane.leftAnchor="626.0" AnchorPane.rightAnchor="1220.0" />
+      <TextField id="textFullName" fx:id="textFieldLastName" layoutX="948.0" layoutY="362.0" prefHeight="31.0" prefWidth="311.0" AnchorPane.leftAnchor="948.0" AnchorPane.rightAnchor="661.0" />
+      <Label layoutX="948.0" layoutY="341.0" prefHeight="21.0" prefWidth="85.0" text="Achternaam" AnchorPane.leftAnchor="948.0" AnchorPane.rightAnchor="887.0" />
+      <TextField fx:id="textFieldPassword" layoutX="619.0" layoutY="525.0" prefHeight="31.0" prefWidth="640.0" AnchorPane.leftAnchor="619.0" AnchorPane.rightAnchor="661.0" />
+      <Label layoutX="620.0" layoutY="504.0" prefHeight="21.0" prefWidth="98.0" text="Wachtwoord" AnchorPane.leftAnchor="620.0" AnchorPane.rightAnchor="1215.0" />
    </children>
 </AnchorPane>

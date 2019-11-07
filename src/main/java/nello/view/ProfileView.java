@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import nello.controller.MainController;
 import nello.controller.ProfileController;
@@ -20,13 +19,19 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     private TextField textFieldUserRole;
 
     @FXML
-    private TextField textFieldFullName;
-
-    @FXML
     private TextField textFieldInitials;
 
     @FXML
+    private TextField textFieldFirstName;
+
+    @FXML
+    private TextField textFieldLastName;
+
+    @FXML
     private TextField textFieldEmail;
+
+    @FXML
+    private TextField textFieldPassword;
 
     @FXML
     private Button buttonSave;
@@ -58,9 +63,11 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     public void update(ProfileObservable o) {
         System.out.println(o.getUser());
         this.textFieldUserRole.setText(o.getUser().getUserRole().getName());
-        this.textFieldEmail.setText(o.getUser().getEmail());
-        this.textFieldFullName.setText(o.getUser().getNetworkMember().getName());
         this.textFieldInitials.setText(o.getUser().getNetworkMember().getInitials());
+        this.textFieldFirstName.setText(o.getUser().getNetworkMember().getFirstName());
+        this.textFieldLastName.setText(o.getUser().getNetworkMember().getLastName());
+        this.textFieldEmail.setText(o.getUser().getEmail());
+        this.textFieldPassword.setText(o.getUser().getPassword());
     }
 
     @Override
@@ -68,12 +75,11 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
         getController().registerObserver(this);
     }
 
-    public void onFullNameChange(KeyEvent keyEvent) {
-    }
-
-    public void onEmailChange(KeyEvent keyEvent) {
-    }
-
     public void onSaveButtonClick(MouseEvent mouseEvent) {
+        getController().onSaveButtonClick(
+                textFieldFirstName.getText(),
+                textFieldLastName.getText(),
+                textFieldEmail.getText(),
+                textFieldPassword.getText());
     }
 }
