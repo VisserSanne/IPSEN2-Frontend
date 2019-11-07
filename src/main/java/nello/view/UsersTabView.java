@@ -40,10 +40,12 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
 
     @FXML
     void onDeleteButtonClick(MouseEvent event) {
+        getController().onDeleteButtonClick(Integer.parseInt(textFieldDelete.getText()));
     }
 
     @FXML
     void onEditButtonClick(MouseEvent event) {
+        getController().onEditButtonClick(Integer.parseInt(textFieldEdit.getText()));
     }
 
     private final String fxmlPath;
