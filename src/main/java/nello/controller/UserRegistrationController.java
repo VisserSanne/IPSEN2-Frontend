@@ -2,6 +2,9 @@ package nello.controller;
 
 import nello.model.UserRegistrationModel;
 import nello.observer.UserRegistrationObserver;
+import nello.view.FXMLView;
+import nello.view.LoginView;
+import nello.view.UserRegistrationView;
 
 public class UserRegistrationController implements IController {
 
@@ -13,10 +16,10 @@ public class UserRegistrationController implements IController {
         this.model = model;
     }
 
-    public void onRegisterButtonClick(String firstname, String lastname, String email) {
+    public void onRegisterButtonClick(String firstname, String lastname, String email, String password) {
         model.clearErrors();
         if (!firstname.isEmpty() && !lastname.isEmpty() && !email.isEmpty()) {
-            mainController.getUserController().registerUser(firstname, lastname, email);
+            mainController.getUserController().registerUser(firstname, lastname, email, password);
             return;
         }
         if (firstname.isEmpty())
@@ -30,6 +33,10 @@ public class UserRegistrationController implements IController {
 
 
         System.out.println("added errors");
+    }
+
+    public void onBackButtonClick() {
+        mainController.getStageController().loadView(new LoginView());
     }
 
 

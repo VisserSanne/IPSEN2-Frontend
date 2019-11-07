@@ -11,10 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
+import nello.model.Log;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
+import nello.view.components.LogItemComponent;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -128,6 +131,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
             Line line = new Line(0, 0, 255, 0);
             line.setStroke(Color.web("#cecece"));
             networkMemberVbox.getChildren().addAll(n, line);
+        }
 
         for (int i = 0; i < 10; i++) {
             Log l = new Log(i, generateRandomString(250), generateRandomString(10), LocalDateTime.now());
@@ -139,9 +143,11 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     }
 
+
     private boolean randomBoolean() {
-        return Math.random() < 0.5;
+        return Math.random() > 0.5;
     }
+
 
     /**
      * Resets all the information when the model had changed
@@ -152,20 +158,20 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     @Override
     public void update(ExperimentObservable o) {
-//
-//        this.titleLabel.setText(o.getName());
-//        this.descriptionLabel.setText(o.getDescription());
-//        this.statusLabel.setText(o.getStatus());
-//        this.businessOwnerLabel.setText(o.getBusinessOwner());
-//        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
-//        updateFinance(o.getIncomes(), incomeFlowPane);
-//        updateFinance(o.getCosts(), costFlowPane);
+
+        this.titleLabel.setText(o.getName());
+        this.descriptionLabel.setText(o.getDescription());
+        this.statusLabel.setText(o.getStatus());
+        this.businessOwnerLabel.setText(o.getBusinessOwner());
+        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
+        updateFinance(o.getIncomes(), incomeFlowPane);
+        updateFinance(o.getCosts(), costFlowPane);
     }
 
     /**
      * Clears all the old items in a finance FlowPane and reloads new items when a change occurs in the experiment
      *
-     * @param list list of strings with finance items
+     * @param list     list of strings with finance items
      * @param flowPane the FlowPane of that needs to be updated
      * @author Valerie Timmerman
      */
@@ -174,7 +180,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
         flowPane.getChildren().clear();
 
-        for(String item: list) {
+        for (String item : list) {
             Label itemLabel = new Label(item);
             itemLabel.getStyleClass().add("tag-finance");
             flowPane.getChildren().add(itemLabel);

@@ -23,6 +23,10 @@ public class UserRegistrationView implements FXMLView<UserRegistrationController
     private TextField emailField;
     @FXML
     private Label messagLabel;
+
+    @FXML
+    private TextField passwordField;
+
     private UserRegistrationController controller;
 
     public UserRegistrationView() {
@@ -33,10 +37,11 @@ public class UserRegistrationView implements FXMLView<UserRegistrationController
 
     public void onRegisterButtonClick() {
         System.out.println("called");
-        getController().onRegisterButtonClick(firstnameField.getText(), lastnameField.getText(), emailField.getText());
+        getController().onRegisterButtonClick(firstnameField.getText(), lastnameField.getText(), emailField.getText(), passwordField.getText());
     }
 
     public void onBackButtonClick() {
+        getController().onBackButtonClick();
         System.out.println("terug");
     }
 

@@ -29,13 +29,11 @@ public class User {
             NetworkMember networkMember,
             String email,
             String password,
-            UserRole role,
-            Date createDate) {
+            UserRole role) {
         this.networkMember = networkMember;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.createDate = createDate;
     }
 
     public long getId() {
@@ -78,7 +76,4 @@ public class User {
         this.role = role;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

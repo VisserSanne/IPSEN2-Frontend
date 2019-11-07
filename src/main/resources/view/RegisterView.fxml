@@ -1,93 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import java.net.URL?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0"
-            style="-fx-background-color: f8f8f8;" xmlns="http://javafx.com/javafx/8.0.211">
+
+<AnchorPane maxHeight="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: f8f8f8;" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
-        <URL value="@../css/ExperimentOverview.css"/>
+        <URL value="@../css/ExperimentOverview.css" />
     </stylesheets>
     <children>
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="367.0" layoutY="435.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="367.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/login/Polygon_2.png"/>
+                <Image url="@../img/login/Polygon_2.png" />
             </image>
         </ImageView>
         <ImageView layoutX="881.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/login/Polygon_3.png"/>
+                <Image url="@../img/login/Polygon_3.png" />
             </image>
         </ImageView>
-        <Pane layoutX="458.0" layoutY="214.0" prefHeight="341.0" prefWidth="451.0" style="-fx-background-color: #fff;">
+        <Pane layoutX="458.0" layoutY="185.0" prefHeight="390.0" prefWidth="451.0" style="-fx-background-color: #fff;">
             <children>
                 <Label layoutX="156.0" layoutY="14.0" text="Registreren">
                     <font>
-                        <Font name="Arial Bold" size="25.0"/>
+                        <Font name="Arial Bold" size="25.0" />
                     </font>
                 </Label>
-                <TextField fx:id="firstnameField" layoutX="41.0" layoutY="120.0" prefHeight="30.0" prefWidth="180.0"/>
-                <Label layoutX="41.0" layoutY="103.0" text="Voornaam"/>
-                <TextField fx:id="lastnameField" layoutX="229.0" layoutY="120.0" prefHeight="30.0" prefWidth="180.0"/>
-                <Label layoutX="230.0" layoutY="103.0" text="Achternaam"/>
-                <TextField fx:id="emailField" layoutX="40.0" layoutY="183.0" prefHeight="30.0" prefWidth="370.0"/>
-                <Label layoutX="40.0" layoutY="166.0" text="Email adres"/>
-                <Button id="button-register" layoutX="40.0" layoutY="285.0" mnemonicParsing="false"
-                        onMouseClicked="#onBackButtonClick" prefHeight="30.0" prefWidth="370.0"
-                        style="-fx-background-color: none;" text="Terug" textFill="#401664">
+                <TextField fx:id="firstnameField" layoutX="41.0" layoutY="120.0" prefHeight="30.0" prefWidth="180.0" />
+                <Label layoutX="41.0" layoutY="103.0" text="Voornaam" />
+                <TextField fx:id="lastnameField" layoutX="230.0" layoutY="120.0" prefHeight="30.0" prefWidth="180.0" />
+                <Label layoutX="230.0" layoutY="103.0" text="Achternaam" />
+                <TextField fx:id="emailField" layoutX="41.0" layoutY="180.0" prefHeight="30.0" prefWidth="370.0" />
+                <Label layoutX="41.0" layoutY="160.0" text="Email adres" />
+                <Button id="button-register" layoutX="41.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" prefHeight="30.0" prefWidth="370.0" style="-fx-background-color: none;" text="Terug" textFill="#401664">
                     <font>
-                        <Font name="Arial" size="14.0"/>
+                        <Font name="Arial" size="14.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button id="button-register" layoutX="41.0" layoutY="233.0" mnemonicParsing="false"
-                        onMouseClicked="#onRegisterButtonClick" prefHeight="34.0" prefWidth="370.0"
-                        style="-fx-background-color: d0cece;" styleClass="button-grey" text="Registreren"
-                        textFill="#401664">
+                <Button id="button-register" layoutX="41.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#onRegisterButtonClick" prefHeight="34.0" prefWidth="370.0" style="-fx-background-color: d0cece;" styleClass="button-grey" text="Registreren" textFill="#401664">
                     <font>
-                        <Font name="Arial" size="14.0"/>
+                        <Font name="Arial" size="14.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Label fx:id="messagLabel" alignment="TOP_CENTER" layoutX="89.0" layoutY="54.0" prefHeight="34.0"
-                       prefWidth="273.0" text="message"/>
+                <Label fx:id="messagLabel" alignment="TOP_CENTER" layoutX="89.0" layoutY="54.0" prefHeight="34.0" prefWidth="273.0" text="message" />
+            <Label layoutX="41.0" layoutY="221.0" text="Wachtwoord" />
+            <PasswordField fx:id="passwordField" layoutX="41.0" layoutY="240.0" prefHeight="31.0" prefWidth="370.0" />
             </children>
             <effect>
-                <DropShadow color="#00000041"/>
+                <DropShadow color="#00000041" />
             </effect>
         </Pane>
         <ImageView cache="true" layoutX="89.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/login/out_of_box.png"/>
+                <Image url="@../img/login/out_of_box.png" />
             </image>
         </ImageView>
         <ImageView layoutX="245.0" layoutY="611.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/login/lamp.png"/>
+                <Image url="@../img/login/lamp.png" />
             </image>
         </ImageView>
         <ImageView layoutX="1104.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/login/destillaat.png"/>
+                <Image url="@../img/login/destillaat.png" />
             </image>
         </ImageView>
         <ImageView layoutX="1105.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/login/e_mc_2.png"/>
+                <Image url="@../img/login/e_mc_2.png" />
             </image>
         </ImageView>
     </children>
     <effect>
-        <DropShadow color="#00000055"/>
+        <DropShadow color="#00000055" />
     </effect>
 </AnchorPane>

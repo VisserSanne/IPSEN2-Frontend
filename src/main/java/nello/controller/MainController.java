@@ -15,7 +15,6 @@ public class MainController {
     private ExperimentController experimentController;
     private DashboardController dashboardController;
     private ProfileController profileController;
-    private ExperimentController experimentController;
     private UserRegistrationController userRegistrationController;
     private UserController userController;
 
@@ -59,18 +58,6 @@ public class MainController {
 
     public LoginController getLoginController() {
         return loginController;
-    }
-
-
-
-    public ExperimentController getExperimentController() {
-        return experimentController;
-    }
-
-
-
-    public ProfileController getProfileController() {
-        return profileController;
     }
 
     public ExperimentController getExperimentController() {
