@@ -113,6 +113,6 @@ public class LoginController implements IController {
     }
 
     public void onRegisterButtonClick() {
-        mainController.getStageController().loadView(new UserRegistrationView());
+        mainController.getStageController().displayView(new UserRegistrationView());
     }
 }

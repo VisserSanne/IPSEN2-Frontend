@@ -92,8 +92,8 @@ public class HTTPController {
                     return request.get();
             }
         } catch (ProcessingException e) {
-            MainController.getInstance().getStageController().loadPopup(
-                    new AlertBox("Kon niet verbinding maken met server", Level.SEVERE, 5));
+            MainController.getInstance().getStageController().displayPopup(
+                    new AlertBox("Kon niet verbinding maken met server", Level.SEVERE, 5), 25, 25);
             e.printStackTrace();
         }
 

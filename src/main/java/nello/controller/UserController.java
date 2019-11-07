@@ -4,8 +4,8 @@ import nello.model.NetworkMember;
 import nello.model.User;
 import nello.model.UserRole;
 
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -24,9 +24,6 @@ public class UserController {
         NetworkMember networkMember = new NetworkMember(name, false);
         User user = new User(networkMember, email, password, UserRole.GUEST);
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String userJson = gson.toJson(user);
-        System.out.println(userJson);
         Response response = mainController.getHttpController().post("/users", user);
         System.out.println(response.readEntity(String.class));
     }
@@ -60,8 +57,7 @@ public class UserController {
     }
 
     private User getRandomUser(long id) {
-        return new User(id, new NetworkMember(id, getRandomString(10), getRandomString(10), Math.random() > 0.5),
-                getRandomString(10), "", UserRole.GUEST, new Date());
+        return new User(new NetworkMember(getRandomString(10), Math.random() > 0.5), "", "", UserRole.GUEST);
 
     }
 }

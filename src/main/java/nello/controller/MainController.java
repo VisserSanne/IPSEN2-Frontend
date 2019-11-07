@@ -1,10 +1,6 @@
 package nello.controller;
 
-import nello.model.DashboardModel;
-import nello.model.LoginModel;
-import nello.model.ProfileModel;
-import nello.model.TabModel;
-import nello.model.UserRegistrationModel;
+import nello.model.*;
 
 
 public class MainController {
@@ -18,7 +14,6 @@ public class MainController {
     private TabController tabController;
     private UserController userController;
     private UserRegistrationController userRegistrationController;
-    private UserController userController;
 
     private MainController() {
         registerControllers();

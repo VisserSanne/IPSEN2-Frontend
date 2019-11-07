@@ -26,7 +26,7 @@ public class Nello {
         primaryStage.setTitle(String.format("%s %s", APP_NAME, VERSION));
         StageController stageController = mainController.getStageController();
         stageController.prepareStage(primaryStage);
-        stageController.loadView(START_VIEW);
+        stageController.displayView(START_VIEW);
 
     }
 

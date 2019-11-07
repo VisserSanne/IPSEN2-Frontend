@@ -2,9 +2,7 @@ package nello.controller;
 
 import nello.model.UserRegistrationModel;
 import nello.observer.UserRegistrationObserver;
-import nello.view.FXMLView;
 import nello.view.LoginView;
-import nello.view.UserRegistrationView;
 
 public class UserRegistrationController implements IController {
 
@@ -36,7 +34,7 @@ public class UserRegistrationController implements IController {
     }
 
     public void onBackButtonClick() {
-        mainController.getStageController().loadView(new LoginView());
+        mainController.getStageController().displayView(new LoginView());
     }
 
 
