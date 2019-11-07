@@ -3,6 +3,9 @@ package nello.view;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import nello.controller.AddMembersController;
 import nello.controller.MainController;
 import nello.observable.AddMembersObservable;
@@ -18,6 +21,27 @@ public class AddMembersView implements FXMLView<AddMembersController>, AddMember
     @FXML
     private Label zoekLid;
 
+    @FXML
+    private Label personOne;
+
+    @FXML
+    private Label personTwo;
+
+    @FXML
+    private Label personThree;
+
+    @FXML
+    private Label lettersPersonOne;
+
+    @FXML
+    private Label lettersPersonTwo;
+
+    @FXML
+    private Label lettersPersonThree;
+
+    @FXML
+    private ImageView back;
+
 
     private AddMembersController controller;
 
@@ -25,6 +49,18 @@ public class AddMembersView implements FXMLView<AddMembersController>, AddMember
         this.fxmlPath = "/view/AddMembersView.fxml";
         this.controller = MainController.getInstance().getAddMembersController();
     }
+
+
+    public void getMember(KeyEvent event){
+        if (event.getCode() == KeyCode.ENTER) {
+            getController().getMember(zoekLid.getText());
+        }
+    }
+
+    public void onBackClick(){
+        getController().cancel();
+    }
+
 
     @Override
     public String getFXMLPath() {

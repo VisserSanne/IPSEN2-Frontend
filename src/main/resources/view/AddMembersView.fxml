@@ -29,7 +29,7 @@
             <Font name="Arial" size="14.0" />
           </font>
         </Label>
-        <ImageView layoutX="229.0" layoutY="13.0">
+        <ImageView fx:id="back" layoutX="229.0" layoutY="13.0" onMouseClicked="#onBackClick">
           <image>
             <Image url="@../AppData/Local/Temp/Rar$DRa28568.22106/1x/round_close_black_24dp.png" />
           </image>
@@ -43,7 +43,7 @@
             <Color blue="0.922" green="0.506" red="0.729" fx:id="x1" />
           </stroke>
         </Rectangle>
-        <Label fx:id="zoekLid" layoutX="25.0" layoutY="23.0" text="Zoek lid" />
+        <Label fx:id="zoekLid" layoutX="25.0" layoutY="19.0" onKeyReleased="#getMember" prefHeight="30.0" prefWidth="228.0" text="Zoek lid" />
       </children>
     </AnchorPane>
     <AnchorPane prefHeight="47.0" prefWidth="260.0">

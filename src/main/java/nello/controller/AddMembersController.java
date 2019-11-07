@@ -14,6 +14,14 @@ public class AddMembersController implements IController {
         this.model = model;
     }
 
+    public void getMember(String value){
+        //Todo: search database for member with name==value or emailadres==value
+    }
+
+    public void cancel(){
+        //Todo: close view
+    }
+
     public void registerObserver(AddMembersObserver observer) {
         model.registerObserver(observer);
     }
