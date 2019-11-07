@@ -21,7 +21,7 @@ public class HTTPControllerTest {
 
     @Test
     public void post() {
-        Response response = httpController.post(ResourceRoute.LOGIN, credential);
+        Response response = httpController.post("/login", credential);
         assertEquals(401, response.getStatus());
     }
 }

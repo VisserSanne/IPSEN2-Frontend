@@ -33,7 +33,7 @@ public class LoginController implements IController {
     public void onNextButtonClick() {
         HTTPController http = mainController.getHttpController();
         // http request check email exist/user whitelisted.
-        Response response = http.post(ResourceRoute.LOGIN_EMAIL, model.getCredential());
+        Response response = http.post("/login/email", model.getCredential());
         switch (response.getStatus()) {
             case 200: // status OK
                 model.clearMessage();
@@ -61,7 +61,7 @@ public class LoginController implements IController {
     public void onLoginButtonClick() {
         System.out.println(String.format("user tries to login with email and password %s", model.getCredential()));
         HTTPController http = mainController.getHttpController();
-        Response response = http.post(ResourceRoute.LOGIN, model.getCredential());
+        Response response = http.post("/login", model.getCredential());
         switch (response.getStatus()) {
             case 200: // status OK
                 model.clearMessage();
