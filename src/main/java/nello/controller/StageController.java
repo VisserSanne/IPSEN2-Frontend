@@ -2,20 +2,25 @@ package nello.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nello.util.ResourceUtil;
 import nello.view.BeforeDisplay;
-import nello.view.FXMLPopup;
 import nello.view.FXMLView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 public class StageController {
 
+    private static final double MAX_WIDTH = 1366;
+    private static final double MAX_HEIGHT = 768;
     private static Logger logger = Logger.getLogger(StageController.class.getCanonicalName());
+    private HashMap<FXMLView, Pane> openViews = new HashMap<>();
     private Stage primaryStage;
     private Scene mainScene;
 
@@ -31,6 +36,8 @@ public class StageController {
     public void prepareStage(Stage primaryStage) {
         this.mainScene = new Scene(new Pane());
         this.primaryStage = primaryStage;
+        this.primaryStage.setMaxHeight(MAX_HEIGHT);
+        this.primaryStage.setMaxWidth(MAX_WIDTH);
         primaryStage.setScene(mainScene);
     }
 
@@ -47,14 +54,14 @@ public class StageController {
     }
 
 
-    public void loadView(FXMLView view) {
+    public void displayView(FXMLView view) {
         try {
             Pane root = rootOf(view);
 
             if (view instanceof BeforeDisplay) {
                 ((BeforeDisplay) view).beforeShow();
             }
-
+            this.openViews.put(view, root);
             this.mainScene.setRoot(root);
 
         } catch (IOException e) {
@@ -63,33 +70,88 @@ public class StageController {
         }
     }
 
-    public void displayPopup(FXMLPopup view, double x, double y) {
-        try {
-            Pane root = rootOf(view);
-            root.setLayoutX(x);
-            root.setLayoutY(y);
+    /**
+     * display as popup centerd in screen.
+     *
+     * @param popup
+     */
+    public void displayPopup(FXMLView popup) {
+        this.displayPopup(popup, -1, -1);
+    }
 
-            if (view instanceof BeforeDisplay) {
-                ((BeforeDisplay) view).beforeShow();
+    public void displayPopup(FXMLView popup, double x, double y) {
+        try {
+            Pane root = rootOf(popup);
+
+            if (popup instanceof BeforeDisplay) {
+                ((BeforeDisplay) popup).beforeShow();
             }
 
-            ((Pane) this.mainScene.getRoot()).getChildren().add(focus(root));
+            if (x == -1 && y == -1) {
+                System.out.println("centerd popup");
+                BorderPane closableBorderPane = getClosableBorderPane(root, popup);
+                this.openViews.put(popup, closableBorderPane);
+                ((Pane) this.mainScene.getRoot()).getChildren().add(closableBorderPane);
+            } else {
+                root.setLayoutX(x);
+                root.setLayoutY(y);
+                AnchorPane closablePane = getClosablePane(root, popup);
+                this.openViews.put(popup, closablePane);
+                ((Pane) this.mainScene.getRoot()).getChildren().add(closablePane);
+            }
+
 
         } catch (IOException e) {
-            logger.severe("Failed to load view: " + view.getFXMLPath());
+            logger.severe("Failed to load popup: " + popup.getFXMLPath());
             e.printStackTrace();
         }
     }
 
-    private Pane focus(Pane root) {
-        Pane pane = new Pane();
-        pane.setMinWidth(1366);
-        pane.setMinHeight(768);
-        pane.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
-        pane.getChildren().add(root);
-//        pane.setOnMouseClicked(event -> closeView(pane));
-        return pane;
+
+    public void closeView(FXMLView view) {
+        if (!openViews.containsKey(view))
+            return;
+
+        Pane root = openViews.get(view);
+        removePane(root);
+        openViews.remove(view);
     }
 
+    private void removePane(Pane root) {
+
+        ((Pane) this.mainScene.getRoot()).getChildren().remove(root);
+    }
+
+
+    private BorderPane getClosableBorderPane(Pane child, FXMLView popup) {
+        BorderPane root = new BorderPane();
+        root.setCenter(child);
+        root.setMinWidth(MAX_WIDTH);
+        root.setMaxWidth(MAX_WIDTH);
+        root.setMinHeight(MAX_HEIGHT);
+        root.setMaxHeight(MAX_HEIGHT);
+        root.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
+        root.setOnMouseClicked(event -> {
+            if (event.getTarget().equals(root)) {
+                removePane(root);
+                closeView(popup);
+            }
+        });
+        return root;
+    }
+
+    private AnchorPane getClosablePane(Pane child, FXMLView popup) {
+        AnchorPane root = new AnchorPane(child);
+        root.setMaxWidth(MAX_WIDTH);
+        root.setMinWidth(MAX_WIDTH);
+        root.setMinHeight(MAX_HEIGHT);
+        root.setMaxHeight(MAX_HEIGHT);
+        root.setOnMouseClicked(event -> {
+            removePane(root);
+            closeView(popup);
+        });
+
+        return root;
+    }
 
 }

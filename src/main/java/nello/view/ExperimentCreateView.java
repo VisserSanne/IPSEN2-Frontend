@@ -4,20 +4,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
 
-public class ExperimentCreateView implements FXMLPopup<ExperimentController> {
+public class ExperimentCreateView implements FXMLView<ExperimentController> {
 
-    private final String fxmlPath;
+
     @FXML
     private TextField nameTextField;
+
     @FXML
     private TextArea descriptionTextField;
-    @FXML
-    private AnchorPane root;
+
     private ExperimentController controller;
+    private final String fxmlPath;
+    private double y;
+    private double x;
 
     public ExperimentCreateView() {
         this.fxmlPath = "/view/ExperimentCreateView.fxml";
@@ -44,9 +46,4 @@ public class ExperimentCreateView implements FXMLPopup<ExperimentController> {
         System.out.println("save this experiment");
     }
 
-    @Override
-    public void setLocation(double x, double y) {
-        this.root.setLayoutX(x);
-        this.root.setLayoutY(y);
-    }
 }
