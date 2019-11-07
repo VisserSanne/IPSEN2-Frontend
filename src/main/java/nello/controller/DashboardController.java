@@ -12,6 +12,10 @@ public class DashboardController implements IController {
         this.dashboardModel = dashboardModel;
     }
 
+    public void onMenuButtonClick() {
+
+    }
+
     /**
      * Register observers to model.
      *
