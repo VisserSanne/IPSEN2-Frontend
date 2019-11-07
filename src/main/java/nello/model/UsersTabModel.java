@@ -29,14 +29,6 @@ public class UsersTabModel implements UsersTabObservable {
 
     }
 
-    public List<UsersTabObserver> getObserverList() {
-        return observerList;
-    }
-
-    public void setObserverList(List<UsersTabObserver> observerList) {
-        this.observerList = observerList;
-    }
-
     @Override
     public void notifyObservers() {
 

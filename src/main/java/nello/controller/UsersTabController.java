@@ -16,4 +16,12 @@ public class UsersTabController implements IController {
         usersTabModel.registerObserver(o);
     }
 
+    public void onEditButtonClick(long id) {
+        //
+
+    }
+
+    public void onDeleteButtonClick(long id) {
+        //
+    }
 }

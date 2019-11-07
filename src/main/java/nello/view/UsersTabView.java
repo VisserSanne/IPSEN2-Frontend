@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,6 +34,20 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
 
     @FXML
     private TextField textFieldDelete;
+
+    @FXML
+    private Button onEditButton;
+
+    @FXML
+    private Button onDeleteButton;
+
+    @FXML
+    void onDeleteButtonClick(MouseEvent event) {
+    }
+
+    @FXML
+    void onEditButtonClick(MouseEvent event) {
+    }
 
     private final String fxmlPath;
     private UsersTabController controller;
@@ -66,15 +82,4 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
 
     }
 
-    public TableColumn<Long, Long> getTableColumnID() {
-        return tableColumnID;
-    }
-
-    public TableColumn<String, String> getTableColumnUser() {
-        return tableColumnUser;
-    }
-
-    public TableColumn<String, String> getTableColumnEmail() {
-        return tableColumnEmail;
-    }
 }
