@@ -41,10 +41,6 @@ public class MainController {
         return dashboardController;
     }
 
-    public ProfileController getProfileController() {
-        return profileController;
-    }
-
     public HTTPController getHttpController() {
         return httpController;
     }

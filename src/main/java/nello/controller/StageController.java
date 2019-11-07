@@ -154,4 +154,13 @@ public class StageController {
         return root;
     }
 
+    public Pane getRoot(FXMLView view) {
+        try {
+            return rootOf(view);
+        } catch (IOException e) {
+            logger.severe("Failed to load popup: " + view.getFXMLPath());
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -47,7 +47,7 @@ public class UserController {
     }
 
     private User getRandomUser(long id) {
-        return new User(id, new NetworkMember(id, getRandomString(10), Math.random() > 0.5),
+        return new User(id, new NetworkMember(id, getRandomString(10), getRandomString(10), Math.random() > 0.5),
                 getRandomString(10), "", UserRole.GUEST, new Date());
 
     }

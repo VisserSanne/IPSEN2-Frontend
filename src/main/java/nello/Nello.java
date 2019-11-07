@@ -34,7 +34,7 @@ public class Nello {
         primaryStage.setTitle(String.format("%s %s", APP_NAME, VERSION));
         StageController stageController = mainController.getStageController();
         stageController.prepareStage(primaryStage);
-        stageController.loadView(START_VIEW);
+        stageController.displayView(START_VIEW);
 
         User u = new User(1,
                 new NetworkMember(1, "Ashna", "Wiar", false),
@@ -47,7 +47,7 @@ public class Nello {
         System.out.println("afther load");
         TabView tabView = new TabView(root);
 
-        stageController.loadView(tabView);
+        stageController.displayView(tabView);
 
     }
 
