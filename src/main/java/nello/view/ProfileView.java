@@ -62,12 +62,12 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     @Override
     public void update(ProfileObservable o) {
         System.out.println(o.getUser());
-        this.textFieldUserRole.setText(o.getUser().getUserRole().getName());
-        this.textFieldInitials.setText(o.getUser().getNetworkMember().getInitials());
-        this.textFieldFirstName.setText(o.getUser().getNetworkMember().getFirstName());
-        this.textFieldLastName.setText(o.getUser().getNetworkMember().getLastName());
-        this.textFieldEmail.setText(o.getUser().getEmail());
-        this.textFieldPassword.setText(o.getUser().getPassword());
+//        this.textFieldUserRole.setText(o.getUser().getUserRole().getName());
+//        this.textFieldInitials.setText(o.getUser().getNetworkMember().getInitials());
+//        this.textFieldFirstName.setText(o.getUser().getNetworkMember().getFirstName());
+//        this.textFieldLastName.setText(o.getUser().getNetworkMember().getLastName());
+//        this.textFieldEmail.setText(o.getUser().getEmail());
+//        this.textFieldPassword.setText(o.getUser().getPassword());
     }
 
     @Override

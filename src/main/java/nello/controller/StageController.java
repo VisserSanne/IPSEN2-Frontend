@@ -38,6 +38,7 @@ public class StageController {
         this.primaryStage = primaryStage;
         this.primaryStage.setMaxHeight(MAX_HEIGHT);
         this.primaryStage.setMaxWidth(MAX_WIDTH);
+        primaryStage.getIcons().add(new Image(ResourceUtil.get("/img/login/logo_nello.png").toExternalForm()));
         primaryStage.setScene(mainScene);
     }
 
@@ -99,7 +100,6 @@ public class StageController {
                 this.openViews.put(popup, closablePane);
                 ((Pane) this.mainScene.getRoot()).getChildren().add(closablePane);
             }
-
 
         } catch (IOException e) {
             logger.severe("Failed to load popup: " + popup.getFXMLPath());

@@ -4,6 +4,8 @@ import nello.model.DashboardModel;
 import nello.model.LoginModel;
 import nello.model.ProfileModel;
 import nello.model.TabModel;
+import nello.model.UserRegistrationModel;
+
 
 public class MainController {
     private static MainController instance;
@@ -14,6 +16,8 @@ public class MainController {
     private DashboardController dashboardController;
     private ProfileController profileController;
     private TabController tabController;
+    private UserController userController;
+    private UserRegistrationController userRegistrationController;
     private UserController userController;
 
     private MainController() {
@@ -31,14 +35,20 @@ public class MainController {
         stageController = new StageController();
         loginController = new LoginController(this, new LoginModel());
         experimentController = new ExperimentController(this);
+
         dashboardController = new DashboardController(this, new DashboardModel());
         profileController = new ProfileController(this, new ProfileModel());
+        userRegistrationController = new UserRegistrationController(this, new UserRegistrationModel());
         tabController = new TabController(this, new TabModel());
         userController = new UserController(this);
     }
 
     public DashboardController getDashboardController() {
         return dashboardController;
+    }
+
+    public ProfileController getProfileController() {
+        return profileController;
     }
 
     public HTTPController getHttpController() {
@@ -53,12 +63,12 @@ public class MainController {
         return loginController;
     }
 
-    public ProfileController getProfileController() {
-        return profileController;
-    }
-
     public ExperimentController getExperimentController() {
         return experimentController;
+    }
+
+    public UserRegistrationController getUserRegistrationController() {
+        return userRegistrationController;
     }
 
     public TabController getTabController() {

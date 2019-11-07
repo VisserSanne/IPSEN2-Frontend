@@ -2,7 +2,6 @@ package nello;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import nello.util.ResourceUtil;
 
 /**
  * Hello world!
@@ -18,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Nello nello = new Nello();
-        nello.shine(primaryStage);
+        nello.illuminate(primaryStage);
         nello.shine();
     }
 }

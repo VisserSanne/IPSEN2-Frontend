@@ -1,9 +1,8 @@
 package nello.controller;
 
-import javafx.scene.input.MouseEvent;
 import nello.model.LoginModel;
 import nello.observer.LoginObserver;
-import nello.view.ExperimentCreateView;
+import nello.view.UserRegistrationView;
 
 import javax.ws.rs.core.Response;
 
@@ -51,7 +50,7 @@ public class LoginController implements IController {
     /**
      * switch view to 'PasswordResetView'
      */
-    public void onResetButtonClick(MouseEvent mouseEvent) {
+    public void onResetButtonClick() {
         System.out.println("user requested password reset");
     }
 
@@ -113,8 +112,7 @@ public class LoginController implements IController {
         // http email reset mail.
     }
 
-    public void onRegisterButtonClick(MouseEvent event) {
-        mainController.getStageController().displayPopup(new ExperimentCreateView(),
-                event.getSceneX(), event.getSceneY());
+    public void onRegisterButtonClick() {
+        mainController.getStageController().loadView(new UserRegistrationView());
     }
 }
