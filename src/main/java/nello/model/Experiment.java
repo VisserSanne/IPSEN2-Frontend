@@ -75,7 +75,7 @@ public class Experiment implements ExperimentObservable {
             this.color = color;
         }
 
-        public Color getValue() {
+        public Color getAsColor() {
             return color;
         }
 

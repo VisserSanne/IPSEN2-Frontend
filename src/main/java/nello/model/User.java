@@ -1,28 +1,18 @@
 package nello.model;
 
-import com.google.gson.annotations.Expose;
-
 import java.util.Date;
 
 public class User {
     private long id;
-
-    @Expose
     private NetworkMember networkMember;
-
-    @Expose
     private String email;
-
-    @Expose
     private String password;
-
-    @Expose
     private UserRole role;
-
     private Date createDate;
+    private boolean isWhitelisted;
 
     public User() {
-        this.networkMember = new NetworkMember("", false);
+        /* empty */
     }
 
     public User(
@@ -68,12 +58,27 @@ public class User {
         this.password = password;
     }
 
-    public UserRole getUserRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setUserRole(UserRole role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
+    public boolean isWhitelisted() {
+        return isWhitelisted;
+    }
+
+    public void setWhitelisted(boolean whitelisted) {
+        isWhitelisted = whitelisted;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 }
