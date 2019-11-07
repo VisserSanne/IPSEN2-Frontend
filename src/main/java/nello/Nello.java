@@ -37,7 +37,7 @@ public class Nello {
         stageController.loadView(START_VIEW);
 
         User u = new User(1,
-                new NetworkMember(1, "Ashna Wiar", false),
+                new NetworkMember(1, "Ashna", "Wiar", false),
                 "Ashna_wiar@hotmail.com", "", UserRole.GUEST, new Date());
         mainController.getProfileController().setUser(u);
         System.out.println("getting view");

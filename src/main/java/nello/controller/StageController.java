@@ -61,13 +61,24 @@ public class StageController {
         }
     }
 
-    public void loadPopup(FXMLView startView) {
+    public void loadPopup(FXMLView view) {
         try {
-            Pane root = rootOf(startView);
+            Pane root = rootOf(view);
 
             ((Pane) this.primaryStage.getScene().getRoot()).getChildren().add(root);
         } catch (IOException e) {
+            logger.severe("Failed to load view: " + view.getFXMLPath());
             e.printStackTrace();
         }
+    }
+
+    public Pane getRoot(FXMLView view) {
+        try {
+            return rootOf(view);
+        } catch (IOException e) {
+            logger.severe("Failed to load view: " + view.getFXMLPath());
+            e.printStackTrace();
+        }
+        return null;
     }
 }
