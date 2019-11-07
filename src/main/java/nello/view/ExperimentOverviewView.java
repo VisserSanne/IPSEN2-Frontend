@@ -9,10 +9,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
+import nello.model.Log;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
+import nello.view.components.LogItemComponent;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -40,8 +43,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
     public Label costLabel;
     @FXML
     public FlowPane costFlowPane;
-    @FXML
-    public Label dummy_cost;
+
     @FXML
     public Label incomeLabel;
     @FXML
@@ -51,6 +53,9 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     @FXML
     private VBox networkMemberVbox;
+
+    @FXML
+    private VBox logVbox;
 
     private ExperimentController controller;
 
@@ -69,9 +74,6 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
             // 0-62 (exclusive), random returns 0-61
             int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
             char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
-
-            // debug
-            System.out.format("%d\t:\t%c%n", rndCharAt, rndChar);
 
             sb.append(rndChar);
 
@@ -98,6 +100,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("called");
         this.titleLabel.setText(generateRandomString(30));
         this.descriptionLabel.setText(generateRandomString(125));
         this.descriptionLabel.setWrapText(true);
@@ -120,15 +123,20 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
             this.incomeFlowPane.getChildren().add(c);
         }
 
-//        for (int i = 0; i < 10; i++) {
-//            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
-//            Line line = new Line(0, 0, 255, 0);
-//            line.setStroke(Color.web("#cecece"));
-//            networkMemberVbox.getChildren().addAll(n, line);
-//
-//        }
+        for (int i = 0; i < 10; i++) {
+            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
+            Line line = new Line(0, 0, 255, 0);
+            line.setStroke(Color.web("#cecece"));
+            networkMemberVbox.getChildren().addAll(n, line);
+        }
 
-        getController().registerObserver(this);
+        for (int i = 0; i < 10; i++) {
+            Log l = new Log(i, generateRandomString(250), generateRandomString(10), LocalDateTime.now());
+            LogItemComponent logItemComponent = new LogItemComponent(l);
+            logVbox.getChildren().add(logItemComponent);
+        }
+
+//        getController().registerObserver(this);
 
     }
 
@@ -145,14 +153,14 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     @Override
     public void update(ExperimentObservable o) {
-
-        this.titleLabel.setText(o.getName());
-        this.descriptionLabel.setText(o.getDescription());
-        this.statusLabel.setText(o.getStatus());
-        this.businessOwnerLabel.setText(o.getBusinessOwner());
-        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
-        updateFinance(o.getIncomes(), incomeFlowPane);
-        updateFinance(o.getCosts(), costFlowPane);
+//
+//        this.titleLabel.setText(o.getName());
+//        this.descriptionLabel.setText(o.getDescription());
+//        this.statusLabel.setText(o.getStatus());
+//        this.businessOwnerLabel.setText(o.getBusinessOwner());
+//        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
+//        updateFinance(o.getIncomes(), incomeFlowPane);
+//        updateFinance(o.getCosts(), costFlowPane);
     }
 
     /**

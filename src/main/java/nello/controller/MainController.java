@@ -55,6 +55,10 @@ public class MainController {
         return loginController;
     }
 
+    public ProfileController getProfileController() {
+        return profileController;
+    }
+
     public ExperimentController getExperimentController() {
         return experimentController;
     }

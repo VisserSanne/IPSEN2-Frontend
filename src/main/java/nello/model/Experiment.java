@@ -6,6 +6,7 @@ import nello.observer.ExperimentObserver;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Experiment implements ExperimentObservable {
@@ -99,11 +100,10 @@ public class Experiment implements ExperimentObservable {
 
     private List<ExperimentObserver> observerList;
 
-    public Experiment(long id, Category category, Phase phase, String businessOwner, String description, String name,
+    public Experiment(Category category, Phase phase, String businessOwner, String description, String name,
                       StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
                       List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified) {
 
-        this.id = id;
         this.category = category;
         this.phase = phase;
         this.businessOwner = businessOwner;
@@ -119,6 +119,8 @@ public class Experiment implements ExperimentObservable {
         this.costs = costs;
         this.isLocked = isLocked;
         this.lastModified = lastModified;
+        this.observerList = new ArrayList<>();
+
 
     }
 
@@ -138,9 +140,8 @@ public class Experiment implements ExperimentObservable {
         observer.update(this);
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() {return id;}
+    public void setId(long id) {this.id = id;}
 
     public Category getCategory() {
         return category;
@@ -154,7 +155,6 @@ public class Experiment implements ExperimentObservable {
     public Phase getPhase() {
         return phase;
     }
-
 
     public void setPhase(Phase phase) {
         this.phase = phase;

@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nello.controller.LoginController;
 import nello.controller.MainController;
@@ -83,8 +84,8 @@ public class LoginView implements FXMLView<LoginController>, LoginObserver, Init
         }
     }
 
-    public void onRegisterButtonClick() {
-        System.out.println("called");
+    public void onRegisterButtonClick(MouseEvent event) {
+        getController().onRegisterButtonClick(event);
     }
 
     public void onNextButtonClick() {
