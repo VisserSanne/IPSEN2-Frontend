@@ -29,7 +29,7 @@ public class HTTPController {
      * @param model {@link Object} post data
      * @return {@link Response} server response
      */
-    public Response post(ResourceRoute route, Object model) {
+    public Response post(String route, Object model) {
 
         // convert to JSON
         String json = gson.toJson(model);
@@ -41,13 +41,13 @@ public class HTTPController {
                 .post(Entity.entity(json, MediaType.APPLICATION_JSON));
     }
 
-    private Response get(ResourceRoute route) {
+    private Response get(String  route) {
         return target.path(route.toString())
                 .request(MediaType.APPLICATION_JSON)
                 .get();
     }
 
-    public Response delete(ResourceRoute route) {
+    public Response delete(String route) {
         // build and send request.
 
         return target.path(route.toString())
@@ -55,7 +55,7 @@ public class HTTPController {
                 .delete();
     }
 
-    public Response put(ResourceRoute route, Object model) {
+    public Response put(String route, Object model) {
         // convert to JSON
         String json = gson.toJson(model);
 

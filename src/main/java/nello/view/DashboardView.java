@@ -42,7 +42,7 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
         //                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified
 
         for (int i = 0; i < 10; i++) {
-            Experiment e = new Experiment(1, Experiment.Category.INWERKING, Experiment.Phase.IDEE, "Ashna Wiar",
+            Experiment e = new Experiment(Experiment.Category.INWERKING, Experiment.Phase.IDEE, "Ashna Wiar",
                     "this is a example text", "Thomas hersen experiment", Experiment.StatusColor.GROEN, LocalDate.now(), null,
                     null, null, null, null, null, false, null);
             ExperimentComponent component = new ExperimentComponent(this, e);

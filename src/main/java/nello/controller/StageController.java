@@ -14,16 +14,13 @@ import java.util.logging.Logger;
 
 public class StageController {
 
-    private final FXMLLoader fxmlLoader;
     private static Logger logger = Logger.getLogger(StageController.class.getCanonicalName());
     private Stage primaryStage;
     private Scene mainScene;
 
-    public StageController() {
-        this.fxmlLoader = new FXMLLoader();
-    }
 
     private Pane rootOf(FXMLView view) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
         URL resourcePath = ResourceUtil.get(view.getFXMLPath());
         fxmlLoader.setLocation(resourcePath);
         fxmlLoader.setController(view);
@@ -60,6 +57,16 @@ public class StageController {
 
         } catch (IOException e) {
             logger.severe("Failed to load view: " + view.getFXMLPath());
+            e.printStackTrace();
+        }
+    }
+
+    public void loadPopup(FXMLView startView) {
+        try {
+            Pane root = rootOf(startView);
+
+            ((Pane) this.primaryStage.getScene().getRoot()).getChildren().add(root);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

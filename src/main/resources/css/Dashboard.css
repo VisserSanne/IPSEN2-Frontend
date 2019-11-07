@@ -50,3 +50,14 @@ ScrollPane {
 
     -fx-background-radius: 2em;
 }
+
+.tag-finance {
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #cecece;
+    -fx-border-color: #b4b4b4;
+    -fx-border-width: 2px;
+    -fx-padding: 2px;
+}
