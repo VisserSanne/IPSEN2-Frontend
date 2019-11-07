@@ -130,7 +130,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
         }
 
-        getController().registerObserver(this);
+//        getController().registerObserver(this);
 
     }
 
