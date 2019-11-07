@@ -1,6 +1,5 @@
 package nello.model;
 
-import nello.controller.IController;
 import nello.observable.UsersTabObservable;
 import nello.observer.UsersTabObserver;
 
@@ -21,9 +20,21 @@ public class UsersTabModel implements UsersTabObservable {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public void registerObserver(UsersTabObserver o) {
 
+    }
+
+    public List<UsersTabObserver> getObserverList() {
+        return observerList;
+    }
+
+    public void setObserverList(List<UsersTabObserver> observerList) {
+        this.observerList = observerList;
     }
 
     @Override
