@@ -3,6 +3,7 @@ package nello.controller;
 import nello.model.DashboardModel;
 import nello.model.LoginModel;
 import nello.model.ProfileModel;
+import nello.model.UsersTabModel;
 
 public class MainController {
 
@@ -14,6 +15,7 @@ public class MainController {
     private ExperimentController experimentController;
     private DashboardController dashboardController;
     private ProfileController profileController;
+    private UsersTabController usersTabController;
 
 
     private MainController() {
@@ -33,6 +35,7 @@ public class MainController {
         experimentController = new ExperimentController(this);
         dashboardController = new DashboardController(this, new DashboardModel());
         profileController = new ProfileController(this, new ProfileModel());
+        usersTabController = new UsersTabController(this, new UsersTabModel());
     }
 
     public DashboardController getDashboardController() {
@@ -59,4 +62,7 @@ public class MainController {
         return experimentController;
     }
 
+    public UsersTabController getUsersTabController() {
+        return usersTabController;
+    }
 }
