@@ -99,11 +99,10 @@ public class Experiment implements ExperimentObservable {
 
     private List<ExperimentObserver> observerList;
 
-    public Experiment(long id, Category category, Phase phase, String businessOwner, String description, String name,
+    public Experiment(Category category, Phase phase, String businessOwner, String description, String name,
                       StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
                       List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified) {
 
-        this.id = id;
         this.category = category;
         this.phase = phase;
         this.businessOwner = businessOwner;
@@ -138,136 +137,90 @@ public class Experiment implements ExperimentObservable {
         observer.update(this);
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() {return id;}
+    public void setId(long id) {this.id = id;}
 
-    public Category getCategory() {
-        return category;
-    }
-
+    public Category getCategory() {return category;}
     public void setCategory(Category category) {
         this.category = category;
         notifyObservers();
     }
 
-    public Phase getPhase() {
-        return phase;
-    }
-
-
+    public Phase getPhase() {return phase;};
     public void setPhase(Phase phase) {
         this.phase = phase;
         notifyObservers();
     }
 
-    public String getBusinessOwner() {
-        return businessOwner;
-    }
-
+    public String getBusinessOwner() {return businessOwner;}
     public void setBusinessOwner(String businessOwner) {
         this.businessOwner = businessOwner;
         notifyObservers();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
+    public String getDescription() {return description;}
     public void setDescription(String description) {
         this.description = description;
         notifyObservers();
     }
 
-    public String getName() {
-        return name;
-    }
-
+    public String getName() {return name;}
     public void setName(String name) {
         this.name = name;
         notifyObservers();
     }
 
-    public StatusColor getStatusColor() {
-        return statusColor;
-    }
-
+    public StatusColor getStatusColor() {return statusColor;}
     public void setStatusColor(StatusColor statusColor) {
         this.statusColor = statusColor;
         notifyObservers();
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
+    public LocalDate getCreateDate() {return createDate;}
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
+    public LocalDate getEndDate() {return endDate;}
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
         notifyObservers();
     }
 
-    public String getStatus() {
-        return status;
-    }
-
+    public String getStatus() {return status;}
     public void setStatus(String status) {
         this.status = status;
         notifyObservers();
     }
 
-    public List<Log> getLogs() {
-        return logs;
-    }
-
+    public List<Log> getLogs() {return logs;}
     public void setLogs(List<Log> logs) {
         this.logs = logs;
         notifyObservers();
     }
 
-    public List<Attachment> getAttachments() {
-        return attachments;
-    }
-
+    public List<Attachment> getAttachments() {return attachments;}
     public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
         notifyObservers();
     }
 
-    public List<String> getIncomes() {
-        return incomes;
-    }
-
+    public List<String> getIncomes() {return incomes;}
     public void setIncomes(List<String> incomes) {
         this.incomes = incomes;
         notifyObservers();
     }
 
-    public List<String> getCosts() {
-        return costs;
-    }
-
+    public List<String> getCosts() {return costs;}
     public void setCosts(List<String> costs) {
         this.costs = costs;
         notifyObservers();
     }
 
-    public boolean isLocked() {
-        return isLocked;
-    }
-
+    public boolean isLocked() {return isLocked;}
     public void setLocked(boolean isLocked) {
         this.isLocked = isLocked;
         notifyObservers();
     }
 
-    public LocalDateTime getLastModified() {
-        return lastModified;
-    }
-
+    public LocalDateTime getLastModified() {return lastModified;}
     public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
         notifyObservers();
