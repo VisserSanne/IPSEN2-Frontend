@@ -1,5 +1,6 @@
 package nello.model;
 
+import javafx.scene.paint.Color;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
@@ -28,7 +29,7 @@ public class Experiment implements ExperimentObservable {
             return Category.INWERKING;
         }
 
-        public int getValue(){
+        public int getValue() {
             return category;
         }
     }
@@ -52,7 +53,7 @@ public class Experiment implements ExperimentObservable {
             return Phase.IDEE;
         }
 
-        public int getValue(){
+        public int getValue() {
             return phase;
         }
 
@@ -66,26 +67,16 @@ public class Experiment implements ExperimentObservable {
 
     public enum StatusColor {
 
-        GROEN(1), ORANJE(2), ROOD(3);
+        GROEN(Color.web("#61c949")), ORANJE(Color.web("#c99d49")), ROOD(Color.web("#c94949"));
 
-        private int statusColor;
+        private Color color;
 
-        StatusColor(int statusColor) {
-            this.statusColor = statusColor;
+        StatusColor(Color color) {
+            this.color = color;
         }
 
-        public static StatusColor getById(int statusColorId) {
-            for (StatusColor statusColor : values()) {
-                if (statusColor.getValue() == statusColorId) {
-                    return statusColor;
-                }
-            }
-            // If no statuscolor is defined the standard is "GROEN"
-            return StatusColor.GROEN;
-        }
-
-        public int getValue(){
-            return statusColor;
+        public Color getValue() {
+            return color;
         }
 
     }

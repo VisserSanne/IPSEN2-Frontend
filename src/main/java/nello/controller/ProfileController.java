@@ -13,20 +13,12 @@ public class ProfileController implements IController {
         this.profileModel = profileModel;
     }
 
-    public void onSaveButtonClick(){
+    public void onSaveButtonClick(String firstName, String lastName, String email, String password){
         HTTPController http = mainController.getHttpController();
         User user = profileModel.getUser();
+
         //
     }
-
-    public void onEmailChange(String email){
-        //
-    }
-
-    public void onFullNameChange(String fullName){
-        //
-    }
-
 
     public void registerObserver(ProfileObserver observer) {
         profileModel.registerObserver(observer);

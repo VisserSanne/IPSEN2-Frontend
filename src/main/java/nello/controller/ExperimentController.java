@@ -1,14 +1,11 @@
 package nello.controller;
 
-import nello.model.Attachment;
 import nello.model.Experiment;
-import nello.model.Log;
 import nello.observer.ExperimentObserver;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ExperimentController implements IController {
 
@@ -39,15 +36,17 @@ public class ExperimentController implements IController {
         Experiment.Phase phase = null;
 
         if(isService) {
-            category = Experiment.Category.getById(4);
-            phase = Experiment.Phase.getById(5);
+            category = Experiment.Category.VASTEDIENST;
+            phase = Experiment.Phase.VASTEDIENST;
         } else {
-            category = Experiment.Category.getById(1);
-            phase = Experiment.Phase.getById(1);
+            category = Experiment.Category.INWERKING;
+            phase = Experiment.Phase.IDEE;
         }
 
-        new Experiment( category, phase, businessOwner, description, name, Experiment.StatusColor.getById(1),
+        Experiment experiment = new Experiment(category, phase, businessOwner, description, name, Experiment.StatusColor.GROEN,
                 getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
+
+        mainController.getHttpController().post("/experiments/create", experiment);
 
     }
 
@@ -79,8 +78,10 @@ public class ExperimentController implements IController {
         }
 
         experiment.setPhase(Experiment.Phase.getById(4));
-        experiment.setStatusColor(Experiment.StatusColor.getById(1));
+        experiment.setStatusColor(Experiment.StatusColor.GROEN);
         experiment.setEndDate(getDate());
+
+        mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
 
     }
 
