@@ -31,4 +31,8 @@ public class ProfileController implements IController {
     public void registerObserver(ProfileObserver observer) {
         profileModel.registerObserver(observer);
     }
+
+    public void setUser(User u) {
+        profileModel.setUser(u);
+    }
 }

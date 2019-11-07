@@ -1,13 +1,19 @@
 package nello;
 
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nello.controller.DashboardController;
-import nello.controller.LoginController;
 import nello.controller.MainController;
 import nello.controller.StageController;
+import nello.model.NetworkMember;
+import nello.model.User;
+import nello.model.UserRole;
 import nello.view.DashboardView;
 import nello.view.FXMLView;
-import nello.view.LoginView;
+import nello.view.ProfileView;
+import nello.view.TabView;
+
+import java.util.Date;
 
 
 public class Nello {
@@ -29,6 +35,20 @@ public class Nello {
         StageController stageController = mainController.getStageController();
         stageController.prepareStage(primaryStage);
         stageController.loadView(START_VIEW);
+
+        User u = new User(1,
+                new NetworkMember(1, "Ashna Wiar", false),
+                "Ashna_wiar@hotmail.com", "", UserRole.GUEST, new Date());
+        mainController.getProfileController().setUser(u);
+        System.out.println("getting view");
+        FXMLView profileView = new ProfileView();
+        System.out.println("before load");
+        Pane root = mainController.getStageController().getRoot(profileView);
+        System.out.println("afther load");
+        TabView tabView = new TabView(root);
+
+        stageController.loadView(tabView);
+
     }
 
     public void shine() {
