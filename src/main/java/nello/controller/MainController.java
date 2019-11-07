@@ -1,6 +1,7 @@
 package nello.controller;
 
 import nello.model.AddMembersModel;
+import nello.model.ChangePhaseModel;
 import nello.model.LoginModel;
 import nello.model.ProfileModel;
 
@@ -32,7 +33,7 @@ public class MainController {
         loginController = new LoginController(this, new LoginModel());
         addMembersController = new AddMembersController(this, new AddMembersModel());
         profileController = new ProfileController(this, new ProfileModel());
-        changePhaseController = new ChangePhaseController(this);
+        changePhaseController = new ChangePhaseController(this, new ChangePhaseModel());
     }
 
     public HTTPController getHttpController() {

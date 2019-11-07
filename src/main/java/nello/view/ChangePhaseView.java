@@ -4,18 +4,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import nello.controller.AddMembersController;
 import nello.controller.ChangePhaseController;
 import nello.controller.MainController;
-import nello.observable.AddMembersObservable;
-import nello.observer.AddMembersObserver;
+import nello.observable.ChangePhaseObservable;
+import nello.observer.ChangePhaseObserver;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChangePhaseView implements FXMLView<ChangePhaseController>, Initializable {
+public class ChangePhaseView implements FXMLView<ChangePhaseController>, ChangePhaseObserver, Initializable {
 
     private final String fxmlPath;
 
@@ -63,7 +60,7 @@ public class ChangePhaseView implements FXMLView<ChangePhaseController>, Initial
     }
 
     @Override
-    public void setController(AddMembersController controller) {
+    public void setController(ChangePhaseController controller) {
         this.controller = controller;
     }
 
@@ -75,7 +72,7 @@ public class ChangePhaseView implements FXMLView<ChangePhaseController>, Initial
     }
 
     @Override
-    public void update(AddMembersObservable observable) {
-    }
+    public void update(ChangePhaseObservable observable) {
 
+    }
 }
