@@ -53,8 +53,8 @@
                         <Insets bottom="2.0"/>
                     </padding>
                 </Label>
-                <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefWidth="315.0" text="description"
-                       wrapText="true">
+                <Label fx:id="descriptionLabel" alignment="TOP_LEFT" maxWidth="315.0" prefHeight="50.0"
+                       prefWidth="315.0" text="description" wrapText="true">
                     <VBox.margin>
                         <Insets top="2.0"/>
                     </VBox.margin>

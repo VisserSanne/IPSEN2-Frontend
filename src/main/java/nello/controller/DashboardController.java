@@ -1,8 +1,12 @@
 package nello.controller;
 
 import nello.model.DashboardModel;
+import nello.model.Experiment;
 import nello.observer.DashboardObserver;
 import nello.view.ExperimentCreateView;
+import nello.view.ExperimentOverviewView;
+
+import javax.ws.rs.core.Response;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -32,13 +36,19 @@ public class DashboardController implements IController {
 
     public void loadExperiments() {
         HTTPController http = mainController.getHttpController();
-        int status = http.get("/experiments").getStatus();
-        switch (status) {
+        Response response = http.get("/experiments");
+        switch (response.getStatus()) {
             case 200:
                 System.out.println("sucess");
+                dashboardModel.setExperimentList(response.readEntity(Experiment[].class));
                 break;
             default:
-                System.out.println(String.format("status: %s", status));
+                System.out.println(String.format("status: %s", response.getStatus()));
         }
+    }
+
+    public void onExperimentClick(Experiment experiment) {
+        mainController.getExperimentController().setExperiment(experiment);
+        mainController.getStageController().displayPopup(new ExperimentOverviewView());
     }
 }

@@ -7,20 +7,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
-import nello.model.Log;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
-import nello.view.components.LogItemComponent;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ExperimentOverviewView implements FXMLView<ExperimentController>, ExperimentObserver, Initializable {
@@ -67,24 +60,6 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
         this.controller = MainController.getInstance().getExperimentController();
     }
 
-    public static String generateRandomString(int length) {
-        Random random = new Random();
-        if (length < 1) throw new IllegalArgumentException();
-
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-
-            // 0-62 (exclusive), random returns 0-61
-            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
-            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
-
-            sb.append(rndChar);
-
-        }
-
-        return sb.toString();
-
-    }
 
     @Override
     public String getFXMLPath() {
@@ -103,43 +78,44 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("called");
-        this.titleLabel.setText(generateRandomString(30));
-        this.descriptionLabel.setText(generateRandomString(125));
-        this.descriptionLabel.setWrapText(true);
-        this.statusLabel.setText(generateRandomString(125));
-        this.businessOwnerLabel.setText("Ashna Wiar");
-        this.lastModified.setText(String.format(this.lastModified.getText(), "Ashna Wiar", new Date().toString()));
-        // hide 'geen' text
-        this.costLabel.setText("");
-        this.incomeLabel.setText("");
-
-        for (int i = 0; i < 5; i++) {
-            Label c = new Label(generateRandomString(10));
-            c.getStyleClass().add("tag-finance");
-            this.costFlowPane.getChildren().add(c);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            Label c = new Label(generateRandomString(10));
-            c.getStyleClass().add("tag-finance");
-            this.incomeFlowPane.getChildren().add(c);
-        }
-
-        for (int i = 0; i < 10; i++) {
-            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
-            Line line = new Line(0, 0, 255, 0);
-            line.setStroke(Color.web("#cecece"));
-            networkMemberVbox.getChildren().addAll(n, line);
-        }
-
-        for (int i = 0; i < 10; i++) {
-            Log l = new Log(i, generateRandomString(250), generateRandomString(10), LocalDateTime.now());
-            LogItemComponent logItemComponent = new LogItemComponent(l);
-            logVbox.getChildren().add(logItemComponent);
-        }
-
-//        getController().registerObserver(this);
+//        System.out.println("called");
+//        this.titleLabel.setText(generateRandomString(30));
+//        this.descriptionLabel.setText(generateRandomString(125));
+//        this.descriptionLabel.setWrapText(true);
+//        this.statusLabel.setText(generateRandomString(125));
+//        this.businessOwnerLabel.setText("Ashna Wiar");
+//        this.lastModified.setText(String.format(this.lastModified.getText(), "Ashna Wiar", new Date().toString()));
+//        // hide 'geen' text
+//        this.costLabel.setText("");
+//        this.incomeLabel.setText("");
+//
+//        for (int i = 0; i < 5; i++) {
+//            Label c = new Label(generateRandomString(10));
+//            c.getStyleClass().add("tag-finance");
+//            this.costFlowPane.getChildren().add(c);
+//        }
+//
+//        for (int i = 0; i < 5; i++) {
+//            Label c = new Label(generateRandomString(10));
+//            c.getStyleClass().add("tag-finance");
+//            this.incomeFlowPane.getChildren().add(c);
+//        }
+//
+//        for (int i = 0; i < 10; i++) {
+//            NetworkMemberComponent n = new NetworkMemberComponent(generateRandomString((int) (Math.random() * 100)), randomBoolean(), randomBoolean());
+//            Line line = new Line(0, 0, 255, 0);
+//            line.setStroke(Color.web("#cecece"));
+//            networkMemberVbox.getChildren().addAll(n, line);
+//        }
+//
+//        for (int i = 0; i < 10; i++) {
+//            Log l = new Log(i, generateRandomString(250), generateRandomString(10), LocalDateTime.now());
+//            LogItemComponent logItemComponent = new LogItemComponent(l);
+//            logVbox.getChildren().add(logItemComponent);
+//        }
+//
+////        getController().registerObserver(this);
+        getController().registerObserver(this::update);
 
     }
 
@@ -163,7 +139,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
         this.descriptionLabel.setText(o.getDescription());
         this.statusLabel.setText(o.getStatus());
         this.businessOwnerLabel.setText(o.getBusinessOwner());
-        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
+//        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
         updateFinance(o.getIncomes(), incomeFlowPane);
         updateFinance(o.getCosts(), costFlowPane);
     }
@@ -177,8 +153,9 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
      */
 
     private void updateFinance(List<String> list, FlowPane flowPane) {
-
         flowPane.getChildren().clear();
+        if (list == null)
+            return;
 
         for (String item : list) {
             Label itemLabel = new Label(item);

@@ -4,9 +4,8 @@ import nello.model.Experiment;
 import nello.observer.ExperimentObserver;
 import nello.view.ExperimentOverviewView;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ExperimentController implements IController {
 
@@ -60,9 +59,8 @@ public class ExperimentController implements IController {
      * @author Valerie Timmerman
      */
 
-    public LocalDate getDate() {
-        LocalDateTime today = LocalDateTime.now();
-        return today.toLocalDate();
+    public Date getDate() {
+        return new Date();
     }
 
     /**

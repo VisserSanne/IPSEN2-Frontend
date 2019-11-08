@@ -2,13 +2,11 @@ package nello.controller;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
-import nello.view.AlertBox;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.logging.Level;
 
 public class HTTPController {
 
@@ -57,7 +55,7 @@ public class HTTPController {
                 .request(MediaType.APPLICATION_JSON);
 
         // send request.
-        return this.run(response, null, null);
+        return this.run(response, Method.GET, null);
     }
 
     public Response delete(String route) {
@@ -95,8 +93,8 @@ public class HTTPController {
                     return request.get();
             }
         } catch (ProcessingException e) {
-            MainController.getInstance().getStageController().displayPopup(
-                    new AlertBox("Kon niet verbinding maken met server", Level.SEVERE, 5), 25, 25);
+//            MainController.getInstance().getStageController().displayPopup(
+//                    new AlertBox("Kon niet verbinding maken met server", Level.SEVERE, 5), 25, 25);
             e.printStackTrace();
         }
 
