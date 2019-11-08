@@ -1,7 +1,6 @@
 package nello.controller;
 
 import nello.model.Experiment;
-import nello.model.Log;
 import nello.observer.ExperimentObserver;
 import nello.view.ExperimentOverviewView;
 
@@ -108,5 +107,9 @@ public class ExperimentController implements IController {
         mainController.getLogController().addLogItem(experiment.getId(), status, "Dummy");
         mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
 
+    }
+
+    public void pickAttachment(){
+        mainController.getAttachmentController().pickAttachment();
     }
 }

@@ -3,6 +3,8 @@ package nello.controller;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
 import nello.view.AlertBox;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.*;
@@ -28,7 +30,7 @@ public class HTTPController {
     }
 
     private Client setupClient() {
-        Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);
+        Client client = ClientBuilder.newClient().register(MultiPartFeature.class).register(JacksonJsonProvider.class);
         client.register(LogFilter.class);
         return client;
     }
@@ -48,6 +50,13 @@ public class HTTPController {
                 .request(MediaType.APPLICATION_JSON);
 
         return this.run(response, Method.POST, model);
+    }
+
+    public Response postFormData(String route, MultiPart formData){
+        Invocation.Builder response = target
+                .path(route)
+                .request(MediaType.MULTIPART_FORM_DATA);
+        return response.post(Entity.entity(formData,formData.getMediaType()));
     }
 
     public Response get(String route) {

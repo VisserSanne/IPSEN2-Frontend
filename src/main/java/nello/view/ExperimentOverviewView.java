@@ -2,6 +2,7 @@ package nello.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -42,6 +43,9 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
     public Label dummy_cost;
     @FXML
     public Label incomeLabel;
+    @FXML
+    public Button addAttachment;
+
     @FXML
     public FlowPane incomeFlowPane;
     @FXML
@@ -164,4 +168,9 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
         }
 
     }
+
+    public void pickAttachment(){
+        getController().pickAttachment();
+    }
+
 }

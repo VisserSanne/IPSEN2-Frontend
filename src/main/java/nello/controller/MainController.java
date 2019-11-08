@@ -16,6 +16,7 @@ public class MainController {
     private UserRegistrationController userRegistrationController;
     private UsersTabController usersTabController;
     private LogController logController;
+    private AttachmentController attachmentController;
 
     private MainController() {
         registerControllers();
@@ -31,6 +32,7 @@ public class MainController {
         httpController = new HTTPController();
         stageController = new StageController();
         loginController = new LoginController(this, new LoginModel());
+        attachmentController = new AttachmentController(this);
         experimentController = new ExperimentController(this);
 
         dashboardController = new DashboardController(this, new DashboardModel());
@@ -82,5 +84,7 @@ public class MainController {
     }
 
     public LogController getLogController() { return logController; }
+
+    public AttachmentController getAttachmentController() { return attachmentController; }
 
 }
