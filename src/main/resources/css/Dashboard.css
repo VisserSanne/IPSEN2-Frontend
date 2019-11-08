@@ -74,3 +74,28 @@ ScrollPane {
     -fx-border-width: 2px;
     -fx-padding: 2px;
 }
+
+.split-menu-button .label {
+    -fx-text-fill: #fff;
+    -fx-background-color: #ba81eb;
+}
+
+.split-menu-button .menu-bar:hover,
+.split-menu-button .menu-item:hover > .label {
+    -fx-background-color: #0096c9;
+}
+
+
+.split-menu-button .menu-item .label {
+    -fx-text-fill: #000;
+    -fx-background-color: #fff;
+    -fx-pref-width: 112;
+    -fx-pref-height: 34;
+}
+
+.split-menu-button .arrow-button {
+    -fx-background-color: #ba81eb;
+}
+
+
+

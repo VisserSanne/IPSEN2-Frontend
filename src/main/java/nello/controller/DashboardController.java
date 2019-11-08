@@ -1,11 +1,11 @@
 package nello.controller;
 
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import nello.model.DashboardModel;
 import nello.model.Experiment;
 import nello.observer.DashboardObserver;
-import nello.view.ExperimentCreateView;
-import nello.view.ExperimentOverviewView;
+import nello.view.*;
 
 import javax.ws.rs.core.Response;
 

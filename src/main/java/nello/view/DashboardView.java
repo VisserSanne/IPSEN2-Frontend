@@ -49,6 +49,7 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getController().registerObserver(this::update);
+        getController().loadExperiments();
     }
 
     @Override
@@ -70,6 +71,10 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     public void update(DashboardObservable observable) {
         System.out.println("view update");
         Experiment[] experimentList = observable.getExperimentList();
+
+        if (experimentList == null)
+            return;
+
         for (Experiment experiment : experimentList) {
             ExperimentComponent component = new ExperimentComponent(this, experiment);
             component.setOnMouseClicked(event -> onExperimentClick(event, component, experiment));
@@ -85,10 +90,6 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     private void onExperimentClick(MouseEvent event, ExperimentComponent component, Experiment experiment) {
         System.out.println(event.getTarget() + " " + component);
         getController().onExperimentClick(experiment);
-    }
-
-    public void onComponentOptionClick(Experiment experiment) {
-        System.out.println("clicked on :" + experiment.getId());
     }
 
     public void onComponentOptionClick(Experiment experiment) {

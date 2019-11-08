@@ -2,13 +2,13 @@ package nello.controller;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
-import nello.model.User;
 import nello.view.AlertBox;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Level;
 
 public class HTTPController {
 

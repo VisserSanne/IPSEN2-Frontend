@@ -25,8 +25,6 @@
                </AnchorPane>
            </content>
        </ScrollPane>
-       <Button layoutX="1220.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#onMenuButtonClick"
-               prefHeight="27.0" prefWidth="124.0" text="menu"/>
        <ScrollPane layoutX="356.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
                    style="-fx-padding: 10px; -fx-focus-traversable: none;" AnchorPane.bottomAnchor="22.0"
                    AnchorPane.topAnchor="114.0">
@@ -129,8 +127,9 @@
                </ImageView>
            </children>
        </Pane>
-       <SplitMenuButton id="menu" layoutX="1196.0" layoutY="28.0" mnemonicParsing="false" text="Menu"
-                        AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0">
+       <SplitMenuButton id="menu" layoutX="1232.0" layoutY="24.0" mnemonicParsing="false" prefHeight="34.0"
+                        prefWidth="119.0" style="-fx-background-color: ba81eb;" text="Menu"
+                        AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="24.0">
            <items>
                <MenuItem mnemonicParsing="false" onAction="#onProfileClick" text="Profiel"/>
                <MenuItem mnemonicParsing="false" onAction="#onGebruikersClick" text="Gebruikers"/>
