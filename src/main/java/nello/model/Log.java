@@ -1,23 +1,29 @@
 package nello.model;
 
+import nello.observable.LogObservable;
+import nello.observer.LogObserver;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
-public class Log {
+public class Log implements LogObservable {
 
-    private long experimentID;
+    private long experimentId;
     private String status;
     private String person;
     private LocalDateTime createDateTime;
 
-    public Log(long experimentID, String status, String person, LocalDateTime createDateTime) {
-        this.experimentID = experimentID;
+    private List<LogObserver> observerList;
+
+    public Log(long experimentId, String status, String person, LocalDateTime createDateTime) {
+        this.experimentId = experimentId;
         this.status = status;
         this.person = person;
         this.createDateTime = createDateTime;
     }
 
-    public long getExperimentID() {
-        return experimentID;
+    public long getExperimentId() {
+        return experimentId;
     }
 
     public String getStatus() {
@@ -34,6 +40,19 @@ public class Log {
 
     public LocalDateTime getCreateDateTime() {
         return createDateTime;
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(LogObserver o : observerList) {
+            o.update(this);
+        }
+    }
+
+    @Override
+    public void registerObserver(LogObserver logObserver) {
+        observerList.add(logObserver);
+        logObserver.update(this);
     }
 
 }

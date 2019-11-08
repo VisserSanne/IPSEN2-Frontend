@@ -1,10 +1,9 @@
 package nello.model;
 
-import com.sun.istack.internal.NotNull;
+import javafx.scene.paint.Color;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 public class Experiment implements ExperimentObservable {
 
     public enum Category {
-        INWERKING(1), AFGEROND(2), VASTEDIENST(3);
+        INWERKING(1), HALLOFFAME(2), CEMENTARY(3), VASTEDIENST(4);
         private int category;
 
         Category(int category) {
@@ -30,7 +29,7 @@ public class Experiment implements ExperimentObservable {
             return Category.INWERKING;
         }
 
-        public int getValue(){
+        public int getValue() {
             return category;
         }
     }
@@ -54,8 +53,30 @@ public class Experiment implements ExperimentObservable {
             return Phase.IDEE;
         }
 
-        public int getValue(){
+        public int getValue() {
             return phase;
+        }
+
+    }
+
+    /**
+     * This Enum is for the status colors, green, orange and red
+     *
+     * @author Valerie Timmerman
+     */
+
+    public enum StatusColor {
+
+        GROEN(Color.web("#61c949")), ORANJE(Color.web("#c99d49")), ROOD(Color.web("#c94949"));
+
+        private Color color;
+
+        StatusColor(Color color) {
+            this.color = color;
+        }
+
+        public Color getAsColor() {
+            return color;
         }
 
     }
@@ -66,21 +87,23 @@ public class Experiment implements ExperimentObservable {
     private String businessOwner;
     private String description;
     private String name;
-    private String statusColor;
+    private StatusColor statusColor;
     private LocalDate createDate;
-    private Date endDate;
+    private LocalDate endDate;
     private String status;
     private List<Log> logs;
     private List<Attachment> attachments;
+    private List<String> incomes;
+    private List<String> costs;
     private boolean isLocked;
+    private LocalDateTime lastModified;
 
     private List<ExperimentObserver> observerList;
 
-    public Experiment(long id, Category category, Phase phase, String businessOwner, String description, String name,
-                      String statusColor, LocalDate createDate, String status, ArrayList<Log> logs,
-                      ArrayList<Attachment> attachments, boolean isLocked) {
+    public Experiment(Category category, Phase phase, String businessOwner, String description, String name,
+                      StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
+                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified) {
 
-        this.id = id;
         this.category = category;
         this.phase = phase;
         this.businessOwner = businessOwner;
@@ -88,11 +111,16 @@ public class Experiment implements ExperimentObservable {
         this.name = name;
         this.statusColor = statusColor;
         this.createDate = createDate;
-        this.endDate = null;
+        this.endDate = endDate;
         this.status = status;
         this.logs = logs;
         this.attachments = attachments;
+        this.incomes = incomes;
+        this.costs = costs;
         this.isLocked = isLocked;
+        this.lastModified = lastModified;
+        this.observerList = new ArrayList<>();
+
 
     }
 
@@ -113,6 +141,7 @@ public class Experiment implements ExperimentObservable {
     }
 
     public long getId() {return id;}
+    public void setId(long id) {this.id = id;}
 
     public Category getCategory() {return category;}
     public void setCategory(Category category) {
@@ -144,16 +173,16 @@ public class Experiment implements ExperimentObservable {
         notifyObservers();
     }
 
-    public String getStatusColor() {return statusColor;}
-    public void setStatusColor(String statusColor) {
+    public StatusColor getStatusColor() {return statusColor;}
+    public void setStatusColor(StatusColor statusColor) {
         this.statusColor = statusColor;
         notifyObservers();
     }
 
     public LocalDate getCreateDate() {return createDate;}
 
-    public Date getEndDate() {return endDate;}
-    public void setEndDate(Date endDate) {
+    public LocalDate getEndDate() {return endDate;}
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
         notifyObservers();
     }
@@ -176,9 +205,27 @@ public class Experiment implements ExperimentObservable {
         notifyObservers();
     }
 
+    public List<String> getIncomes() {return incomes;}
+    public void setIncomes(List<String> incomes) {
+        this.incomes = incomes;
+        notifyObservers();
+    }
+
+    public List<String> getCosts() {return costs;}
+    public void setCosts(List<String> costs) {
+        this.costs = costs;
+        notifyObservers();
+    }
+
     public boolean isLocked() {return isLocked;}
     public void setLocked(boolean isLocked) {
         this.isLocked = isLocked;
+        notifyObservers();
+    }
+
+    public LocalDateTime getLastModified() {return lastModified;}
+    public void setLastModified(LocalDateTime lastModified) {
+        this.lastModified = lastModified;
         notifyObservers();
     }
 
