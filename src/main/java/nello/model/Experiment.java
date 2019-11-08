@@ -121,7 +121,6 @@ public class Experiment implements ExperimentObservable {
         this.lastModified = lastModified;
         this.observerList = new ArrayList<>();
 
-
     }
 
     @Override

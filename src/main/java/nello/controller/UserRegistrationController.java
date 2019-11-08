@@ -29,8 +29,6 @@ public class UserRegistrationController implements IController {
         if (email.isEmpty())
             model.setError("email");
 
-
-        System.out.println("added errors");
     }
 
     public void onBackButtonClick() {

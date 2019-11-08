@@ -1,6 +1,7 @@
 package nello.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +16,9 @@ public class ExperimentCreateView implements FXMLView<ExperimentController> {
 
     @FXML
     private TextArea descriptionTextField;
+
+    @FXML
+    private CheckBox vasteDienst;
 
     private ExperimentController controller;
     private final String fxmlPath;
@@ -43,7 +47,7 @@ public class ExperimentCreateView implements FXMLView<ExperimentController> {
 
 
     public void onSaveButtonClick(MouseEvent event) {
-        System.out.println("save this experiment");
+        getController().create(vasteDienst.isSelected(), nameTextField.getText(), descriptionTextField.getText());
     }
 
 }

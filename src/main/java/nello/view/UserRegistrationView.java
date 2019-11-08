@@ -36,13 +36,11 @@ public class UserRegistrationView implements FXMLView<UserRegistrationController
 
 
     public void onRegisterButtonClick() {
-        System.out.println("called");
         getController().onRegisterButtonClick(firstnameField.getText(), lastnameField.getText(), emailField.getText(), passwordField.getText());
     }
 
     public void onBackButtonClick() {
         getController().onBackButtonClick();
-        System.out.println("terug");
     }
 
 
@@ -70,7 +68,6 @@ public class UserRegistrationView implements FXMLView<UserRegistrationController
 
     @Override
     public void update(UserRegistrationObservable o) {
-        System.out.println("update view dude");
         if (o.getErrorMessages().size() != 0) {
             this.messagLabel.setText((String) o.getErrorMessages().values().toArray()[0]);
         } else {

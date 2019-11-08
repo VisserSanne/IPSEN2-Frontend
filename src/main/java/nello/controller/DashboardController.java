@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.DashboardModel;
 import nello.observer.DashboardObserver;
+import nello.view.ExperimentCreateView;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -14,6 +15,10 @@ public class DashboardController implements IController {
 
     public void onMenuButtonClick() {
 
+    }
+
+    public void onAddExperimentClick() {
+        mainController.getStageController().displayView(new ExperimentCreateView());
     }
 
     /**
