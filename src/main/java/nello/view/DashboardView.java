@@ -29,10 +29,13 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     private DashboardController controller;
 
 
-
     public DashboardView() {
         this.fxmlPath = "/view/Dashboard.fxml";
         this.controller = MainController.getInstance().getDashboardController();
+    }
+
+    public void onMenuButtonClick() {
+
     }
 
     @Override

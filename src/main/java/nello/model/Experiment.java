@@ -6,6 +6,7 @@ import nello.observer.ExperimentObserver;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Experiment implements ExperimentObservable {
@@ -74,7 +75,7 @@ public class Experiment implements ExperimentObservable {
             this.color = color;
         }
 
-        public Color getValue() {
+        public Color getAsColor() {
             return color;
         }
 
@@ -118,6 +119,8 @@ public class Experiment implements ExperimentObservable {
         this.costs = costs;
         this.isLocked = isLocked;
         this.lastModified = lastModified;
+        this.observerList = new ArrayList<>();
+
 
     }
 

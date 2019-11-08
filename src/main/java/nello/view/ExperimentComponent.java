@@ -30,7 +30,7 @@ public class ExperimentComponent extends HBox {
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(10);
         rectangle.setHeight(HEIGHT);
-        rectangle.setFill(experiment.getStatusColor().getValue());
+        rectangle.setFill(experiment.getStatusColor().getAsColor());
 
         childeren[0] = rectangle;
         childeren[1] = getBody(experiment, masterView);

@@ -58,6 +58,7 @@
                <Insets left="10.0"/>
            </padding>
        </Label>
-       <Button layoutX="1220.0" layoutY="28.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="124.0" text="menu"/>
+       <Button layoutX="1220.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#onMenuButtonClick"
+               prefHeight="27.0" prefWidth="124.0" text="menu"/>
    </children>
 </AnchorPane>

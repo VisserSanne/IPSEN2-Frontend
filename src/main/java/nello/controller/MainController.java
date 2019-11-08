@@ -1,13 +1,9 @@
 package nello.controller;
 
-import nello.model.DashboardModel;
-import nello.model.LoginModel;
-import nello.model.ProfileModel;
-import nello.model.UsersTabModel;
+import nello.model.*;
+
 
 public class MainController {
-
-
     private static MainController instance;
     private HTTPController httpController;
     private StageController stageController;
@@ -15,8 +11,10 @@ public class MainController {
     private ExperimentController experimentController;
     private DashboardController dashboardController;
     private ProfileController profileController;
+    private TabController tabController;
+    private UserController userController;
+    private UserRegistrationController userRegistrationController;
     private UsersTabController usersTabController;
-
 
     private MainController() {
         registerControllers();
@@ -33,8 +31,12 @@ public class MainController {
         stageController = new StageController();
         loginController = new LoginController(this, new LoginModel());
         experimentController = new ExperimentController(this);
+
         dashboardController = new DashboardController(this, new DashboardModel());
         profileController = new ProfileController(this, new ProfileModel());
+        userRegistrationController = new UserRegistrationController(this, new UserRegistrationModel());
+        tabController = new TabController(this, new TabModel());
+        userController = new UserController(this);
         usersTabController = new UsersTabController(this, new UsersTabModel());
     }
 
@@ -60,6 +62,18 @@ public class MainController {
 
     public ExperimentController getExperimentController() {
         return experimentController;
+    }
+
+    public UserRegistrationController getUserRegistrationController() {
+        return userRegistrationController;
+    }
+
+    public TabController getTabController() {
+        return tabController;
+    }
+
+    public UserController getUserController() {
+        return userController;
     }
 
     public UsersTabController getUsersTabController() {
