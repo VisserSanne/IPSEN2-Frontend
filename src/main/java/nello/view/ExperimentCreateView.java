@@ -47,7 +47,13 @@ public class ExperimentCreateView implements FXMLView<ExperimentController> {
 
 
     public void onSaveButtonClick(MouseEvent event) {
-        getController().create(vasteDienst.isSelected(), nameTextField.getText(), descriptionTextField.getText());
+        if(descriptionTextField.getText().isEmpty() && descriptionTextField.getText().equals("De omschrijving mag niet leeg blijven.")){
+            descriptionTextField.setPromptText("De omschrijving mag niet leeg blijven.");
+        } else if(nameTextField.getText().isEmpty() && nameTextField.getText().equals("Er moet een naam opgegeven worden.")) {
+            nameTextField.setPromptText("Er moet een naam opgegeven worden.");
+        } else {
+            getController().create(vasteDienst.isSelected(), nameTextField.getText(), descriptionTextField.getText());
+        }
     }
 
 }
