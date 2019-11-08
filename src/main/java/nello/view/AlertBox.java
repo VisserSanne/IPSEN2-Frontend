@@ -61,11 +61,11 @@ public class AlertBox implements IController, FXMLView<AlertBox>, Initializable 
         if (this.level.equals(Level.WARNING)) {
             this.titleLabel.setText("Alert!");
 
-            color = Experiment.StatusColor.ROOD.getAsColor();
+            color = Experiment.StatusColor.ORANJE.getAsColor();
         }
         if (this.level.equals(Level.FINE)) {
             this.titleLabel.setText("Succesvol");
-            color = Experiment.StatusColor.ROOD.getAsColor();
+            color = Experiment.StatusColor.GROEN.getAsColor();
         }
 
         this.root.setBackground(new Background(new BackgroundFill(color, new CornerRadii(5, false), new Insets(0))));

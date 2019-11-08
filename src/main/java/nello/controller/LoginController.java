@@ -39,10 +39,10 @@ public class LoginController implements IController {
                 model.setCurrentPhase(LoginModel.Phase.PASSWORD);
                 break;
             case 401: // status UNAUTHORIZED
-                model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");
+                model.setMessage("Het ingevoerde e-mailadres bestaat niet.");
                 break;
             case 403: // status FORBIDDEN
-                model.setMessage("U heeft nog geen toegang tot dit systeem. Ashna moet u nog toestemming geven.");
+                model.setMessage("De toegang is geweigerd. Neem contact op met de administrator.");
                 break;
         }
     }
@@ -69,10 +69,10 @@ public class LoginController implements IController {
 //                http.register(HTTPAuthorizationHeader.class);
                 break;
             case 401: // status UNAUTHORIZED
-                model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");
+                model.setMessage("Het ingevoerde e-mailadres bestaat niet.");
                 break;
             case 403: // status FORBIDDEN
-                model.setMessage("U heeft nog geen toegang tot dit systeem. Ashna moet u nog toestemming geven.");
+                model.setMessage("De toegang is geweigerd. Neem gerust contact op met de administrator.");
                 break;
         }
 
