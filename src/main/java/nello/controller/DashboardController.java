@@ -8,7 +8,6 @@ import nello.view.ExperimentCreateView;
 import nello.view.ExperimentOverviewView;
 
 import javax.ws.rs.core.Response;
-import nello.view.ExperimentOverviewView;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -19,6 +18,12 @@ public class DashboardController implements IController {
         this.dashboardModel = dashboardModel;
     }
 
+
+    /**
+     * laad opties van experimenten zien.
+     *
+     * @param experiment
+     */
     public void onOpenExperimentClick(Experiment experiment) {
         mainController.getExperimentController().setExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
@@ -31,10 +36,12 @@ public class DashboardController implements IController {
     /**
      * Displays a popup view for adding a new experiment when the correct button is clicked
      *
+     * @param phase phase waar een experiment voor komt
+     * @param event mouse click event.
+     * @author Ashna
      * @author Valerie Timmerman
      */
-
-    public void onAddExperimentClick(Experiment.Phase vastedienst, MouseEvent event) {
+    public void onAddExperimentClick(Experiment.Phase phase, MouseEvent event) {
         mainController.getStageController().displayPopup(new ExperimentCreateView(), event.getSceneX(), event.getSceneY());
     }
 
@@ -47,6 +54,9 @@ public class DashboardController implements IController {
         dashboardModel.registerObserver(observer);
     }
 
+    /**
+     * laad experiment vanuit backend.
+     */
     public void loadExperiments() {
         HTTPController http = mainController.getHttpController();
         Response response = http.get("/experiments");
@@ -60,6 +70,11 @@ public class DashboardController implements IController {
         }
     }
 
+    /**
+     * handel experiment click event af.
+     *
+     * @param experiment experiment.
+     */
     public void onExperimentClick(Experiment experiment) {
         mainController.getExperimentController().setExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
