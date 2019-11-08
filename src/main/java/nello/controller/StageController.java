@@ -39,6 +39,7 @@ public class StageController {
         this.primaryStage = primaryStage;
         this.primaryStage.setMaxHeight(MAX_HEIGHT);
         this.primaryStage.setMaxWidth(MAX_WIDTH);
+        this.primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image(ResourceUtil.get("/img/login/logo_nello.png").toExternalForm()));
         primaryStage.setScene(mainScene);
     }

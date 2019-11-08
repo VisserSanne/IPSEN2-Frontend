@@ -29,4 +29,16 @@ public class DashboardController implements IController {
     public void registerObserver(DashboardObserver observer) {
         dashboardModel.registerObserver(observer);
     }
+
+    public void loadExperiments() {
+        HTTPController http = mainController.getHttpController();
+        int status = http.get("/experiments").getStatus();
+        switch (status) {
+            case 200:
+                System.out.println("sucess");
+                break;
+            default:
+                System.out.println(String.format("status: %s", status));
+        }
+    }
 }

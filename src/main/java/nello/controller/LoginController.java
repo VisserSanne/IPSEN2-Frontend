@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.LoginModel;
 import nello.observer.LoginObserver;
+import nello.view.DashboardView;
 import nello.view.UserRegistrationView;
 
 import javax.ws.rs.core.Response;
@@ -66,7 +67,10 @@ public class LoginController implements IController {
                 model.clearMessage();
                 String token = response.readEntity(String.class);
                 System.out.println(String.format("acquired login token: %s", token));
-//                http.register(HTTPAuthorizationHeader.class);
+                http.registerFilter(new HttpAuthenticationHeader(this, token));
+                mainController.getDashboardController().loadExperiments();
+                mainController.getStageController().displayView(new DashboardView());
+
                 break;
             case 401: // status UNAUTHORIZED
                 model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");

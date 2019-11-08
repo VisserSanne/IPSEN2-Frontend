@@ -17,6 +17,9 @@ public class HTTPController {
     private Gson gson;
     private WebTarget target;
 
+    public void registerFilter(HttpAuthenticationHeader filter) {
+        client.register(filter);
+    }
 
     public HTTPController() {
         this.client = setupClient();
@@ -103,5 +106,6 @@ public class HTTPController {
     private enum Method {
         POST, PUT, DELETE, GET
     }
+
 
 }
