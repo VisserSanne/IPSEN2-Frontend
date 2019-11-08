@@ -129,5 +129,12 @@
                </ImageView>
            </children>
        </Pane>
+       <SplitMenuButton id="menu" layoutX="1196.0" layoutY="28.0" mnemonicParsing="false" text="Menu"
+                        AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0">
+           <items>
+               <MenuItem mnemonicParsing="false" onAction="#onProfileClick" text="Profiel"/>
+               <MenuItem mnemonicParsing="false" onAction="#onGebruikersClick" text="Gebruikers"/>
+           </items>
+       </SplitMenuButton>
    </children>
 </AnchorPane>

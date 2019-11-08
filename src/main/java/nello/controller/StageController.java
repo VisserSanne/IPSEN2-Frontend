@@ -91,7 +91,7 @@ public class StageController {
             }
 
             if (x == -1 && y == -1) {
-                System.out.println("centerd popup");
+                System.out.println("centered popup");
                 BorderPane closableBorderPane = getClosableBorderPane(root, popup);
                 this.openViews.put(popup, closableBorderPane);
                 ((Pane) this.mainScene.getRoot()).getChildren().add(closableBorderPane);

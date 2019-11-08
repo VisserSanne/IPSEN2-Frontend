@@ -34,8 +34,16 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
         this.controller = MainController.getInstance().getDashboardController();
     }
 
+    public void onProfileClick() {
+        getController().onProfileClick();
+    }
+
     public void onMenuButtonClick() {
 
+    }
+
+    public void onGebruikersClick() {
+        getController().onGebruikersClick();
     }
 
     @Override
@@ -72,12 +80,15 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
             }
 
         }
-
     }
 
     private void onExperimentClick(MouseEvent event, ExperimentComponent component, Experiment experiment) {
         System.out.println(event.getTarget() + " " + component);
         getController().onExperimentClick(experiment);
+    }
+
+    public void onComponentOptionClick(Experiment experiment) {
+        System.out.println("clicked on :" + experiment.getId());
     }
 
     public void onComponentOptionClick(Experiment experiment) {

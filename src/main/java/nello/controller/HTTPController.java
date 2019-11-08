@@ -2,6 +2,8 @@ package nello.controller;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
+import nello.model.User;
+import nello.view.AlertBox;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.*;
@@ -93,8 +95,8 @@ public class HTTPController {
                     return request.get();
             }
         } catch (ProcessingException e) {
-//            MainController.getInstance().getStageController().displayPopup(
-//                    new AlertBox("Kon niet verbinding maken met server", Level.SEVERE, 5), 25, 25);
+            MainController.getInstance().getStageController().displayPopup(
+                    new AlertBox("Verbinding maken met de server is mislukt.", Level.SEVERE, 5), 25, 25);
             e.printStackTrace();
         }
 
@@ -104,6 +106,5 @@ public class HTTPController {
     private enum Method {
         POST, PUT, DELETE, GET
     }
-
 
 }

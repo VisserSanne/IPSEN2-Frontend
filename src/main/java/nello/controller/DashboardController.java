@@ -29,6 +29,20 @@ public class DashboardController implements IController {
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
     }
 
+    public void onProfileClick() {
+        Pane usersTabView = mainController.getStageController().getRoot(new UsersTabView());
+        Pane profileView = mainController.getStageController().getRoot(new ProfileView());
+        mainController.getTabController().getTabModel().setActiveTab("profile");
+        mainController.getStageController().displayView(new TabView(profileView, usersTabView));
+    }
+
+    public void onGebruikersClick() {
+        Pane usersTabView = mainController.getStageController().getRoot(new UsersTabView());
+        Pane profileView = mainController.getStageController().getRoot(new ProfileView());
+        mainController.getTabController().getTabModel().setActiveTab("gebruikers");
+        mainController.getStageController().displayView(new TabView(profileView, usersTabView));
+    }
+
     public void onMenuButtonClick() {
 
     }
