@@ -55,7 +55,7 @@ public class LoginController implements IController {
     }
 
     /**
-     * send login request to API.
+     * send login request to API. test
      */
     public void onLoginButtonClick() {
         System.out.println(String.format("user tries to login with email and password %s", model.getCredential()));
