@@ -2,6 +2,7 @@ package nello.controller;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
+import nello.model.User;
 import nello.view.AlertBox;
 
 import javax.ws.rs.ProcessingException;
@@ -57,7 +58,7 @@ public class HTTPController {
         return this.run(response, null, null);
     }
 
-    public Response delete(String route) {
+    public Response delete(String route, User user) {
 
         // build request
         Invocation.Builder response = target.path(route)
