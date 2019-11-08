@@ -1,5 +1,6 @@
 package nello.controller;
 
+import javafx.scene.input.MouseEvent;
 import nello.model.DashboardModel;
 import nello.model.Experiment;
 import nello.observer.DashboardObserver;
@@ -21,8 +22,8 @@ public class DashboardController implements IController {
 
     }
 
-    public void onAddExperimentClick() {
-        mainController.getStageController().displayView(new ExperimentCreateView());
+    public void onAddExperimentClick(Experiment.Phase vastedienst, MouseEvent event) {
+        mainController.getStageController().displayPopup(new ExperimentCreateView(), event.getSceneX(), event.getSceneY());
     }
 
     /**

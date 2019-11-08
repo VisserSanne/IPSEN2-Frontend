@@ -41,11 +41,6 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getController().registerObserver(this::update);
-        //long id, Category category, Phase phase, String businessOwner, String description, String name,
-        //                      StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
-        //                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified
-
-
     }
 
     @Override
@@ -82,11 +77,28 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     private void onExperimentClick(MouseEvent event, ExperimentComponent component, Experiment experiment) {
         System.out.println(event.getTarget() + " " + component);
-
         getController().onExperimentClick(experiment);
     }
 
     public void onComponentOptionClick(Experiment experiment) {
         System.out.println("clicked on :" + experiment.getId());
+    }
+
+    public void onAddExperimentIdea(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.IDEE, event);
+    }
+
+    public void onAddVastdienst(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.VASTEDIENST, event);
+
+
+    }
+
+    public void onAddExperimentLabOut(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.LABUIT, event);
+    }
+
+    public void onAddExperimentLabIn(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.LABIN, event);
     }
 }
