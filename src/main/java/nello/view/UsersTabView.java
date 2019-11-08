@@ -2,15 +2,15 @@ package nello.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import nello.controller.MainController;
 import nello.controller.UsersTabController;
 import nello.observable.UsersTabObservable;
 import nello.observer.UsersTabObserver;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,20 +38,10 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
     @FXML
     private Button onDeleteButton;
 
-    @FXML
-    void onDeleteButtonClick(MouseEvent event) {
-        getController().onDeleteButtonClick(Integer.parseInt(textFieldDelete.getText()));
-    }
-
-    @FXML
-    void onEditButtonClick(MouseEvent event) {
-        getController().onEditButtonClick(Integer.parseInt(textFieldEdit.getText()));
-    }
-
     private final String fxmlPath;
     private UsersTabController controller;
 
-    public UsersTabView(){
+    public UsersTabView() {
         this.fxmlPath = "/view/UsersTabView.fxml";
         this.controller = MainController.getInstance().getUsersTabController();
     }
@@ -73,12 +63,20 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
 
     @Override
     public UsersTabController getController() {
-        return null;
+        return controller;
     }
 
     @Override
     public void setController(UsersTabController controller) {
+        this.controller = controller;
+    }
 
+    public void onEditButtonClick(MouseEvent mouseEvent) {
+        getController().onEditButtonClick(Integer.parseInt(textFieldEdit.getText()));
+    }
+
+    public void onDeleteButtonClick(MouseEvent event) {
+        getController().onDeleteButtonClick(Integer.parseInt(textFieldDelete.getText()));
     }
 
 }

@@ -42,7 +42,7 @@ public class LoginController implements IController {
                 model.setMessage("Het ingevoerde e-mailadres bestaat niet.");
                 break;
             case 403: // status FORBIDDEN
-                model.setMessage("De toegang is geweigerd. Neem gerust contact op met de administrator.");
+                model.setMessage("De toegang is geweigerd. Neem contact op met de administrator.");
                 break;
         }
     }
