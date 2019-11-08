@@ -71,7 +71,7 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     public void update(DashboardObservable observable) {
         System.out.println("view update");
         Experiment[] experimentList = observable.getExperimentList();
-
+        phaseIdeeVbox.getChildren().clear();
         if (experimentList == null)
             return;
 
