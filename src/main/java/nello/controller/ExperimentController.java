@@ -4,6 +4,7 @@ import nello.model.Experiment;
 import nello.observer.ExperimentObserver;
 import nello.view.ExperimentOverviewView;
 
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class ExperimentController implements IController {
      * @author Valerie Timmerman
      */
 
-    public void create(boolean isService, String description, String name) {
+    public void create(boolean isService, String name, String description) {
 
         Experiment.Category category = null;
         Experiment.Phase phase = null;
@@ -42,13 +43,18 @@ public class ExperimentController implements IController {
             phase = Experiment.Phase.IDEE;
         }
 
-        Experiment experiment = new Experiment(category, phase, null, description, name, Experiment.StatusColor.GROEN,
-                getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
+        Experiment experiment = new Experiment(category, name, phase, "", "", description, Experiment.StatusColor.GROEN);
 
-        mainController.getHttpController().post("/experiments/create", experiment);
+        Response response = mainController.getHttpController().post("/experiments", experiment);
 
         setExperiment(experiment);
-        mainController.getStageController().displayView(new ExperimentOverviewView());
+        mainController.getStageController().displayPopup(new ExperimentOverviewView());
+
+        System.out.println(response.getStatus());
+
+        if(response.getStatus() == 200) {
+            mainController.getDashboardController().loadExperiments();
+        }
 
     }
 
@@ -82,7 +88,11 @@ public class ExperimentController implements IController {
         experiment.setStatusColor(Experiment.StatusColor.GROEN);
         experiment.setEndDate(getDate());
 
-        mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+        Response response = mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+
+        if(response.getStatus() == 200) {
+            mainController.getDashboardController().loadExperiments();
+        }
 
     }
 

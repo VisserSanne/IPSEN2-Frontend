@@ -24,8 +24,7 @@ public class UsersTabController implements IController {
 
     public void onEditButtonClick(long id) {
         HTTPController http = mainController.getHttpController();
-        User user = usersTabModel.getUser();
-        Response response = http.get("/users/" + user.getId());
+        Response response = http.get("/users/" + id);
         switch (response.getStatus()){
             case 200:
                 User u = response.readEntity(User.class);

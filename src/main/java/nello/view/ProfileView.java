@@ -3,6 +3,7 @@ package nello.view;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import nello.controller.MainController;
@@ -31,7 +32,7 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     private TextField textFieldEmail;
 
     @FXML
-    private TextField textFieldPassword;
+    private PasswordField textFieldPassword;
 
     @FXML
     private Button buttonSave;
@@ -61,13 +62,16 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
 
     @Override
     public void update(ProfileObservable o) {
-        System.out.println(o.getUser());
-//        this.textFieldUserRole.setText(o.getUser().getUserRole().getName());
-//        this.textFieldInitials.setText(o.getUser().getNetworkMember().getInitials());
-//        this.textFieldFirstName.setText(o.getUser().getNetworkMember().getFirstName());
-//        this.textFieldLastName.setText(o.getUser().getNetworkMember().getLastName());
-//        this.textFieldEmail.setText(o.getUser().getEmail());
-//        this.textFieldPassword.setText(o.getUser().getPassword());
+        String name = o.getUser().getNetworkMember().getName();
+        String firstName = name.split(" ")[0];
+        String lastName = name.split(" ")[name.split(" ").length - 1];
+
+        this.textFieldUserRole.setText(o.getUser().getRole().getName());
+        this.textFieldInitials.setText(firstName.substring(0,1) + lastName.substring(0,1));
+        this.textFieldFirstName.setText(firstName);
+        this.textFieldLastName.setText(lastName);
+        this.textFieldEmail.setText(o.getUser().getEmail());
+        this.textFieldPassword.setText(o.getUser().getPassword());
     }
 
     @Override
