@@ -66,7 +66,7 @@ public class User {
         this.role = role;
     }
 
-    public boolean isWhitelisted() {
+    public boolean getIsWhitelisted() {
         return isWhitelisted;
     }
 
