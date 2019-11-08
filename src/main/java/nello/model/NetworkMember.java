@@ -1,12 +1,16 @@
 package nello.model;
 
 public class NetworkMember {
-    private Boolean isBusiness;
+
     private long id;
     private String name;
+    private Boolean isBusiness;
 
-    public NetworkMember(long id, String name, Boolean isBusiness) {
-        this.id = id;
+    public NetworkMember() {
+        this(null, false);
+    }
+
+    public NetworkMember(String name, Boolean isBusiness) {
         this.name = name;
         this.isBusiness = isBusiness;
     }
@@ -19,14 +23,6 @@ public class NetworkMember {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Boolean isBusiness() {
         return isBusiness;
     }
@@ -35,21 +31,11 @@ public class NetworkMember {
         this.isBusiness = business;
     }
 
-    public String getInitials() {
-        String[] tokens = this.name.split(" ");
-        String firstName = tokens[0];
-        String lastName = tokens[tokens.length -1];
-        String initials = "";
-        if(tokens.length > 0) {
-            String[] firstToken = firstName.split("");
-            String firstInitial = firstToken[0];
-
-            String[] lastToken = lastName.split("");
-            String lastInitial = lastToken[0];
-
-            initials = firstInitial+ "." +lastInitial+ ".";
-        }
-        return initials;
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }

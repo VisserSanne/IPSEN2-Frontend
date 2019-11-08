@@ -1,0 +1,50 @@
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+}
+
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .decrement-button {
+    -fx-padding: 0 10px 0 0;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: #efefef;
+    -fx-background-insets: 2, 0;
+    -fx-background-radius: 100px;
+}
+
+.scroll-pane .scroll-bar:vertical .increment-arrow,
+.scroll-pane .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: -2px;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #ba81eb;
+    -fx-max-height: 50px;
+    -f-paddding: 20px;
+    -fx-background-radius: 2em;
+}
+
+.tag-finance {
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #cecece;
+    -fx-border-color: #b4b4b4;
+    -fx-border-width: 2px;
+    -fx-padding: 2px;
+}

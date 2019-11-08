@@ -5,8 +5,9 @@ import nello.model.Experiment;
 import nello.model.Log;
 import nello.observer.ExperimentObserver;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public interface ExperimentObservable {
@@ -17,13 +18,16 @@ public interface ExperimentObservable {
     String getBusinessOwner();
     String getDescription();
     String getName();
-    String getStatusColor();
+    Experiment.StatusColor getStatusColor();
     LocalDate getCreateDate();
-    Date getEndDate();
+    LocalDate getEndDate();
     String getStatus();
     List<Log> getLogs();
     List<Attachment> getAttachments();
+    List<String> getIncomes();
+    List<String> getCosts();
     boolean isLocked();
+    LocalDateTime getLastModified();
 
     /**
      * Notifies all registered observers that there has been an update

@@ -3,29 +3,27 @@ package nello.model;
 import java.util.Date;
 
 public class User {
-
     private long id;
     private NetworkMember networkMember;
     private String email;
     private String password;
     private UserRole role;
     private Date createDate;
+    private boolean isWhitelisted;
+
+    public User() {
+        /* empty */
+    }
 
     public User(
-            long id,
             NetworkMember networkMember,
             String email,
             String password,
-            UserRole role,
-            Date createDate)
-
-    {
-        this.id = id;
+            UserRole role) {
         this.networkMember = networkMember;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.createDate = createDate;
     }
 
     public long getId() {
@@ -44,7 +42,6 @@ public class User {
         this.networkMember = networkMember;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -53,11 +50,35 @@ public class User {
         this.email = email;
     }
 
-    public UserRole getUserRole() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserRole getRole() {
         return role;
     }
 
-    public void setUserRole(UserRole role) {
+    public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public boolean isWhitelisted() {
+        return isWhitelisted;
+    }
+
+    public void setWhitelisted(boolean whitelisted) {
+        isWhitelisted = whitelisted;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

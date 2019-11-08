@@ -1,6 +1,7 @@
 package nello.controller;
 
 import nello.model.Credential;
+import nello.model.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +22,9 @@ public class HTTPControllerTest {
 
     @Test
     public void post() {
-        Response response = httpController.post(ResourceRoute.LOGIN, credential);
-        assertEquals(401, response.getStatus());
+        User user = new User();
+        Response response = httpController.put("/users/1", user);
+        System.out.println(response.readEntity(String.class));
+        assertEquals(422, response.getStatus());
     }
 }

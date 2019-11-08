@@ -22,11 +22,12 @@ public class Nello {
         this.mainController = MainController.getInstance();
     }
 
-    public void shine(Stage primaryStage) {
+    public void illuminate(Stage primaryStage) {
         primaryStage.setTitle(String.format("%s %s", APP_NAME, VERSION));
         StageController stageController = mainController.getStageController();
         stageController.prepareStage(primaryStage);
-        stageController.loadView(START_VIEW);
+        stageController.displayView(START_VIEW);
+
     }
 
     public void shine() {

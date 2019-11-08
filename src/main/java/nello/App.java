@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Nello nello = new Nello();
-        nello.shine(primaryStage);
+        nello.illuminate(primaryStage);
         nello.shine();
     }
 }

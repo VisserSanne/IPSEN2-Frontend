@@ -1,13 +1,8 @@
 package nello.controller;
 
-import nello.model.AddMembersModel;
-import nello.model.ChangePhaseModel;
-import nello.model.LoginModel;
-import nello.model.ProfileModel;
+import nello.model.*;
 
 public class MainController {
-
-
     private static MainController instance;
     private HTTPController httpController;
     private StageController stageController;
@@ -15,7 +10,11 @@ public class MainController {
     private AddMembersController addMembersController;
     private ProfileController profileController;
     private ChangePhaseController changePhaseController;
-
+    private ExperimentController experimentController;
+    private DashboardController dashboardController;
+    private TabController tabController;
+    private UserController userController;
+    private UserRegistrationController userRegistrationController;
 
     private MainController() {
         registerControllers();
@@ -34,6 +33,20 @@ public class MainController {
         addMembersController = new AddMembersController(this, new AddMembersModel());
         profileController = new ProfileController(this, new ProfileModel());
         changePhaseController = new ChangePhaseController(this, new ChangePhaseModel());
+        experimentController = new ExperimentController(this);
+        dashboardController = new DashboardController(this, new DashboardModel());
+        profileController = new ProfileController(this, new ProfileModel());
+        userRegistrationController = new UserRegistrationController(this, new UserRegistrationModel());
+        tabController = new TabController(this, new TabModel());
+        userController = new UserController(this);
+    }
+
+    public DashboardController getDashboardController() {
+        return dashboardController;
+    }
+
+    public ProfileController getProfileController() {
+        return profileController;
     }
 
     public HTTPController getHttpController() {
@@ -52,8 +65,20 @@ public class MainController {
         return addMembersController;
     }
 
-    public ProfileController getProfileController() {
-        return profileController;
+    public ExperimentController getExperimentController() {
+        return experimentController;
+    }
+
+    public UserRegistrationController getUserRegistrationController() {
+        return userRegistrationController;
+    }
+
+    public TabController getTabController() {
+        return tabController;
+    }
+
+    public UserController getUserController() {
+        return userController;
     }
 
     public ChangePhaseController getChangePhaseController() {
