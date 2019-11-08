@@ -8,6 +8,7 @@ import nello.view.ExperimentCreateView;
 import nello.view.ExperimentOverviewView;
 
 import javax.ws.rs.core.Response;
+import nello.view.ExperimentOverviewView;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -18,9 +19,20 @@ public class DashboardController implements IController {
         this.dashboardModel = dashboardModel;
     }
 
+    public void onOpenExperimentClick(Experiment experiment) {
+        mainController.getExperimentController().setExperiment(experiment);
+        mainController.getStageController().displayPopup(new ExperimentOverviewView());
+    }
+
     public void onMenuButtonClick() {
 
     }
+
+    /**
+     * Displays a popup view for adding a new experiment when the correct button is clicked
+     *
+     * @author Valerie Timmerman
+     */
 
     public void onAddExperimentClick(Experiment.Phase vastedienst, MouseEvent event) {
         mainController.getStageController().displayPopup(new ExperimentCreateView(), event.getSceneX(), event.getSceneY());

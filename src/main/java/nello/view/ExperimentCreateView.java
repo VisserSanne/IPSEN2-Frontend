@@ -45,9 +45,21 @@ public class ExperimentCreateView implements FXMLView<ExperimentController> {
         this.controller = controller;
     }
 
+    /**
+     * When a new experiment is made and the save button is clicked, this first checks if any fields are empty
+     * If all fields are filled out it sends the data to the controller
+     * @param event event of the mouse click
+     * @author Valerie Timmerman
+     */
 
     public void onSaveButtonClick(MouseEvent event) {
-        getController().create(vasteDienst.isSelected(), nameTextField.getText(), descriptionTextField.getText());
+        if(descriptionTextField.getText().isEmpty() && descriptionTextField.getText().equals("De omschrijving mag niet leeg blijven.")){
+            descriptionTextField.setPromptText("De omschrijving mag niet leeg blijven.");
+        } else if(nameTextField.getText().isEmpty() && nameTextField.getText().equals("Er moet een naam opgegeven worden.")) {
+            nameTextField.setPromptText("Er moet een naam opgegeven worden.");
+        } else {
+            getController().create(vasteDienst.isSelected(), nameTextField.getText(), descriptionTextField.getText());
+        }
     }
 
 }
