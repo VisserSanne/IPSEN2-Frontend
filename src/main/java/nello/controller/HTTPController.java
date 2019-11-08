@@ -55,7 +55,7 @@ public class HTTPController {
                 .request(MediaType.APPLICATION_JSON);
 
         // send request.
-        return this.run(response, null, null);
+        return this.run(response, Method.GET, null);
     }
 
     public Response delete(String route) {
