@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.Pane;
 import nello.controller.MainController;
 import nello.controller.TabController;
 import nello.observable.TabObservable;
@@ -27,8 +28,10 @@ public class TabView implements FXMLView<TabController>, Initializable, TabObser
      * controller for this view.
      */
     private TabController controller;
+    private Pane usersTabView;
 
-    public TabView(Node profileView) {
+    public TabView(Node profileView, Pane usersTabView) {
+        this.usersTabView = usersTabView;
         this.fxmlPath = "/view/TabView.fxml";
         this.controller = MainController.getInstance().getTabController();
         this.profileView = profileView;
@@ -37,6 +40,7 @@ public class TabView implements FXMLView<TabController>, Initializable, TabObser
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         profile.setContent(profileView);
+        gebruikers.setContent(usersTabView);
         getController().registerObserver(this);
     }
 
@@ -63,7 +67,7 @@ public class TabView implements FXMLView<TabController>, Initializable, TabObser
         if (profile.isSelected()) {
             getController().onProfileTabClick();
         } else if (gebruikers.isSelected()) {
-            System.out.println("gebruikers");
+            getController().onUserTabClick();
         } else if (tags.isSelected()) {
             System.out.println("tags");
         }

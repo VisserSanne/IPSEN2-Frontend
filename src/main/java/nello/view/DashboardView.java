@@ -1,6 +1,5 @@
 package nello.view;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -35,7 +34,7 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
         this.controller = MainController.getInstance().getDashboardController();
     }
 
-    public void onProfileClick(ActionEvent event) {
+    public void onProfileClick() {
         getController().onProfileClick();
     }
 

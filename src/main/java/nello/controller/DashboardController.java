@@ -7,6 +7,7 @@ import nello.model.DashboardModel;
 import nello.observer.DashboardObserver;
 import nello.view.ProfileView;
 import nello.view.TabView;
+import nello.view.UsersTabView;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -21,15 +22,17 @@ public class DashboardController implements IController {
     }
 
     public void onProfileClick() {
+        Pane usersTabView = mainController.getStageController().getRoot(new UsersTabView());
         Pane profileView = mainController.getStageController().getRoot(new ProfileView());
         mainController.getTabController().getTabModel().setActiveTab("profile");
-        mainController.getStageController().displayView(new TabView(profileView));
+        mainController.getStageController().displayView(new TabView(profileView, usersTabView));
     }
 
     public void onGebruikersClick() {
+        Pane usersTabView = mainController.getStageController().getRoot(new UsersTabView());
         Pane profileView = mainController.getStageController().getRoot(new ProfileView());
         mainController.getTabController().getTabModel().setActiveTab("gebruikers");
-        mainController.getStageController().displayView(new TabView(profileView));
+        mainController.getStageController().displayView(new TabView(profileView, usersTabView));
     }
 
     /**
