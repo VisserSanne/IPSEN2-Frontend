@@ -1,6 +1,7 @@
 package nello.controller;
 
 import nello.model.Experiment;
+import nello.model.Log;
 import nello.observer.ExperimentObserver;
 import nello.view.ExperimentOverviewView;
 
@@ -92,4 +93,22 @@ public class ExperimentController implements IController {
         this.experiment = experiment;
     }
 
+    /**
+     * Edits the experiment after changes are made in the edit view
+     *
+     * @param name edited name
+     * @param description edited description
+     * @param status new status
+     * @author Valerie Timmerman
+     */
+
+    public void updateExperiment(String name, String description, String status) {
+
+        experiment.setName(name);
+        experiment.setDescription(description);
+
+        mainController.getLogController().addLogItem(experiment.getId(), status, "Dummy");
+        mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+
+    }
 }

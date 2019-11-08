@@ -14,6 +14,7 @@ public class MainController {
     private TabController tabController;
     private UserController userController;
     private UserRegistrationController userRegistrationController;
+    private LogController logController;
 
     private MainController() {
         registerControllers();
@@ -36,6 +37,7 @@ public class MainController {
         userRegistrationController = new UserRegistrationController(this, new UserRegistrationModel());
         tabController = new TabController(this, new TabModel());
         userController = new UserController(this);
+        logController = new LogController(this);
     }
 
     public DashboardController getDashboardController() {
@@ -73,4 +75,7 @@ public class MainController {
     public UserController getUserController() {
         return userController;
     }
+
+    public LogController getLogController() { return logController; }
+
 }

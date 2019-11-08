@@ -78,6 +78,6 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     }
 
     public void onComponentOptionClick(Experiment experiment) {
-        System.out.println("clicked on :" + experiment.getId());
+        getController().onOpenExperimentClick(experiment);
     }
 }

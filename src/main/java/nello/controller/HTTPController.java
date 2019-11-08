@@ -36,7 +36,7 @@ public class HTTPController {
     /**
      * Send a post request to the given route, and convert model to json.
      *
-     * @param route {@link ResourceRoute} route to path
+     * @param route route to path
      * @param model {@link Object} post data
      * @return {@link Response} server response
      */
