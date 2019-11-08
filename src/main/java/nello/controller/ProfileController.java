@@ -19,6 +19,23 @@ public class ProfileController implements IController {
         HTTPController http = mainController.getHttpController();
         User user = profileModel.getUser();
         Response response = http.put("/users/" + user.getId(), user);
+
+        if (firstName != null) {
+            user.getNetworkMember().setName(firstName);
+        }
+
+        if (lastName != null) {
+            user.getNetworkMember().setName(lastName);
+        }
+
+        if (email != null) {
+            user.setEmail(email);
+        }
+
+        if (password != null) {
+            user.setPassword(password);
+        }
+
     }
 
     public void registerObserver(ProfileObserver observer) {
