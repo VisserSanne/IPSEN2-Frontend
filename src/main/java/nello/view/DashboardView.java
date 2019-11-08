@@ -1,5 +1,6 @@
 package nello.view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -34,8 +35,12 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
         this.controller = MainController.getInstance().getDashboardController();
     }
 
-    public void onMenuButtonClick() {
+    public void onProfileClick(ActionEvent event) {
+        getController().onProfileClick();
+    }
 
+    public void onGebruikersClick() {
+        getController().onGebruikersClick();
     }
 
     @Override
@@ -52,9 +57,6 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
             phaseIdeeVbox.getChildren().addAll(component);
         }
-
-
-
     }
 
     @Override
