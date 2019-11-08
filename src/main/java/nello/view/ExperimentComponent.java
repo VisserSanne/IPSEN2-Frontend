@@ -42,11 +42,12 @@ public class ExperimentComponent extends HBox {
         Label title = titleBuilder(experiment);
         ImageView imageView = menuBuilder();
         imageView.setOnMouseClicked(event -> {
+            event.consume();
             masterView.onComponentOptionClick(experiment);
             System.out.println("clicked");
         });
 
-        Label description = descriptionBuilder();
+        Label description = descriptionBuilder(experiment);
         ScrollPane scrollPane = userInitialsBuilder();
 
         anchorPane.getChildren().addAll(title, imageView, description, scrollPane);
@@ -54,7 +55,7 @@ public class ExperimentComponent extends HBox {
     }
 
     private static Label titleBuilder(Experiment experiment) {
-        Label title           = new Label(experiment.getName());
+        Label title = new Label(experiment.getName());
         title.setMaxWidth(WIDTH - 40);
         title.setTooltip(new Tooltip(experiment.getName()));
         title.setFont(new Font("Arial", 16));
@@ -76,9 +77,9 @@ public class ExperimentComponent extends HBox {
         return imageView;
     }
 
-    private static Label descriptionBuilder() {
-        Label description = new Label("aalskjdfhlksajdhflkjasdhflkjashdlfkjhasdlkjfhalskjdfhlakjsdhfljkasdhfljkashdlfjkasdlfjkhasldjkfhalsjkdhflakjsdhflkjashdflkjhasdfaalskjdfhlksajdhflkjasdhflkjashdlfkjhasdlkjfhalskjdfhlakjsdhfljkasdhfljkashdlfjkasdlfjkhasldjkfhalsjkdhflakjsdhflkjashdflkjhasdf\"");
-        description.setTooltip(new Tooltip("aalskjdfhlksajdhflkjasdhflkjashdlfkjhasdlkjfhalskjdfhlakjsdhfljkasdhfljkashdlfjkasdlfjkhasldjkfhalsjkdhflakjsdhflkjashdflkjhasdfaalskjdfhlksajdhflkjasdhflkjashdlfkjhasdlkjfhalskjdfhlakjsdhfljkasdhfljkashdlfjkasdlfjkhasldjkfhalsjkdhflakjsdhflkjashdflkjhasdf"));
+    private static Label descriptionBuilder(Experiment experiment) {
+        Label description = new Label(experiment.getDescription());
+        description.setTooltip(new Tooltip(experiment.getDescription()));
         description.setLayoutX(15);
         description.setLayoutY(37);
 

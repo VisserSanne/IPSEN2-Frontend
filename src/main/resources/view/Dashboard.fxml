@@ -2,63 +2,138 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="1366.0" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="786.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.211">
    <stylesheets>
       <URL value="@../css/Dashboard.css" />
    </stylesheets>
    <children>
        <TextField layoutX="22.0" layoutY="14.0" prefHeight="27.0" prefWidth="244.0"/>
        <Button layoutX="278.0" layoutY="14.0" mnemonicParsing="false" text="Button"/>
-       <ScrollPane layoutX="24.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
-                   style="-fx-padding: 10px " AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0"
+       <ScrollPane layoutX="20.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
+                   style="-fx-padding: 10px; -fx-focus-traversable: none;" AnchorPane.bottomAnchor="22.0"
+                   AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="114.0">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="275.0" style="-fx-background-color: transparent;">
+                   <children>
+                       <VBox fx:id="phaseIdeeVbox" prefWidth="292.0" spacing="10.0"
+                             style="-fx-background-color: transparent;"/>
+                   </children>
+               </AnchorPane>
+           </content>
+       </ScrollPane>
+       <ScrollPane layoutX="356.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
+                   style="-fx-padding: 10px; -fx-focus-traversable: none;" AnchorPane.bottomAnchor="22.0"
                    AnchorPane.topAnchor="114.0">
-        <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="275.0"
-                        style="-fx-background-color: transparent;">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="275.0" style="-fx-background-color: transparent;">
                <children>
-                   <VBox fx:id="phaseIdeeVbox" prefHeight="100.0" prefWidth="292.0" spacing="10.0"
-                         style="-fx-background-color: transparent;">
-                       <children>
-                           <HBox prefHeight="100.0" prefWidth="282.0"/>
-                       </children>
-                   </VBox>
+                   <VBox fx:id="phaseLabIn" prefWidth="292.0" spacing="10.0"
+                         style="-fx-background-color: transparent;"/>
+               </children>
+               </AnchorPane>
+           </content>
+       </ScrollPane>
+       <ScrollPane layoutX="694.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
+                   style="-fx-padding: 10px; -fx-focus-traversable: none;" AnchorPane.bottomAnchor="22.0"
+                   AnchorPane.topAnchor="114.0">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="275.0" style="-fx-background-color: transparent;">
+                   <children>
+                       <VBox fx:id="phaseLabOut" prefWidth="292.0" spacing="10.0"
+                             style="-fx-background-color: transparent;"/>
+                   </children>
+               </AnchorPane>
+           </content>
+       </ScrollPane>
+       <ScrollPane layoutX="1029.0" layoutY="114.0" maxWidth="330.0" prefHeight="650.0" prefWidth="315.0"
+                   style="-fx-padding: 10px; -fx-focus-traversable: none;" AnchorPane.bottomAnchor="22.0"
+                   AnchorPane.topAnchor="114.0">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="275.0" style="-fx-background-color: transparent;">
+                   <children>
+                       <VBox fx:id="vastendiesnt" prefWidth="292.0" spacing="10.0"
+                             style="-fx-background-color: transparent;"/>
                </children>
             </AnchorPane>
-        </content>
+           </content>
       </ScrollPane>
        <Label layoutX="20.0" layoutY="82.0" maxWidth="330.0" prefHeight="34.0" prefWidth="315.0"
-              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Idee" AnchorPane.leftAnchor="22.0"
-              AnchorPane.topAnchor="80.0">
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Idee">
            <padding>
                <Insets left="10.0"/>
            </padding>
        </Label>
        <Label layoutX="356.0" layoutY="83.0" maxWidth="320.0" prefHeight="34.0" prefWidth="315.0"
-              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Lab in"
-              AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="80.0">
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Lab in">
            <padding>
                <Insets left="10.0"/>
            </padding>
        </Label>
        <Label layoutX="694.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="320.0" minHeight="-Infinity"
               minWidth="-Infinity" prefHeight="34.0" prefWidth="315.0"
-              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Lab uit"
-              AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="80.0">
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="Lab uit">
          <padding>
             <Insets left="10.0" />
          </padding>
       </Label>
        <Label layoutX="1029.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="320.0" minHeight="-Infinity"
               minWidth="-Infinity" prefHeight="34.0" prefWidth="315.0"
-              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="vastedienst"
-              AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="80.0">
+              style="-fx-border-color: ba81eb; -fx-background-color: f9f9f9;" text="vastedienst">
            <padding>
                <Insets left="10.0"/>
            </padding>
        </Label>
-       <Button layoutX="1220.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#onMenuButtonClick"
-               prefHeight="27.0" prefWidth="124.0" text="menu"/>
+       <Pane layoutX="299.0" layoutY="87.0" onMouseClicked="#onAddExperimentIdea" prefHeight="25.0" prefWidth="31.0">
+           <children>
+               <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <image>
+                       <Image url="@../img/icon/icon_plus.png"/>
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <Pane layoutX="1313.0" layoutY="87.0" onMouseClicked="#onAddVastdienst" prefHeight="25.0" prefWidth="31.0">
+           <children>
+               <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <image>
+                       <Image url="@../img/icon/icon_plus.png"/>
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <Pane layoutX="972.0" layoutY="87.0" onMouseClicked="#onAddExperimentLabOut" prefHeight="25.0" prefWidth="31.0">
+           <children>
+               <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <image>
+                       <Image url="@../img/icon/icon_plus.png"/>
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <Pane layoutX="634.0" layoutY="87.0" onMouseClicked="#onAddExperimentLabIn" prefHeight="25.0" prefWidth="31.0">
+           <children>
+               <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="7.0" layoutY="4.0" pickOnBounds="true"
+                          preserveRatio="true">
+                   <image>
+                       <Image url="@../img/icon/icon_plus.png"/>
+                   </image>
+               </ImageView>
+           </children>
+       </Pane>
+       <SplitMenuButton id="menu" layoutX="1232.0" layoutY="24.0" mnemonicParsing="false" prefHeight="34.0"
+                        prefWidth="119.0" style="-fx-background-color: ba81eb;" text="Menu"
+                        AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="24.0">
+           <items>
+               <MenuItem mnemonicParsing="false" onAction="#onProfileClick" text="Profiel"/>
+               <MenuItem mnemonicParsing="false" onAction="#onGebruikersClick" text="Gebruikers"/>
+           </items>
+       </SplitMenuButton>
    </children>
 </AnchorPane>

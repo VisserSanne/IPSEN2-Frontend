@@ -36,7 +36,7 @@ public class UserRegistrationModel implements UserRegistrationObservable {
     }
 
     public void setError(String name) {
-        this.setError(name, "Deze veld mag niet leeg zijn: " + name);
+        this.setError(name, "Dit veld mag niet leeg zijn: " + name);
     }
 
     public void removeError(String name) {

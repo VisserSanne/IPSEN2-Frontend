@@ -1,13 +1,15 @@
 package nello.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.scene.paint.Color;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 public class Experiment implements ExperimentObservable {
 
@@ -88,21 +90,25 @@ public class Experiment implements ExperimentObservable {
     private String description;
     private String name;
     private StatusColor statusColor;
-    private LocalDate createDate;
-    private LocalDate endDate;
+    private Date createDate;
+    private Date endDate;
     private String status;
     private List<Log> logs;
     private List<Attachment> attachments;
     private List<String> incomes;
     private List<String> costs;
     private boolean isLocked;
-    private LocalDateTime lastModified;
+    private Date lastModified;
 
     private List<ExperimentObserver> observerList;
 
+    public Experiment() {
+        this.observerList = new ArrayList<>();
+    }
+
     public Experiment(Category category, Phase phase, String businessOwner, String description, String name,
-                      StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
-                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified) {
+                      StatusColor statusColor, Date createDate, Date endDate, String status, List<Log> logs,
+                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, Date lastModified) {
 
         this.category = category;
         this.phase = phase;
@@ -120,8 +126,6 @@ public class Experiment implements ExperimentObservable {
         this.isLocked = isLocked;
         this.lastModified = lastModified;
         this.observerList = new ArrayList<>();
-
-
     }
 
     @Override
@@ -140,93 +144,151 @@ public class Experiment implements ExperimentObservable {
         observer.update(this);
     }
 
-    public long getId() {return id;}
-    public void setId(long id) {this.id = id;}
+    @JsonProperty
+    public long getId() {
+        return id;
+    }
 
-    public Category getCategory() {return category;}
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @JsonProperty
+    public Category getCategory() {
+        return category;
+    }
+
     public void setCategory(Category category) {
         this.category = category;
-        notifyObservers();
     }
 
-    public Phase getPhase() {return phase;};
+    @JsonProperty
+    public Phase getPhase() {
+        return phase;
+    }
+
     public void setPhase(Phase phase) {
         this.phase = phase;
-        notifyObservers();
     }
 
-    public String getBusinessOwner() {return businessOwner;}
+    @JsonProperty
+    public String getBusinessOwner() {
+        return businessOwner;
+    }
+
     public void setBusinessOwner(String businessOwner) {
         this.businessOwner = businessOwner;
-        notifyObservers();
     }
 
-    public String getDescription() {return description;}
+    @JsonProperty
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
-        notifyObservers();
     }
 
-    public String getName() {return name;}
+    @JsonProperty
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
-        notifyObservers();
     }
 
-    public StatusColor getStatusColor() {return statusColor;}
+    @JsonProperty
+    public StatusColor getStatusColor() {
+        return statusColor;
+    }
+
     public void setStatusColor(StatusColor statusColor) {
         this.statusColor = statusColor;
-        notifyObservers();
     }
 
-    public LocalDate getCreateDate() {return createDate;}
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYY HH:mm:ss")
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-    public LocalDate getEndDate() {return endDate;}
-    public void setEndDate(LocalDate endDate) {
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYY HH:mm:ss")
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
-        notifyObservers();
     }
 
-    public String getStatus() {return status;}
+    @JsonProperty
+    public String getStatus() {
+        return status;
+    }
+
     public void setStatus(String status) {
         this.status = status;
-        notifyObservers();
     }
 
-    public List<Log> getLogs() {return logs;}
+    @JsonProperty
+    public List<Log> getLogs() {
+        return logs;
+    }
+
     public void setLogs(List<Log> logs) {
         this.logs = logs;
-        notifyObservers();
     }
 
-    public List<Attachment> getAttachments() {return attachments;}
+    @JsonProperty
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
     public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
-        notifyObservers();
     }
 
-    public List<String> getIncomes() {return incomes;}
+    @JsonProperty
+    public List<String> getIncomes() {
+        return incomes;
+    }
+
     public void setIncomes(List<String> incomes) {
         this.incomes = incomes;
-        notifyObservers();
     }
 
-    public List<String> getCosts() {return costs;}
+    @JsonProperty
+    public List<String> getCosts() {
+        return costs;
+    }
+
     public void setCosts(List<String> costs) {
         this.costs = costs;
-        notifyObservers();
     }
 
-    public boolean isLocked() {return isLocked;}
+    @JsonProperty
+    public boolean isLocked() {
+        return isLocked;
+    }
+
     public void setLocked(boolean isLocked) {
         this.isLocked = isLocked;
-        notifyObservers();
     }
 
-    public LocalDateTime getLastModified() {return lastModified;}
-    public void setLastModified(LocalDateTime lastModified) {
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYY HH:mm:ss")
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
-        notifyObservers();
     }
 
 }

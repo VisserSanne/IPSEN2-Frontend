@@ -2,6 +2,7 @@ package nello.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nello.controller.DashboardController;
 import nello.controller.MainController;
@@ -10,7 +11,6 @@ import nello.observable.DashboardObservable;
 import nello.observer.DashboardObserver;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DashboardView implements FXMLView<DashboardController>, DashboardObserver, Initializable {
@@ -34,27 +34,22 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
         this.controller = MainController.getInstance().getDashboardController();
     }
 
+    public void onProfileClick() {
+        getController().onProfileClick();
+    }
+
     public void onMenuButtonClick() {
 
     }
 
+    public void onGebruikersClick() {
+        getController().onGebruikersClick();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //long id, Category category, Phase phase, String businessOwner, String description, String name,
-        //                      StatusColor statusColor, LocalDate createDate, LocalDate endDate, String status, List<Log> logs,
-        //                      List<Attachment> attachments, List<String> incomes, List<String> costs, boolean isLocked, LocalDateTime lastModified
-
-        for (int i = 0; i < 10; i++) {
-            Experiment e = new Experiment(Experiment.Category.INWERKING, Experiment.Phase.IDEE, "Ashna Wiar",
-                    "this is a example text", "Thomas hersen experiment", Experiment.StatusColor.GROEN, LocalDate.now(), null,
-                    null, null, null, null, null, false, null);
-            ExperimentComponent component = new ExperimentComponent(this, e);
-
-            phaseIdeeVbox.getChildren().addAll(component);
-        }
-
-
-
+        getController().registerObserver(this::update);
+        getController().loadExperiments();
     }
 
     @Override
@@ -74,10 +69,48 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     @Override
     public void update(DashboardObservable observable) {
+        System.out.println("view update");
+        Experiment[] experimentList = observable.getExperimentList();
 
+        if (experimentList == null)
+            return;
+
+        for (Experiment experiment : experimentList) {
+            ExperimentComponent component = new ExperimentComponent(this, experiment);
+            component.setOnMouseClicked(event -> onExperimentClick(event, component, experiment));
+            switch (experiment.getPhase()) {
+                case IDEE:
+                    phaseIdeeVbox.getChildren().add(component);
+                    break;
+            }
+
+        }
+    }
+
+    private void onExperimentClick(MouseEvent event, ExperimentComponent component, Experiment experiment) {
+        System.out.println(event.getTarget() + " " + component);
+        getController().onExperimentClick(experiment);
     }
 
     public void onComponentOptionClick(Experiment experiment) {
-        System.out.println("clicked on :" + experiment.getId());
+        getController().onOpenExperimentClick(experiment);
+    }
+
+    public void onAddExperimentIdea(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.IDEE, event);
+    }
+
+    public void onAddVastdienst(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.VASTEDIENST, event);
+
+
+    }
+
+    public void onAddExperimentLabOut(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.LABUIT, event);
+    }
+
+    public void onAddExperimentLabIn(MouseEvent event) {
+        getController().onAddExperimentClick(Experiment.Phase.LABIN, event);
     }
 }

@@ -1,11 +1,13 @@
 package nello.controller;
 
 import nello.model.Credential;
+import nello.model.Experiment;
 import nello.model.User;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,8 +25,9 @@ public class HTTPControllerTest {
     @Test
     public void post() {
         User user = new User();
-        Response response = httpController.put("/users/1", user);
-        System.out.println(response.readEntity(String.class));
-        assertEquals(422, response.getStatus());
+        Response response = httpController.get("/experiments");
+//        System.out.println(response.readEntity(String.class));
+        System.out.println(Arrays.toString(response.readEntity(Experiment[].class)));
+        assertEquals(200, response.getStatus());
     }
 }

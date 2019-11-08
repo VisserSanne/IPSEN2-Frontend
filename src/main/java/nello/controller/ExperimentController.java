@@ -1,11 +1,12 @@
 package nello.controller;
 
 import nello.model.Experiment;
+import nello.model.Log;
 import nello.observer.ExperimentObserver;
+import nello.view.ExperimentOverviewView;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ExperimentController implements IController {
 
@@ -24,13 +25,12 @@ public class ExperimentController implements IController {
      * Creates a new Experiment with the data passed through by the view
      *
      * @param isService boolean that tells if the experiment is a service
-     * @param businessOwner String of the person for whom the experiment is
      * @param description String of a short description for the experiment
      * @param name String with the name of the experiment itself
      * @author Valerie Timmerman
      */
 
-    public void create(boolean isService, String businessOwner, String description, String name) {
+    public void create(boolean isService, String description, String name) {
 
         Experiment.Category category = null;
         Experiment.Phase phase = null;
@@ -43,10 +43,13 @@ public class ExperimentController implements IController {
             phase = Experiment.Phase.IDEE;
         }
 
-        Experiment experiment = new Experiment(category, phase, businessOwner, description, name, Experiment.StatusColor.GROEN,
+        Experiment experiment = new Experiment(category, phase, null, description, name, Experiment.StatusColor.GROEN,
                 getDate(),null, null, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), false, null);
 
         mainController.getHttpController().post("/experiments/create", experiment);
+
+        setExperiment(experiment);
+        mainController.getStageController().displayView(new ExperimentOverviewView());
 
     }
 
@@ -57,9 +60,8 @@ public class ExperimentController implements IController {
      * @author Valerie Timmerman
      */
 
-    public LocalDate getDate() {
-        LocalDateTime today = LocalDateTime.now();
-        return today.toLocalDate();
+    public Date getDate() {
+        return new Date();
     }
 
     /**
@@ -72,12 +74,12 @@ public class ExperimentController implements IController {
     public void endExperiment(boolean successful) {
 
         if(successful) {
-            experiment.setCategory(Experiment.Category.getById(2));
+            experiment.setCategory(Experiment.Category.HALLOFFAME);
         } else {
-            experiment.setCategory(Experiment.Category.getById(3));
+            experiment.setCategory(Experiment.Category.CEMENTARY);
         }
 
-        experiment.setPhase(Experiment.Phase.getById(4));
+        experiment.setPhase(Experiment.Phase.AFGEROND);
         experiment.setStatusColor(Experiment.StatusColor.GROEN);
         experiment.setEndDate(getDate());
 
@@ -89,4 +91,22 @@ public class ExperimentController implements IController {
         this.experiment = experiment;
     }
 
+    /**
+     * Edits the experiment after changes are made in the edit view
+     *
+     * @param name edited name
+     * @param description edited description
+     * @param status new status
+     * @author Valerie Timmerman
+     */
+
+    public void updateExperiment(String name, String description, String status) {
+
+        experiment.setName(name);
+        experiment.setDescription(description);
+
+        mainController.getLogController().addLogItem(experiment.getId(), status, "Dummy");
+        mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+
+    }
 }
