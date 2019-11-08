@@ -100,10 +100,20 @@ public class Experiment implements ExperimentObservable {
     private boolean isLocked;
     private Date lastModified;
 
-    private List<ExperimentObserver> observerList;
+    private List<ExperimentObserver> observerList = new ArrayList<>();
 
     public Experiment() {
         this.observerList = new ArrayList<>();
+    }
+
+    public Experiment(Category category, String name, Phase phase, String businessOwner, String status, String description, StatusColor statusColor) {
+        this.category = category;
+        this.name = name;
+        this.phase = phase;
+        this.businessOwner = businessOwner;
+        this.statusColor = statusColor;
+        this.status = status;
+        this.description = description;
     }
 
     public Experiment(Category category, Phase phase, String businessOwner, String description, String name,
