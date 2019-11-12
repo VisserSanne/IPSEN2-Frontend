@@ -40,10 +40,10 @@ public class LoginController implements IController {
                 model.setCurrentPhase(LoginModel.Phase.PASSWORD);
                 break;
             case 401: // status UNAUTHORIZED
-                model.setMessage("Het ingevoerde e-mailadres bestaat niet.");
+                model.setMessage("Opgegeven e-mailadres is onbekend.");
                 break;
             case 403: // status FORBIDDEN
-                model.setMessage("De toegang is geweigerd. Neem contact op met de administrator.");
+                model.setMessage("Geen toegang. Contacteer de admin.");
                 break;
         }
     }

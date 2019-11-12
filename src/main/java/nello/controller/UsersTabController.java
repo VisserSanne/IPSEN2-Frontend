@@ -32,7 +32,7 @@ public class UsersTabController implements IController {
                 mainController.getStageController().displayView(new ProfileView());
                 break;
             case 401:
-                mainController.getStageController().displayPopup(new AlertBox("De ingevoerde ID is niet gevonden.", Level.FINE, 3));
+                mainController.getStageController().displayPopup(new AlertBox("Opgegeven ID is onbekend.", Level.FINE, 3));
                 break;
         }
 
@@ -43,7 +43,7 @@ public class UsersTabController implements IController {
         Response response = http.delete("/users/" + id);
         switch (response.getStatus()){
             case 200:
-                mainController.getStageController().displayPopup(new AlertBox("De gebruiker is verwijderd.", Level.FINE, 3));
+                mainController.getStageController().displayPopup(new AlertBox("Gebruiker is verwijderd.", Level.FINE, 3));
                 break;
         }
 

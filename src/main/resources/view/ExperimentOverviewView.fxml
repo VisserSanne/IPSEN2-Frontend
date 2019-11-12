@@ -1,92 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?scenebuilder-stylesheet @../css/ExperimentOverview.css"?>
-
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.*?>
-<?import java.net.URL?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="718.0" maxWidth="684.0" prefHeight="718.0" prefWidth="684.0"
-      style="-fx-background-color: fff; -fx-border-radius: 4px; -fx-background-radius: 4px;"
-      xmlns="http://javafx.com/javafx/8.0.211">
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="718.0" maxWidth="684.0" prefHeight="718.0" prefWidth="684.0" style="-fx-background-color: fff; -fx-border-radius: 4px; -fx-background-radius: 4px;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
-        <URL value="@../css/ExperimentOverview.css"/>
+        <URL value="@../css/ExperimentOverview.css" />
     </stylesheets>
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6ce051" height="720.0" layoutY="-1.0" stroke="TRANSPARENT"
-                   strokeType="INSIDE" width="10.0"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6ce051" height="720.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
         <Label layoutX="27.0" layoutY="26.0" text="Beheerders">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
         <HBox fx:id="userList" layoutX="27.0" layoutY="51.0" prefHeight="26.0" prefWidth="200.0">
             <children>
                 <StackPane fx:id="dummy_user" prefHeight="150.0" prefWidth="25.0">
                     <children>
-                        <Circle fill="#ba81eb" radius="12.5" stroke="TRANSPARENT" strokeType="INSIDE"/>
+                        <Circle fill="#ba81eb" radius="12.5" stroke="TRANSPARENT" strokeType="INSIDE" />
                         <Label text="JK" textFill="WHITE">
                             <font>
-                                <Font name="System Bold" size="10.0"/>
+                                <Font name="System Bold" size="10.0" />
                             </font>
                         </Label>
                     </children>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </StackPane>
             </children>
         </HBox>
-        <VBox layoutX="27.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0" minWidth="275.0"
-              prefHeight="599.0" prefWidth="275.0">
+        <VBox layoutX="27.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0" minWidth="275.0" prefHeight="599.0" prefWidth="275.0">
             <children>
-                <Label fx:id="titleLabel" alignment="TOP_LEFT" maxHeight="40.0" prefWidth="340.0"
-                       text="Experiment Title" wrapText="true">
+                <Label fx:id="titleLabel" alignment="TOP_LEFT" maxHeight="40.0" prefWidth="340.0" text="Experiment Title" wrapText="true">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets bottom="2.0"/>
+                        <Insets bottom="2.0" />
                     </padding>
                 </Label>
-                <Label fx:id="descriptionLabel" alignment="TOP_LEFT" maxWidth="315.0" prefHeight="50.0"
-                       prefWidth="315.0" text="description" wrapText="true">
+                <Label fx:id="descriptionLabel" alignment="TOP_LEFT" maxWidth="315.0" prefHeight="50.0" prefWidth="315.0" text="description" wrapText="true">
                     <VBox.margin>
-                        <Insets top="2.0"/>
+                        <Insets top="2.0" />
                     </VBox.margin>
                 </Label>
                 <Label maxHeight="42.0" prefWidth="340.0" text="Status" wrapText="true">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets bottom="2.0" top="5.0"/>
+                        <Insets bottom="2.0" top="5.0" />
                     </padding>
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </Label>
                 <Label fx:id="statusLabel" alignment="TOP_LEFT" prefWidth="315.0" text="status" wrapText="true">
                     <VBox.margin>
-                        <Insets top="2.0"/>
+                        <Insets top="2.0" />
                     </VBox.margin>
                 </Label>
-                <Label fx:id="lastModified" prefHeight="35.0" prefWidth="340.0"
-                       text="Laats gewijzigd door:  %s&#10;datum: %s" textFill="#868686" wrapText="true">
+                <Label fx:id="lastModified" prefHeight="35.0" prefWidth="340.0" text="Laats gewijzigd door:  %s&#10;datum: %s" textFill="#868686" wrapText="true">
                     <font>
-                        <Font name="Arial" size="10.0"/>
+                        <Font name="Arial" size="10.0" />
                     </font>
                 </Label>
                 <Label text="Financieel">
                     <font>
-                        <Font name="Arial Bold" size="14.0"/>
+                        <Font name="Arial Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </padding>
                 </Label>
                 <ScrollPane id="finance_scrollPane" prefHeight="441.0" prefWidth="275.0">
@@ -97,45 +100,36 @@
                                     <children>
                                         <GridPane maxHeight="44.0" minHeight="44.0" prefHeight="44.0" prefWidth="315.0">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Label text="Business owner">
+                                                <Label prefHeight="21.0" prefWidth="117.0" text="Business owner:">
                                                     <GridPane.margin>
-                                                        <Insets/>
+                                                        <Insets />
                                                     </GridPane.margin>
                                                 </Label>
-                                                <Label fx:id="businessOwnerLabel" alignment="CENTER_RIGHT"
-                                                       prefHeight="17.0" prefWidth="160.0" text="owner"
-                                                       GridPane.columnIndex="1"/>
-                                                <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="93.0"
-                                                       text="Geschate kosten:" GridPane.rowIndex="1"/>
-                                                <Label fx:id="costLabel" alignment="CENTER_RIGHT" prefHeight="17.0"
-                                                       prefWidth="160.0" text="geen" GridPane.columnIndex="1"
-                                                       GridPane.rowIndex="1"/>
+                                                <Label fx:id="businessOwnerLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="160.0" text="owner" GridPane.columnIndex="1" />
+                                                <Label alignment="TOP_LEFT" prefHeight="21.0" prefWidth="118.0" text="Geschatte kosten:" GridPane.rowIndex="1" />
+                                                <Label fx:id="costLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="160.0" text="geen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                             </children>
                                         </GridPane>
-                                        <FlowPane fx:id="costFlowPane" hgap="5.0" maxWidth="251.0" minWidth="251.0"
-                                                  prefWidth="251.0" vgap="5.0"/>
+                                        <FlowPane fx:id="costFlowPane" hgap="5.0" maxWidth="251.0" minWidth="251.0" prefWidth="251.0" vgap="5.0" />
                                         <HBox prefHeight="22.0" prefWidth="315.0">
                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="147.0"
-                                                       text="Inkomsten bron:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="195.0" text="Inkomsten bron:">
                                                     <HBox.margin>
-                                                        <Insets top="5.0"/>
+                                                        <Insets top="5.0" />
                                                     </HBox.margin>
                                                 </Label>
-                                                <Label fx:id="incomeLabel" alignment="CENTER_RIGHT" prefHeight="17.0"
-                                                       prefWidth="228.0" text="geen"/>
+                                                <Label fx:id="incomeLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="228.0" text="geen" />
                                             </children>
                                         </HBox>
-                                        <FlowPane fx:id="incomeFlowPane" hgap="5.0" maxHeight="251.0" minWidth="251.0"
-                                                  prefWidth="357.0" vgap="5.0"/>
+                                        <FlowPane fx:id="incomeFlowPane" hgap="5.0" maxHeight="251.0" minWidth="251.0" prefWidth="357.0" vgap="5.0" />
                                     </children>
                                 </VBox>
                             </children>
@@ -144,44 +138,39 @@
                 </ScrollPane>
             </children>
         </VBox>
-        <VBox layoutX="349.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0" minWidth="275.0"
-              prefHeight="599.0" prefWidth="314.0">
+        <VBox layoutX="349.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0" minWidth="275.0" prefHeight="599.0" prefWidth="314.0">
             <children>
-                <Label fx:id="titleLabel1" alignment="TOP_LEFT" maxHeight="40.0" prefWidth="340.0" text="Netwerk"
-                       wrapText="true">
+                <Label fx:id="titleLabel1" alignment="TOP_LEFT" maxHeight="40.0" prefWidth="340.0" text="Netwerk" wrapText="true">
                     <font>
-                        <Font name="System Bold" size="14.0"/>
+                        <Font name="System Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets bottom="2.0"/>
+                        <Insets bottom="2.0" />
                     </padding>
                 </Label>
                 <ScrollPane id="finance_scrollPane" prefHeight="180.0" prefWidth="314.0">
                     <content>
                         <AnchorPane maxWidth="260.0" minWidth="260.0" prefWidth="260.0">
                             <children>
-                                <VBox fx:id="networkMemberVbox" maxWidth="315.0" minWidth="255.0" prefWidth="255.0"
-                                      spacing="10.0"/>
+                                <VBox fx:id="networkMemberVbox" maxWidth="315.0" minWidth="255.0" prefWidth="255.0" spacing="10.0" />
                             </children>
                         </AnchorPane>
                     </content>
                 </ScrollPane>
                 <Label text="Status updates">
                     <font>
-                        <Font name="Arial Bold" size="14.0"/>
+                        <Font name="Arial Bold" size="14.0" />
                     </font>
                     <padding>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </padding>
                 </Label>
-                <Button id="button-register" layoutX="60.0" layoutY="110.0" mnemonicParsing="false"
-                        onMouseClicked="#pickAttachment" prefHeight="34.0" prefWidth="135.0"
-                        style="-fx-background-color: d0cece;" text="Voeg bijlage toe" textFill="#401664">
+                <Button id="button-register" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" onMouseClicked="#pickAttachment" prefHeight="34.0" prefWidth="135.0" style="-fx-background-color: d0cece;" text="Voeg bijlage toe" textFill="#401664">
                     <font>
-                        <Font name="Arial" size="14.0"/>
+                        <Font name="Arial" size="14.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="CLOSED_HAND"/>
+                        <Cursor fx:constant="CLOSED_HAND" />
                     </cursor>
                 </Button>
                 <ScrollPane id="finance_scrollPane" prefHeight="371.0" prefWidth="314.0">
@@ -190,7 +179,7 @@
                             <children>
                                 <VBox fx:id="logVbox" maxWidth="315.0" minWidth="255.0" prefWidth="299.0">
                                     <padding>
-                                        <Insets top="10.0"/>
+                                        <Insets top="10.0" />
                                     </padding>
                                 </VBox>
                             </children>
