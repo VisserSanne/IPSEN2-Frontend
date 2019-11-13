@@ -1,7 +1,6 @@
 package nello.controller;
 
 import nello.model.ChangePhaseModel;
-import nello.observer.ChangePhaseObserver;
 
 public class ChangePhaseController implements IController {
 
@@ -13,9 +12,9 @@ public class ChangePhaseController implements IController {
         this.model = model;
     }
 
-    public void registerObserver(ChangePhaseObserver observer) {
-        model.registerObserver(observer);
-    }
+//    public void registerObserver(ChangePhaseObserver observer) {
+//        model.registerObserver(observer);
+//    }
 
 
 }

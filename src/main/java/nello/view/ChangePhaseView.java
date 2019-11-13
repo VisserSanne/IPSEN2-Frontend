@@ -68,7 +68,7 @@ public class ChangePhaseView implements FXMLView<ChangePhaseController>, ChangeP
     public void initialize(URL location, ResourceBundle resources) {
 
         // register to observable
-        getController().registerObserver(this);
+//        getController().registerObserver(this);
     }
 
     @Override
