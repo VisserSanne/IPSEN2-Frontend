@@ -9,18 +9,18 @@
 
 <AnchorPane id="lolly" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="6.0" prefHeight="600.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0">
+      <TableView layoutX="6.0" prefHeight="378.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0">
         <columns>
-          <TableColumn fx:id="tableColumnID" prefWidth="200.0" resizable="false" sortable="false" text="ID" />
+          <TableColumn fx:id="tableColumnID" prefWidth="150.0" resizable="false" sortable="false" text="ID" />
           <TableColumn fx:id="tableColumnUser" prefWidth="400.0" resizable="false" sortable="false" text="Gebruiker" />
             <TableColumn fx:id="tableColumnEmail" prefWidth="400.0" resizable="false" sortable="false" text="E-mailadres" />
         </columns>
       </TableView>
-      <TextField fx:id="textFieldEdit" layoutX="393.0" layoutY="615.0" prefHeight="31.0" prefWidth="340.0" />
-      <Label layoutX="22.0" layoutY="620.0" text="Om gegevens te wijzigen voer de betreffende ID in:" />
-      <Label layoutX="22.0" layoutY="664.0" prefHeight="21.0" prefWidth="371.0" text="Om gegevens te verwijderen voer de betreffende ID in:" />
-      <TextField fx:id="textFieldDelete" layoutX="393.0" layoutY="659.0" prefHeight="31.0" prefWidth="340.0" />
-      <Button fx:id="onEditButton" layoutX="743.0" layoutY="615.0" mnemonicParsing="false" onMouseClicked="#onEditButtonClick" prefHeight="31.0" prefWidth="83.0" text="Wijzig" />
-      <Button fx:id="onDeleteButton" layoutX="743.0" layoutY="659.0" mnemonicParsing="false" onMouseClicked="#onDeleteButtonClick" text="Verwijder" />
+      <TextField fx:id="textFieldEdit" layoutX="385.0" layoutY="387.0" prefHeight="31.0" prefWidth="150.0" />
+      <Label layoutX="14.0" layoutY="392.0" text="Om gegevens te wijzigen voer de betreffende ID in:" />
+      <Label layoutX="14.0" layoutY="432.0" prefHeight="21.0" prefWidth="371.0" text="Om gegevens te verwijderen voer de betreffende ID in:" />
+      <TextField fx:id="textFieldDelete" layoutX="385.0" layoutY="427.0" prefHeight="31.0" prefWidth="150.0" />
+      <Button fx:id="onEditButton" layoutX="543.0" layoutY="387.0" mnemonicParsing="false" onMouseClicked="#onEditButtonClick" prefHeight="31.0" prefWidth="83.0" text="Wijzig" />
+      <Button fx:id="onDeleteButton" layoutX="543.0" layoutY="427.0" mnemonicParsing="false" onMouseClicked="#onDeleteButtonClick" text="Verwijder" />
    </children>
 </AnchorPane>
