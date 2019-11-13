@@ -5,8 +5,6 @@ import nello.model.User;
 import nello.observer.TabObserver;
 import nello.view.DashboardView;
 
-import java.util.List;
-
 public class TabController implements IController {
     private final MainController mainController;
     private final TabModel tabModel;
@@ -20,24 +18,18 @@ public class TabController implements IController {
         return tabModel;
     }
 
-    public void onProfileTabClick() {
-        User user = mainController.getUserController().listUsers().get(0);
-        mainController.getProfileController().setUser(user);
-    }
 
     public void onUserTabClick() {
-        List<User> userList = mainController.getUserController().listUsers();
-
-
+        User[] userList = mainController.getUserController().listUsers();
+        // todo show users
     }
 
     public void onTagTabClick() {
-
+        // todo add missing code
     }
 
     public void onDashboardClick() {
         mainController.getStageController().displayView(new DashboardView());
-
     }
 
     public void registerObserver(TabObserver o) {

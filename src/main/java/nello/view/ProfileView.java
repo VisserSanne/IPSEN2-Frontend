@@ -37,6 +37,9 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     @FXML
     private Button buttonSave;
 
+    @FXML
+    private Button buttonBack;
+
     private final String fxmlPath;
     private ProfileController controller;
 
@@ -62,12 +65,13 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
 
     @Override
     public void update(ProfileObservable o) {
+        System.out.println("update:" + o.getUser().getNetworkMember().getName());
         String name = o.getUser().getNetworkMember().getName();
         String firstName = name.split(" ")[0];
         String lastName = name.split(" ")[name.split(" ").length - 1];
 
         this.textFieldUserRole.setText(o.getUser().getRole().getName());
-        this.textFieldInitials.setText(firstName.substring(0,1) + lastName.substring(0,1));
+        this.textFieldInitials.setText(firstName.substring(0, 1) + lastName.substring(0, 1));
         this.textFieldFirstName.setText(firstName);
         this.textFieldLastName.setText(lastName);
         this.textFieldEmail.setText(o.getUser().getEmail());
@@ -85,5 +89,10 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
                 textFieldLastName.getText(),
                 textFieldEmail.getText(),
                 textFieldPassword.getText());
+    }
+
+    public void onBackButtonClick(MouseEvent event) {
+        getController().onBackButtonClick();
+
     }
 }

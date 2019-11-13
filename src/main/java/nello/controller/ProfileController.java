@@ -15,6 +15,10 @@ public class ProfileController implements IController {
         this.profileModel = profileModel;
     }
 
+    public void onBackButtonClick() {
+        //
+    }
+
     public void onSaveButtonClick(String firstName, String lastName, String email, String password){
         HTTPController http = mainController.getHttpController();
         User user = profileModel.getUser();
