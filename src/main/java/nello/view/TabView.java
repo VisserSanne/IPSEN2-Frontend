@@ -65,7 +65,7 @@ public class TabView implements FXMLView<TabController>, Initializable, TabObser
 
     public void onTabChange(Event event) {
         if (profile.isSelected()) {
-            getController().onProfileTabClick();
+//            getController().onProfileTabClick();
         } else if (gebruikers.isSelected()) {
             getController().onUserTabClick();
         } else if (tags.isSelected()) {

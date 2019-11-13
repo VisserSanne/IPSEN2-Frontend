@@ -1,11 +1,14 @@
 package nello.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import nello.model.LoginModel;
+import nello.model.User;
 import nello.observer.LoginObserver;
 import nello.view.DashboardView;
 import nello.view.UserRegistrationView;
 
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 
 public class LoginController implements IController {
 
@@ -64,13 +67,7 @@ public class LoginController implements IController {
         Response response = http.post("/login", model.getCredential());
         switch (response.getStatus()) {
             case 200: // status OK
-                model.clearMessage();
-                String token = response.readEntity(String.class);
-                System.out.println(String.format("acquired login token: %s", token));
-                http.registerFilter(new HttpAuthenticationHeader(this, token));
-                mainController.getDashboardController().loadExperiments();
-                mainController.getStageController().displayView(new DashboardView());
-
+                this.onLoginSuccess(http, response);
                 break;
             case 401: // status UNAUTHORIZED
                 model.setMessage("Het ingevoerde e-mailadres bestaat niet.");
@@ -80,6 +77,27 @@ public class LoginController implements IController {
                 break;
         }
 
+    }
+
+    private void onLoginSuccess(HTTPController http, Response response) {
+        model.clearMessage();
+
+        /* read response */
+        HashMap result = response.readEntity(HashMap.class);
+        System.out.println(String.format("acquired login token: %s", result.get("token")));
+
+        /* map to user */
+        ObjectMapper mapper = new ObjectMapper();
+        User user = mapper.convertValue(result.get("user"), User.class);
+
+        /* setup app */
+        http.registerFilter(new HttpAuthenticationHeader(this, (String) result.get("token")));
+        mainController.getProfileController().setUser(user);
+
+        /* show next view */
+        DashboardView dashboardView = new DashboardView();
+        dashboardView.getController().loadExperiments();
+        mainController.getStageController().displayView(dashboardView);
     }
 
     /**
@@ -119,4 +137,5 @@ public class LoginController implements IController {
     public void onRegisterButtonClick() {
         mainController.getStageController().displayView(new UserRegistrationView());
     }
+
 }
