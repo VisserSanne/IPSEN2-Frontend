@@ -18,6 +18,7 @@ public class UserRegistrationController implements IController {
         model.clearErrors();
         if (!firstname.isEmpty() && !lastname.isEmpty() && !email.isEmpty()) {
             mainController.getUserController().registerUser(firstname, lastname, email, password);
+            mainController.getStageController().displayView(new LoginView());
             return;
         }
         if (firstname.isEmpty())
@@ -29,8 +30,6 @@ public class UserRegistrationController implements IController {
         if (email.isEmpty())
             model.setError("email");
 
-
-        System.out.println("added errors");
     }
 
     public void onBackButtonClick() {

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: f8f8f8;" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: f8f8f8;" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/ExperimentOverview.css" />
     </stylesheets>
@@ -36,11 +36,11 @@
                     </font>
                 </Label>
                 <TextField fx:id="firstnameField" layoutX="41.0" layoutY="120.0" prefHeight="30.0" prefWidth="180.0" />
-                <Label layoutX="41.0" layoutY="103.0" text="Voornaam" />
+                <Label layoutX="41.0" layoutY="93.0" prefHeight="30.0" prefWidth="85.0" text="Voornaam:" />
                 <TextField fx:id="lastnameField" layoutX="230.0" layoutY="120.0" prefHeight="30.0" prefWidth="180.0" />
-                <Label layoutX="230.0" layoutY="103.0" text="Achternaam" />
+                <Label layoutX="230.0" layoutY="94.0" prefHeight="30.0" prefWidth="88.0" text="Achternaam:" />
                 <TextField fx:id="emailField" layoutX="41.0" layoutY="180.0" prefHeight="30.0" prefWidth="370.0" />
-                <Label layoutX="41.0" layoutY="160.0" text="Email adres" />
+                <Label layoutX="41.0" layoutY="151.0" prefHeight="30.0" prefWidth="85.0" text="E-mailadres:" />
                 <Button id="button-register" layoutX="41.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" prefHeight="30.0" prefWidth="370.0" style="-fx-background-color: none;" text="Terug" textFill="#401664">
                     <font>
                         <Font name="Arial" size="14.0" />
@@ -58,7 +58,7 @@
                     </cursor>
                 </Button>
                 <Label fx:id="messagLabel" alignment="TOP_CENTER" layoutX="89.0" layoutY="54.0" prefHeight="34.0" prefWidth="273.0" text="message" />
-            <Label layoutX="41.0" layoutY="221.0" text="Wachtwoord" />
+            <Label layoutX="41.0" layoutY="212.0" prefHeight="30.0" prefWidth="88.0" text="Wachtwoord:" />
             <PasswordField fx:id="passwordField" layoutX="41.0" layoutY="240.0" prefHeight="31.0" prefWidth="370.0" />
             </children>
             <effect>

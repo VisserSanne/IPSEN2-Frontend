@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.202">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0"/>
-        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Button layoutX="673.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#onDashboardClick"
+                        text="Dashboard" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0"/>
+            </children>
+        </AnchorPane>
+        <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                  prefHeight="568.0" prefWidth="1366.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
             <stylesheets>
                 <URL value="@../css/Tab.css"/>

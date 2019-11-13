@@ -3,6 +3,8 @@ package nello.controller;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.gson.Gson;
 import nello.view.AlertBox;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.*;
@@ -17,6 +19,9 @@ public class HTTPController {
     private Gson gson;
     private WebTarget target;
 
+    public void registerFilter(HttpAuthenticationHeader filter) {
+        client.register(filter);
+    }
 
     public HTTPController() {
         this.client = setupClient();
@@ -25,7 +30,7 @@ public class HTTPController {
     }
 
     private Client setupClient() {
-        Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);
+        Client client = ClientBuilder.newClient().register(MultiPartFeature.class).register(JacksonJsonProvider.class);
         client.register(LogFilter.class);
         return client;
     }
@@ -33,7 +38,7 @@ public class HTTPController {
     /**
      * Send a post request to the given route, and convert model to json.
      *
-     * @param route {@link ResourceRoute} route to path
+     * @param route route to path
      * @param model {@link Object} post data
      * @return {@link Response} server response
      */
@@ -47,6 +52,13 @@ public class HTTPController {
         return this.run(response, Method.POST, model);
     }
 
+    public Response postFormData(String route, MultiPart formData){
+        Invocation.Builder response = target
+                .path(route)
+                .request(MediaType.MULTIPART_FORM_DATA);
+        return response.post(Entity.entity(formData,formData.getMediaType()));
+    }
+
     public Response get(String route) {
 
         // build request
@@ -54,7 +66,7 @@ public class HTTPController {
                 .request(MediaType.APPLICATION_JSON);
 
         // send request.
-        return this.run(response, null, null);
+        return this.run(response, Method.GET, null);
     }
 
     public Response delete(String route) {
@@ -93,7 +105,7 @@ public class HTTPController {
             }
         } catch (ProcessingException e) {
             MainController.getInstance().getStageController().displayPopup(
-                    new AlertBox("Kon niet verbinding maken met server", Level.SEVERE, 5), 25, 25);
+                    new AlertBox("Verbinding maken met de server is mislukt.", Level.SEVERE, 5), 25, 25);
             e.printStackTrace();
         }
 

@@ -15,6 +15,9 @@ public class MainController {
     private TabController tabController;
     private UserController userController;
     private UserRegistrationController userRegistrationController;
+    private UsersTabController usersTabController;
+    private LogController logController;
+    private AttachmentController attachmentController;
 
     private MainController() {
         registerControllers();
@@ -33,12 +36,15 @@ public class MainController {
         addMembersController = new AddMembersController(this, new AddMembersModel());
         profileController = new ProfileController(this, new ProfileModel());
         changePhaseController = new ChangePhaseController(this, new ChangePhaseModel());
+        attachmentController = new AttachmentController(this);
         experimentController = new ExperimentController(this);
         dashboardController = new DashboardController(this, new DashboardModel());
         profileController = new ProfileController(this, new ProfileModel());
         userRegistrationController = new UserRegistrationController(this, new UserRegistrationModel());
         tabController = new TabController(this, new TabModel());
         userController = new UserController(this);
+        usersTabController = new UsersTabController(this, new UsersTabModel());
+        logController = new LogController(this);
     }
 
     public DashboardController getDashboardController() {
@@ -77,11 +83,18 @@ public class MainController {
         return tabController;
     }
 
-    public UserController getUserController() {
-        return userController;
-    }
+    public UserController getUserController() { return userController; }
 
     public ChangePhaseController getChangePhaseController() {
         return changePhaseController;
     }
+
+    public UsersTabController getUsersTabController() {
+        return usersTabController;
+    }
+
+    public LogController getLogController() { return logController; }
+
+    public AttachmentController getAttachmentController() { return attachmentController; }
+
 }

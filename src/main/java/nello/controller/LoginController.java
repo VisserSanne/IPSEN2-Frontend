@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.LoginModel;
 import nello.observer.LoginObserver;
+import nello.view.DashboardView;
 import nello.view.UserRegistrationView;
 
 import javax.ws.rs.core.Response;
@@ -39,10 +40,10 @@ public class LoginController implements IController {
                 model.setCurrentPhase(LoginModel.Phase.PASSWORD);
                 break;
             case 401: // status UNAUTHORIZED
-                model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");
+                model.setMessage("Opgegeven e-mailadres is onbekend.");
                 break;
             case 403: // status FORBIDDEN
-                model.setMessage("U heeft nog geen toegang tot dit systeem. Ashna moet u nog toestemming geven.");
+                model.setMessage("Geen toegang. Contacteer de admin.");
                 break;
         }
     }
@@ -66,13 +67,16 @@ public class LoginController implements IController {
                 model.clearMessage();
                 String token = response.readEntity(String.class);
                 System.out.println(String.format("acquired login token: %s", token));
-//                http.register(HTTPAuthorizationHeader.class);
+                http.registerFilter(new HttpAuthenticationHeader(this, token));
+                mainController.getDashboardController().loadExperiments();
+                mainController.getStageController().displayView(new DashboardView());
+
                 break;
             case 401: // status UNAUTHORIZED
-                model.setMessage("Kon geen gebruiker vinden met het opgegeven email.");
+                model.setMessage("Het ingevoerde e-mailadres bestaat niet.");
                 break;
             case 403: // status FORBIDDEN
-                model.setMessage("U heeft nog geen toegang tot dit systeem. Ashna moet u nog toestemming geven.");
+                model.setMessage("De toegang is geweigerd. Neem gerust contact op met de administrator.");
                 break;
         }
 

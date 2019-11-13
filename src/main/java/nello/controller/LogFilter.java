@@ -13,7 +13,9 @@ public class LogFilter implements ClientRequestFilter {
 
     @Override
     public void filter(ClientRequestContext requestContext) throws IOException {
-        LOG.info("Request to server: " + requestContext.getEntity().toString());
+        if (requestContext.getEntity() != null)
+            LOG.info("Request to server: " + requestContext.getEntity().toString());
+
     }
 }
 
