@@ -37,6 +37,9 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     @FXML
     private Button buttonSave;
 
+    @FXML
+    private Button buttonBack;
+
     private final String fxmlPath;
     private ProfileController controller;
 
@@ -85,5 +88,10 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
                 textFieldLastName.getText(),
                 textFieldEmail.getText(),
                 textFieldPassword.getText());
+    }
+
+    public void onBackButtonClick(MouseEvent event) {
+        getController().onBackButtonClick();
+
     }
 }
