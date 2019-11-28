@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ExperimentController implements IController {
-
+    // TODO: 27/11/2019 link log cost income users, network, member and team to the object
     private MainController mainController;
     private Experiment experiment;
 
@@ -30,17 +30,15 @@ public class ExperimentController implements IController {
      * @author Valerie Timmerman
      */
 
-    public void create(boolean isService, String name, String description) {
+    public void create(boolean isService, Experiment.Phase phase, String name, String description) {
 
         Experiment.Category category = null;
-        Experiment.Phase phase = null;
 
         if(isService) {
             category = Experiment.Category.VASTEDIENST;
             phase = Experiment.Phase.VASTEDIENST;
         } else {
             category = Experiment.Category.INWERKING;
-            phase = Experiment.Phase.IDEE;
         }
 
         Experiment experiment = new Experiment(category, name, phase, "", "", description, Experiment.StatusColor.GROEN);

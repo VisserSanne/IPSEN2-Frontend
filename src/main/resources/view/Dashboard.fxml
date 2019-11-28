@@ -55,7 +55,7 @@
            <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="275.0" style="-fx-background-color: transparent;">
                    <children>
-                       <VBox fx:id="vastendiesnt" prefWidth="292.0" spacing="10.0"
+                       <VBox fx:id="vastenDienst" prefWidth="292.0" spacing="10.0"
                              style="-fx-background-color: transparent;"/>
                </children>
             </AnchorPane>

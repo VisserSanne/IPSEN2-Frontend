@@ -4,6 +4,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nello.model.DashboardModel;
 import nello.model.Experiment;
+import nello.model.NetworkMember;
 import nello.observer.DashboardObserver;
 import nello.view.*;
 
@@ -17,7 +18,6 @@ public class DashboardController implements IController {
         this.mainController = mainController;
         this.dashboardModel = dashboardModel;
     }
-
 
     /**
      * laad opties van experimenten zien.
@@ -56,7 +56,7 @@ public class DashboardController implements IController {
      * @author Valerie Timmerman
      */
     public void onAddExperimentClick(Experiment.Phase phase, MouseEvent event) {
-        mainController.getStageController().displayPopup(new ExperimentCreateView(), event.getSceneX(), event.getSceneY());
+        mainController.getStageController().displayPopup(new ExperimentCreateView(phase), event.getSceneX(), event.getSceneY());
     }
 
     /**
@@ -77,7 +77,41 @@ public class DashboardController implements IController {
         switch (response.getStatus()) {
             case 200:
                 System.out.println("sucess");
+                // TODO: 27/11/2019 here
                 dashboardModel.setExperimentList(response.readEntity(Experiment[].class));
+                break;
+            default:
+                System.out.println(String.format("status: %s", response.getStatus()));
+        }
+    }
+
+    /**
+     * laad netwerkmembers vanuit backend.
+     */
+    public void loadNetworkMembers() {
+        HTTPController http = mainController.getHttpController();
+        Response response = http.get("/networkmember");
+        switch (response.getStatus()) {
+            case 200:
+                System.out.println("sucess");
+                // TODO: 27/11/2019 add cost income, log, users, team, networkmembers
+                dashboardModel.setNetworkMembers(response.readEntity(NetworkMember[].class));
+                break;
+            default:
+                System.out.println(String.format("status: %s", response.getStatus()));
+        }
+    }
+
+    /**
+     * laad experiment vanuit backend.
+     */
+    public void loadTeam() {
+        HTTPController http = mainController.getHttpController();
+        Response response = http.get("/networkmember");
+        switch (response.getStatus()) {
+            case 200:
+                System.out.println("sucess");
+                dashboardModel.setNetworkMembers(response.readEntity(NetworkMember[].class));
                 break;
             default:
                 System.out.println(String.format("status: %s", response.getStatus()));

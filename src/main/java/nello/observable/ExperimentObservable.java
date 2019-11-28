@@ -39,5 +39,4 @@ public interface ExperimentObservable {
     void notifyObservers();
 
     void registerObserver(ExperimentObserver observer);
-
 }

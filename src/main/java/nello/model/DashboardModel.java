@@ -12,10 +12,12 @@ public class DashboardModel implements DashboardObservable {
      */
     private List<DashboardObserver> observerList;
     private Experiment[] experimentList;
+    private NetworkMember[] networkMembers;
 
     public DashboardModel() {
         this.observerList = new ArrayList<>();
         this.experimentList = null;
+        this.networkMembers = null;
     }
 
     @Override
@@ -23,12 +25,19 @@ public class DashboardModel implements DashboardObservable {
         return experimentList;
     }
 
+    @Override
+    public NetworkMember[] getNetworkMemberList() {
+        return networkMembers;
+    }
+
     public void setExperimentList(Experiment[] experimentList) {
-        System.out.println("setting experiments");
         this.experimentList = experimentList;
         notifyObservers();
     }
 
+    public void setNetworkMembers(NetworkMember[] networkMembers) {
+        this.networkMembers = networkMembers;
+    }
 
     @Override
     public void notifyObservers() {
@@ -39,7 +48,6 @@ public class DashboardModel implements DashboardObservable {
 
     @Override
     public void registerObserver(DashboardObserver observer) {
-        System.out.println("register observer");
         // register observer
         observerList.add(observer);
 

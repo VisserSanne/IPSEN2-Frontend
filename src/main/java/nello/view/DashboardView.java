@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import nello.controller.DashboardController;
 import nello.controller.MainController;
 import nello.model.Experiment;
+import nello.model.NetworkMember;
 import nello.observable.DashboardObservable;
 import nello.observer.DashboardObserver;
 
@@ -17,6 +18,15 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     @FXML
     private VBox phaseIdeeVbox;
+
+    @FXML
+    private VBox phaseLabIn;
+
+    @FXML
+    private VBox phaseLabOut;
+
+    @FXML
+    private VBox vastenDienst;
 
     /**
      * path to fxml file
@@ -69,12 +79,17 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     @Override
     public void update(DashboardObservable observable) {
-        System.out.println("view update");
         Experiment[] experimentList = observable.getExperimentList();
+
         phaseIdeeVbox.getChildren().clear();
+        phaseLabIn.getChildren().clear();
+        phaseLabOut.getChildren().clear();
+        vastenDienst.getChildren().clear();
+
         if (experimentList == null)
             return;
 
+        // TODO: 27/11/2019 split into functions
         for (Experiment experiment : experimentList) {
             ExperimentComponent component = new ExperimentComponent(this, experiment);
             component.setOnMouseClicked(event -> onExperimentClick(event, component, experiment));
@@ -82,8 +97,19 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
                 case IDEE:
                     phaseIdeeVbox.getChildren().add(component);
                     break;
+                case LABIN:
+                    phaseLabIn.getChildren().add(component);
+                    break;
+                case LABUIT:
+                    phaseLabOut.getChildren().add(component);
+                    break;
+                case AFGEROND:
+                    phaseIdeeVbox.getChildren().add(component);
+                    break;
+                case VASTEDIENST:
+                    vastenDienst.getChildren().add(component);
+                    break;
             }
-
         }
     }
 
@@ -97,12 +123,12 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     }
 
     public void onAddExperimentIdea(MouseEvent event) {
+        System.out.println("idea");
         getController().onAddExperimentClick(Experiment.Phase.IDEE, event);
     }
 
     public void onAddVastdienst(MouseEvent event) {
         getController().onAddExperimentClick(Experiment.Phase.VASTEDIENST, event);
-
 
     }
 

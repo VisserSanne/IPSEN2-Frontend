@@ -1,9 +1,11 @@
 package nello;
 
 import javafx.stage.Stage;
+import nello.controller.DashboardController;
 import nello.controller.LoginController;
 import nello.controller.MainController;
 import nello.controller.StageController;
+import nello.view.DashboardView;
 import nello.view.FXMLView;
 import nello.view.LoginView;
 
