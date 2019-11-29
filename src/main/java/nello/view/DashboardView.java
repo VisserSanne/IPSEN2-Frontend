@@ -123,7 +123,6 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     }
 
     public void onAddExperimentIdea(MouseEvent event) {
-        System.out.println("idea");
         getController().onAddExperimentClick(Experiment.Phase.IDEE, event);
     }
 

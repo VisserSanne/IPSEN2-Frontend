@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField id="textFullName" fx:id="textFieldUserRole" disable="true" layoutX="363.0" layoutY="70.0" prefHeight="31.0" prefWidth="640.0" AnchorPane.leftAnchor="363.0" />
       <TextField id="textFullName" fx:id="textFieldFirstName" layoutX="363.0" layoutY="190.0" prefHeight="31.0" prefWidth="311.0" AnchorPane.leftAnchor="363.0" />
@@ -16,11 +16,15 @@
       <Label layoutX="363.0" layoutY="170.0" prefHeight="21.0" prefWidth="74.0" text="Voornaam" AnchorPane.leftAnchor="363.0" />
       <Label layoutX="363.0" layoutY="110.0" prefHeight="21.0" prefWidth="60.0" text="Initialen" AnchorPane.leftAnchor="363.0" />
       <Label layoutX="363.0" layoutY="230.0" prefHeight="21.0" prefWidth="85.0" text="E-mailadres" AnchorPane.leftAnchor="363.0" />
-      <Button fx:id="buttonSave" layoutX="363.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#onSaveButtonClick" text="Opslaan" AnchorPane.leftAnchor="363.0" />
       <TextField id="textFullName" fx:id="textFieldLastName" layoutX="692.0" layoutY="190.0" prefHeight="31.0" prefWidth="311.0" AnchorPane.leftAnchor="692.0" />
       <Label layoutX="692.0" layoutY="170.0" prefHeight="21.0" prefWidth="85.0" text="Achternaam" AnchorPane.leftAnchor="692.0" />
       <PasswordField fx:id="textFieldPassword" layoutX="363.0" layoutY="310.0" prefHeight="31.0" prefWidth="640.0" AnchorPane.leftAnchor="363.0" />
       <Label layoutX="363.0" layoutY="290.0" prefHeight="21.0" prefWidth="98.0" text="Wachtwoord" AnchorPane.leftAnchor="363.0" />
-      <Button fx:id="buttonBack" layoutX="363.0" layoutY="390.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" prefHeight="31.0" prefWidth="74.0" text="Terug" />
+      <Label layoutX="365.0" layoutY="357.0" text="Nieuw wachtwoord" />
+      <PasswordField fx:id="textFieldNewPassword" layoutX="363.0" layoutY="374.0" prefHeight="31.0" prefWidth="640.0" AnchorPane.leftAnchor="363.0" />
+      <Label layoutX="365.0" layoutY="419.0" text="Bevestig Nieuw Wachtwoord" />
+      <PasswordField fx:id="textFieldConfirmNewPassword" layoutX="363.0" layoutY="436.0" prefHeight="31.0" prefWidth="640.0" AnchorPane.leftAnchor="363.0" />
+      <Button fx:id="buttonSave" layoutX="359.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#onSaveButtonClick" text="Opslaan" AnchorPane.leftAnchor="359.0" />
+      <Button fx:id="buttonBack" layoutX="461.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" prefHeight="31.0" prefWidth="74.0" text="Terug" />
    </children>
 </AnchorPane>

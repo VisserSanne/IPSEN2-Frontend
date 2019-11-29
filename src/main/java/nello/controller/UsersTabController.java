@@ -44,7 +44,6 @@ public class UsersTabController implements IController {
         System.out.println(response.getStatus());
         switch (response.getStatus()){
             case 200:
-
                 mainController.getUsersTabController().getUsersTabModel().setUserList(mainController.getUserController().listUsers());
 //                mainController.getStageController().displayPopup(new AlertBox("Gebruiker is verwijderd.", Level.FINE, 3));
                 break;

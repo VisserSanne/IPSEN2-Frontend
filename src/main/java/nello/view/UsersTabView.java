@@ -81,13 +81,13 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
     }
 
     public void onEditButtonClick(MouseEvent mouseEvent) {
-        if (textFieldDelete.getLength() != 0) {
+        if (!textFieldEdit.getText().isEmpty()) {
             getController().onEditButtonClick(Integer.parseInt(textFieldEdit.getText()));
         }
     }
 
     public void onDeleteButtonClick() {
-        if (textFieldDelete.getLength() != 0) {
+        if (!textFieldDelete.getText().isEmpty()) {
             getController().onDeleteButtonClick(Integer.parseInt(textFieldDelete.getText()));
         }
     }

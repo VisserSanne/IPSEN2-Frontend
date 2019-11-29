@@ -35,6 +35,12 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
     private PasswordField textFieldPassword;
 
     @FXML
+    private PasswordField textFieldNewPassword;
+
+    @FXML
+    private PasswordField textFieldConfirmNewPassword;
+
+    @FXML
     private Button buttonSave;
 
     @FXML
@@ -65,7 +71,6 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
 
     @Override
     public void update(ProfileObservable o) {
-        System.out.println("update:" + o.getUser().getNetworkMember().getName());
         String name = o.getUser().getNetworkMember().getName();
         String firstName = name.split(" ")[0];
         String lastName = name.split(" ")[name.split(" ").length - 1];
@@ -75,7 +80,7 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
         this.textFieldFirstName.setText(firstName);
         this.textFieldLastName.setText(lastName);
         this.textFieldEmail.setText(o.getUser().getEmail());
-        this.textFieldPassword.setText(o.getUser().getPassword());
+//        this.textFieldPassword.setText(o.getUser().getPassword());
     }
 
     @Override
@@ -83,16 +88,18 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
         getController().registerObserver(this);
     }
 
-    public void onSaveButtonClick(MouseEvent mouseEvent) {
+public void onSaveButtonClick() {
         getController().onSaveButtonClick(
                 textFieldFirstName.getText(),
                 textFieldLastName.getText(),
                 textFieldEmail.getText(),
-                textFieldPassword.getText());
+                textFieldPassword.getText(),
+                textFieldNewPassword.getText(),
+                textFieldConfirmNewPassword.getText()
+        );
     }
 
     public void onBackButtonClick(MouseEvent event) {
         getController().onBackButtonClick();
-
     }
 }

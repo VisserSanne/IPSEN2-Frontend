@@ -33,7 +33,6 @@ public class AlertBox implements IController, FXMLView<AlertBox>, Initializable 
         this.message = message;
         this.level = level;
         this.duration = duration;
-        System.out.println("created");
     }
 
     @Override
