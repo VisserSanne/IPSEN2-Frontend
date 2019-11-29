@@ -2,10 +2,10 @@ package nello.controller;
 
 import nello.model.Experiment;
 import nello.observer.ExperimentObserver;
+import nello.view.EditExperimentView;
 import nello.view.ExperimentOverviewView;
 
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class ExperimentController implements IController {
@@ -24,9 +24,9 @@ public class ExperimentController implements IController {
     /**
      * Creates a new Experiment with the data passed through by the view
      *
-     * @param isService boolean that tells if the experiment is a service
+     * @param isService   boolean that tells if the experiment is a service
      * @param description String of a short description for the experiment
-     * @param name String with the name of the experiment itself
+     * @param name        String with the name of the experiment itself
      * @author Valerie Timmerman
      */
 
@@ -34,7 +34,7 @@ public class ExperimentController implements IController {
 
         Experiment.Category category = null;
 
-        if(isService) {
+        if (isService) {
             category = Experiment.Category.VASTEDIENST;
             phase = Experiment.Phase.VASTEDIENST;
         } else {
@@ -50,7 +50,7 @@ public class ExperimentController implements IController {
 
         System.out.println(response.getStatus());
 
-        if(response.getStatus() == 200) {
+        if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
         }
 
@@ -76,7 +76,7 @@ public class ExperimentController implements IController {
 
     public void endExperiment(boolean successful) {
 
-        if(successful) {
+        if (successful) {
             experiment.setCategory(Experiment.Category.HALLOFFAME);
         } else {
             experiment.setCategory(Experiment.Category.CEMENTARY);
@@ -88,7 +88,7 @@ public class ExperimentController implements IController {
 
         Response response = mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
 
-        if(response.getStatus() == 200) {
+        if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
         }
 
@@ -101,9 +101,9 @@ public class ExperimentController implements IController {
     /**
      * Edits the experiment after changes are made in the edit view
      *
-     * @param name edited name
+     * @param name        edited name
      * @param description edited description
-     * @param status new status
+     * @param status      new status
      * @author Valerie Timmerman
      */
 
@@ -117,7 +117,76 @@ public class ExperimentController implements IController {
 
     }
 
-    public void pickAttachment(){
+    public void pickAttachment() {
         mainController.getAttachmentController().pickAttachment();
+    }
+
+    public void onExperimentSave(Experiment experiment) {
+        this.create(experiment);
+    }
+
+    private void create(Experiment experiment) {
+        Response response = mainController.getHttpController().post("/experiments", experiment);
+        System.out.println(response.readEntity(String.class));
+        if (response.getStatus() == 200) {
+            mainController.getDashboardController().loadExperiments();
+        }
+    }
+
+    public void onNameChange(String name) {
+        if (!experiment.getName().equalsIgnoreCase(name))
+            experiment.setName(name);
+    }
+
+    public void onDescriptionChange(String description) {
+        if (!experiment.getDescription().equalsIgnoreCase(description))
+            experiment.setDescription(description);
+    }
+
+    public void onStatusChange(String status) {
+        if (!experiment.getStatus().equalsIgnoreCase(status))
+            experiment.setStatus(status);
+
+        System.out.println(experiment.getStatus());
+    }
+
+    public void onOwnerChange(String owner) {
+        if (!experiment.getBusinessOwner().equalsIgnoreCase(owner))
+            experiment.setBusinessOwner(owner);
+    }
+
+    public void onAddCost(String costItem) {
+        if (!experiment.getCosts().contains(costItem))
+            experiment.addCost(costItem);
+    }
+
+    public void onAddIncome(String income) {
+        if (!experiment.getIncomes().contains(income))
+            experiment.addIncome(income);
+    }
+
+    public void onAddNetworkMember(String memberName, boolean isBusiness) {
+        // TODO todo todo
+    }
+
+
+    public void onEditButtonClick() {
+        System.out.println(this.experiment);
+        mainController.getStageController().closeAllView();
+        EditExperimentView editView = new EditExperimentView();
+        editView.getController().setExperiment(this.experiment);
+        mainController.getStageController().displayPopup(editView, event -> {
+            this.updateExperiment(experiment);
+        });
+
+    }
+
+    private void updateExperiment(Experiment experiment) {
+        Response response = mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+        System.out.println(response.readEntity(String.class));
+        if (response.getStatus() == 200) {
+            mainController.getDashboardController().loadExperiments();
+        }
+
     }
 }

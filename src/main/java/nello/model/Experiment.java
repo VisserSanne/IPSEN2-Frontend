@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -102,18 +103,19 @@ public class Experiment implements ExperimentObservable {
 
     private List<ExperimentObserver> observerList = new ArrayList<>();
 
+    public Experiment(Category category, Phase phase) {
+        this(category, "", phase, "geen", "", "", StatusColor.GROEN);
+    }
+
+
     public Experiment() {
-        this.observerList = new ArrayList<>();
+        this(Category.INWERKING, "", Phase.IDEE, "geen", "", "", StatusColor.GROEN);
     }
 
     public Experiment(Category category, String name, Phase phase, String businessOwner, String status, String description, StatusColor statusColor) {
-        this.category = category;
-        this.name = name;
-        this.phase = phase;
-        this.businessOwner = businessOwner;
-        this.statusColor = statusColor;
-        this.status = status;
-        this.description = description;
+        this(category, phase, businessOwner, description, name, statusColor, Date.from(Instant.now()), null,
+                status, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                false, Date.from(Instant.now()));
     }
 
     public Experiment(Category category, Phase phase, String businessOwner, String description, String name,
@@ -206,6 +208,7 @@ public class Experiment implements ExperimentObservable {
 
     public void setName(String name) {
         this.name = name;
+        this.notifyObservers();
     }
 
     @JsonProperty
@@ -299,6 +302,17 @@ public class Experiment implements ExperimentObservable {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
+    }
+
+    public void addCost(String costItem) {
+        costs.add(costItem);
+        notifyObservers();
+    }
+
+
+    public void addIncome(String income) {
+        incomes.add(income);
+        notifyObservers();
     }
 
 }

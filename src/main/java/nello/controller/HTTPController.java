@@ -105,7 +105,7 @@ public class HTTPController {
             }
         } catch (ProcessingException e) {
             MainController.getInstance().getStageController().displayPopup(
-                    new AlertBox("Verbinding maken met de server is mislukt.", Level.SEVERE, 5), 25, 25);
+                    new AlertBox("Verbinding maken met de server is mislukt.", Level.SEVERE, 5), 25, 25, null);
             e.printStackTrace();
         }
 

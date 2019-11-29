@@ -1,8 +1,10 @@
 package nello.controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -29,6 +31,7 @@ public class StageController {
     private Pane rootOf(FXMLView view) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         URL resourcePath = ResourceUtil.get(view.getFXMLPath());
+        System.out.println(resourcePath);
         fxmlLoader.setLocation(resourcePath);
         fxmlLoader.setController(view);
         return fxmlLoader.load();
@@ -79,10 +82,14 @@ public class StageController {
      * @param popup
      */
     public void displayPopup(FXMLView popup) {
-        this.displayPopup(popup, -1, -1);
+        this.displayPopup(popup, -1, -1, null);
     }
 
-    public void displayPopup(FXMLView popup, double x, double y) {
+    public void displayPopup(FXMLView popup, EventHandler<MouseEvent> eventHandler) {
+        this.displayPopup(popup, -1, -1, eventHandler);
+    }
+
+    public void displayPopup(FXMLView popup, double x, double y, EventHandler<MouseEvent> eventHandler) {
         try {
             Pane root = rootOf(popup);
 
@@ -92,13 +99,13 @@ public class StageController {
 
             if (x == -1 && y == -1) {
                 System.out.println("centered popup");
-                BorderPane closableBorderPane = getClosableBorderPane(root, popup);
+                BorderPane closableBorderPane = getClosableBorderPane(root, popup, eventHandler);
                 this.openViews.put(popup, closableBorderPane);
                 ((Pane) this.mainScene.getRoot()).getChildren().add(closableBorderPane);
             } else {
                 root.setLayoutX(x);
                 root.setLayoutY(y);
-                AnchorPane closablePane = getClosablePane(root, popup);
+                AnchorPane closablePane = getClosablePane(root, popup, eventHandler);
                 this.openViews.put(popup, closablePane);
                 ((Pane) this.mainScene.getRoot()).getChildren().add(closablePane);
             }
@@ -125,7 +132,7 @@ public class StageController {
     }
 
 
-    private BorderPane getClosableBorderPane(Pane child, FXMLView popup) {
+    private BorderPane getClosableBorderPane(Pane child, FXMLView popup, EventHandler<MouseEvent> eventHandler) {
         BorderPane root = new BorderPane();
         root.setCenter(child);
         root.setMinWidth(MAX_WIDTH);
@@ -134,7 +141,13 @@ public class StageController {
         root.setMaxHeight(MAX_HEIGHT);
         root.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
         root.setOnMouseClicked(event -> {
+
+
             if (event.getTarget().equals(root)) {
+                if (eventHandler != null)
+                    eventHandler.handle(event);
+
+
                 removePane(root);
                 closeView(popup);
             }
@@ -142,7 +155,7 @@ public class StageController {
         return root;
     }
 
-    private AnchorPane getClosablePane(Pane child, FXMLView popup) {
+    private AnchorPane getClosablePane(Pane child, FXMLView popup, EventHandler<MouseEvent> eventHandler) {
         AnchorPane root = new AnchorPane(child);
         root.setMaxWidth(MAX_WIDTH);
         root.setMinWidth(MAX_WIDTH);
@@ -164,5 +177,12 @@ public class StageController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void closeAllView() {
+        for (Pane view : openViews.values()) {
+            removePane(view);
+            openViews.remove(view);
+        }
     }
 }

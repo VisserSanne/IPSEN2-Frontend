@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -173,4 +174,7 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
         getController().pickAttachment();
     }
 
+    public void onEditButtonClick(MouseEvent event) {
+        getController().onEditButtonClick();
+    }
 }
