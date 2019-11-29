@@ -8,6 +8,7 @@ import java.util.List;
 
 public class UsersTabModel implements UsersTabObservable {
     private User user;
+    private User[] userList;
     private List<UsersTabObserver> observerList;
     private String message;
 
@@ -24,6 +25,15 @@ public class UsersTabModel implements UsersTabObservable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public User[] getUserList() {
+        return userList;
+    }
+
+    public void setUserList(User[] userList) {
+        this.userList = userList;
+        notifyObservers();
     }
 
     public String getMessage() {
@@ -48,7 +58,6 @@ public class UsersTabModel implements UsersTabObservable {
     public void notifyObservers() {
         for (UsersTabObserver o : observerList) {
             if (o != null){
-                System.out.println(user.getId());
                 o.update(this);
             }
         }

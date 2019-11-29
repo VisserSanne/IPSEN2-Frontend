@@ -1,11 +1,13 @@
 package nello.observable;
 
+import nello.model.User;
 import nello.observer.LoginObserver;
 import nello.observer.TabObserver;
 
 public interface TabObservable {
 
     String getActiveTab();
+    User[] getUserList();
 
     /**
      * notify all observers

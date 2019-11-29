@@ -4,10 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import nello.controller.MainController;
 import nello.controller.UsersTabController;
+import nello.model.User;
 import nello.observable.UsersTabObservable;
 import nello.observer.UsersTabObserver;
 
@@ -18,13 +21,16 @@ import java.util.ResourceBundle;
 public class UsersTabView implements FXMLView<UsersTabController>, Initializable, UsersTabObserver {
 
     @FXML
-    private TableColumn<Long, Long> tableColumnID;
+    private TableView<User> tableView;
 
     @FXML
-    private TableColumn<String, String> tableColumnUser;
+    private TableColumn<User, Long> tableColumnID;
 
     @FXML
-    private TableColumn<String, String> tableColumnEmail;
+    private TableColumn<User, String> tableColumnUser;
+
+    @FXML
+    private TableColumn<User, String> tableColumnEmail;
 
     @FXML
     private TextField textFieldEdit;
@@ -53,7 +59,10 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
 
     @Override
     public void update(UsersTabObservable o) {
-
+        User[] users = o.getUserList();
+        if (users != null) {
+            showusers(users);
+        }
     }
 
     @Override
@@ -72,11 +81,23 @@ public class UsersTabView implements FXMLView<UsersTabController>, Initializable
     }
 
     public void onEditButtonClick(MouseEvent mouseEvent) {
-        getController().onEditButtonClick(Integer.parseInt(textFieldEdit.getText()));
+        if (textFieldDelete.getLength() != 0) {
+            getController().onEditButtonClick(Integer.parseInt(textFieldEdit.getText()));
+        }
     }
 
-    public void onDeleteButtonClick(MouseEvent event) {
-        getController().onDeleteButtonClick(Integer.parseInt(textFieldDelete.getText()));
+    public void onDeleteButtonClick() {
+        if (textFieldDelete.getLength() != 0) {
+            getController().onDeleteButtonClick(Integer.parseInt(textFieldDelete.getText()));
+        }
     }
 
+    public void showusers(User[] users) {
+        for (User user: users) {
+            this.tableColumnID.setCellValueFactory(new PropertyValueFactory<>("id"));
+            this.tableColumnUser.setCellValueFactory(new PropertyValueFactory<>("email"));
+            this.tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        }
+        tableView.getItems().setAll(users);
+    }
 }

@@ -32,7 +32,6 @@ public class UserController {
                 return response.readEntity(User[].class);
         }
 
-
         return new User[0];
     }
 }

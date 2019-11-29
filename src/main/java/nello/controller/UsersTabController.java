@@ -1,5 +1,6 @@
 package nello.controller;
 
+import nello.model.NetworkMember;
 import nello.model.User;
 import nello.model.UsersTabModel;
 import nello.observer.UsersTabObserver;
@@ -35,17 +36,22 @@ public class UsersTabController implements IController {
                 mainController.getStageController().displayPopup(new AlertBox("Opgegeven ID is onbekend.", Level.FINE, 3));
                 break;
         }
-
     }
 
     public void onDeleteButtonClick(long id) {
         HTTPController http = mainController.getHttpController();
         Response response = http.delete("/users/" + id);
+        System.out.println(response.getStatus());
         switch (response.getStatus()){
             case 200:
-                mainController.getStageController().displayPopup(new AlertBox("Gebruiker is verwijderd.", Level.FINE, 3));
+
+                mainController.getUsersTabController().getUsersTabModel().setUserList(mainController.getUserController().listUsers());
+//                mainController.getStageController().displayPopup(new AlertBox("Gebruiker is verwijderd.", Level.FINE, 3));
                 break;
         }
+    }
 
+    public UsersTabModel getUsersTabModel() {
+        return usersTabModel;
     }
 }

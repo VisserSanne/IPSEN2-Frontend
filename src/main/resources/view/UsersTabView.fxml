@@ -9,7 +9,7 @@
 
 <AnchorPane id="lolly" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="6.0" prefHeight="378.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0">
+      <TableView fx:id="tableView" layoutX="6.0" prefHeight="378.0" prefWidth="1366.0" AnchorPane.leftAnchor="0.0">
         <columns>
           <TableColumn fx:id="tableColumnID" prefWidth="150.0" resizable="false" sortable="false" text="ID" />
           <TableColumn fx:id="tableColumnUser" prefWidth="400.0" resizable="false" sortable="false" text="Gebruiker" />

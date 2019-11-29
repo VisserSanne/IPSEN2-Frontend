@@ -18,10 +18,9 @@ public class TabController implements IController {
         return tabModel;
     }
 
-
     public void onUserTabClick() {
         User[] userList = mainController.getUserController().listUsers();
-        // todo show users
+        mainController.getUsersTabController().getUsersTabModel().setUserList(userList);
     }
 
     public void onTagTabClick() {

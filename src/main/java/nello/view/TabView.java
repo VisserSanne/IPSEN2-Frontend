@@ -31,10 +31,10 @@ public class TabView implements FXMLView<TabController>, Initializable, TabObser
     private Pane usersTabView;
 
     public TabView(Node profileView, Pane usersTabView) {
-        this.usersTabView = usersTabView;
         this.fxmlPath = "/view/TabView.fxml";
         this.controller = MainController.getInstance().getTabController();
         this.profileView = profileView;
+        this.usersTabView = usersTabView;
     }
 
     @Override
@@ -66,8 +66,10 @@ public class TabView implements FXMLView<TabController>, Initializable, TabObser
     public void onTabChange(Event event) {
         if (profile.isSelected()) {
 //            getController().onProfileTabClick();
+            System.out.println("Profiel");
         } else if (gebruikers.isSelected()) {
             getController().onUserTabClick();
+            System.out.println("Gebruikers");
         } else if (tags.isSelected()) {
             System.out.println("tags");
         }

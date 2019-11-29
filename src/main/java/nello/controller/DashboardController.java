@@ -86,39 +86,6 @@ public class DashboardController implements IController {
     }
 
     /**
-     * laad netwerkmembers vanuit backend.
-     */
-    public void loadNetworkMembers() {
-        HTTPController http = mainController.getHttpController();
-        Response response = http.get("/networkmember");
-        switch (response.getStatus()) {
-            case 200:
-                System.out.println("sucess");
-                // TODO: 27/11/2019 add cost income, log, users, team, networkmembers
-                dashboardModel.setNetworkMembers(response.readEntity(NetworkMember[].class));
-                break;
-            default:
-                System.out.println(String.format("status: %s", response.getStatus()));
-        }
-    }
-
-    /**
-     * laad experiment vanuit backend.
-     */
-    public void loadTeam() {
-        HTTPController http = mainController.getHttpController();
-        Response response = http.get("/networkmember");
-        switch (response.getStatus()) {
-            case 200:
-                System.out.println("sucess");
-                dashboardModel.setNetworkMembers(response.readEntity(NetworkMember[].class));
-                break;
-            default:
-                System.out.println(String.format("status: %s", response.getStatus()));
-        }
-    }
-
-    /**
      * handel experiment click event af.
      *
      * @param experiment experiment.

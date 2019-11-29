@@ -7,6 +7,8 @@ public interface UsersTabObservable {
 
     User getUser();
 
+    User[] getUserList();
+
     void registerObserver(UsersTabObserver o);
 
     void notifyObservers();

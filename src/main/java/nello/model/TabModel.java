@@ -10,6 +10,7 @@ public class TabModel implements TabObservable {
 
     public List<TabObserver> observerList = new ArrayList<>();
     private String activeTab;
+    private User[] userList;
 
     @Override
     public String getActiveTab() {
@@ -34,5 +35,11 @@ public class TabModel implements TabObservable {
         observer.update(this);
     }
 
+    public User[] getUserList() {
+        return userList;
+    }
 
+    public void setUserList(User[] userList) {
+        this.userList = userList;
+    }
 }
