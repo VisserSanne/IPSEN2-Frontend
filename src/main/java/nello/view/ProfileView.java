@@ -3,21 +3,24 @@ package nello.view;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import nello.controller.MainController;
 import nello.controller.ProfileController;
+import nello.model.User;
+import nello.model.UserRole;
 import nello.observable.ProfileObservable;
 import nello.observer.ProfileObserver;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProfileView implements FXMLView<ProfileController>, Initializable, ProfileObserver {
-
     @FXML
-    private TextField textFieldUserRole;
+    private ComboBox dropdownUserRole;
 
     @FXML
     private TextField textFieldInitials;
@@ -71,16 +74,19 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
 
     @Override
     public void update(ProfileObservable o) {
-        String name = o.getUser().getNetworkMember().getName();
+        setupUser(o.getUser());
+        showDropdownUserRoles(o.getUser().getRole());
+    }
+
+    public void setupUser(User user) {
+        String name = user.getNetworkMember().getName();
         String firstName = name.split(" ")[0];
         String lastName = name.split(" ")[name.split(" ").length - 1];
 
-        this.textFieldUserRole.setText(o.getUser().getRole().getName());
         this.textFieldInitials.setText(firstName.substring(0, 1) + lastName.substring(0, 1));
         this.textFieldFirstName.setText(firstName);
         this.textFieldLastName.setText(lastName);
-        this.textFieldEmail.setText(o.getUser().getEmail());
-//        this.textFieldPassword.setText(o.getUser().getPassword());
+        this.textFieldEmail.setText(user.getEmail());
     }
 
     @Override
@@ -88,18 +94,26 @@ public class ProfileView implements FXMLView<ProfileController>, Initializable, 
         getController().registerObserver(this);
     }
 
-public void onSaveButtonClick() {
+    public void onSaveButtonClick() {
         getController().onSaveButtonClick(
-                textFieldFirstName.getText(),
-                textFieldLastName.getText(),
-                textFieldEmail.getText(),
-                textFieldPassword.getText(),
-                textFieldNewPassword.getText(),
-                textFieldConfirmNewPassword.getText()
+            textFieldFirstName.getText(),
+            textFieldLastName.getText(),
+            textFieldEmail.getText(),
+            dropdownUserRole.getValue().toString(),
+            textFieldPassword.getText(),
+            textFieldNewPassword.getText(),
+            textFieldConfirmNewPassword.getText()
         );
     }
 
     public void onBackButtonClick(MouseEvent event) {
         getController().onBackButtonClick();
+    }
+
+    public void showDropdownUserRoles(UserRole userRole) {
+        for (UserRole role : controller.getUserRoles()) {
+            dropdownUserRole.getItems().add(role.getName());
+        }
+        dropdownUserRole.getSelectionModel().select(userRole.getValue() -1);
     }
 }
