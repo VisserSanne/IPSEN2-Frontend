@@ -114,6 +114,7 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     }
 
     private void onExperimentClick(MouseEvent event, ExperimentComponent component, Experiment experiment) {
+        System.out.println("open ");
         System.out.println(event.getTarget() + " " + component);
         getController().onExperimentClick(experiment);
     }
