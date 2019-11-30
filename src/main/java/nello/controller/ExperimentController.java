@@ -31,7 +31,6 @@ public class ExperimentController implements IController {
      */
 
     public void create(boolean isService, Experiment.Phase phase, String name, String description) {
-
         Experiment.Category category = null;
 
         if (isService) {
@@ -53,7 +52,6 @@ public class ExperimentController implements IController {
         if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
         }
-
     }
 
     /**
@@ -146,8 +144,6 @@ public class ExperimentController implements IController {
     public void onStatusChange(String status) {
         if (!experiment.getStatus().equalsIgnoreCase(status))
             experiment.setStatus(status);
-
-        System.out.println(experiment.getStatus());
     }
 
     public void onOwnerChange(String owner) {
@@ -171,21 +167,37 @@ public class ExperimentController implements IController {
 
 
     public void onEditButtonClick() {
-        System.out.println(this.experiment);
         mainController.getStageController().closeAllView();
         EditExperimentView editView = new EditExperimentView(false);
         editView.getController().setExperiment(this.experiment);
+
         mainController.getStageController().displayPopup(editView);
 
+        if (isLocked(experiment.getId())) {
+          editView.disableEditExperimentItems(true);
+        } else {
+            lockExperiment(experiment, true);
+        }
     }
 
     private void updateExperiment(Experiment experiment) {
         Response response = mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
-        System.out.println(response.readEntity(String.class));
         if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
         }
 
+        lockExperiment(experiment, false);
+    }
+
+    private void lockExperiment(Experiment experiment, boolean isLocked) {
+        experiment.setLocked(isLocked);
+        Response response = mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+    }
+
+    private boolean isLocked(long experimentId) {
+        // TODO: 30/11/2019 check for date last_modified
+        Response response = mainController.getHttpController().get("/experiments/" + experimentId);
+        return response.readEntity(Experiment.class).isLocked();
     }
 
     public void onStatusColorChange(Experiment.StatusColor statusColor) {

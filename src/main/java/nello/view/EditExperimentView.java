@@ -1,8 +1,10 @@
 package nello.view;
 
 import javafx.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
@@ -22,7 +25,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class EditExperimentView implements FXMLView<ExperimentController>, ExperimentObserver, Initializable {
-
+    @FXML
+    public Pane parent;
 
     @FXML
     public TextField titleTextField;
@@ -104,6 +108,11 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
         this.controller = controller;
     }
 
+    public void disableEditExperimentItems(Boolean disable) {
+        for (Node node : parent.getChildren()) {
+            node.setDisable(disable);
+        }
+    }
 
     public void onTitleChange(KeyEvent event) {
         getController().onNameChange(titleTextField.getText());

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="718.0" maxWidth="684.0" prefHeight="718.0" prefWidth="684.0"
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" maxHeight="718.0" maxWidth="684.0" prefHeight="718.0" prefWidth="684.0"
       style="-fx-background-color: fff; -fx-border-radius: 4px; -fx-background-radius: 4px;"
       xmlns="http://javafx.com/javafx/8.0.211">
     <stylesheets>
