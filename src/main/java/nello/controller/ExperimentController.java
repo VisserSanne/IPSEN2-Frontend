@@ -173,11 +173,9 @@ public class ExperimentController implements IController {
     public void onEditButtonClick() {
         System.out.println(this.experiment);
         mainController.getStageController().closeAllView();
-        EditExperimentView editView = new EditExperimentView();
+        EditExperimentView editView = new EditExperimentView(false);
         editView.getController().setExperiment(this.experiment);
-        mainController.getStageController().displayPopup(editView, event -> {
-            this.updateExperiment(experiment);
-        });
+        mainController.getStageController().displayPopup(editView);
 
     }
 
@@ -187,6 +185,24 @@ public class ExperimentController implements IController {
         if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
         }
+
+    }
+
+    public void onStatusColorChange(Experiment.StatusColor statusColor) {
+        experiment.setStatusColor(statusColor);
+    }
+
+    public void onSaveButtonClick(boolean isNew) {
+        if (isNew) {
+            mainController.getExperimentController().create(experiment);
+            return;
+        } else {
+            mainController.getExperimentController().updateExperiment(experiment);
+        }
+
+    }
+
+    public void onFinishButtonClick() {
 
     }
 }
