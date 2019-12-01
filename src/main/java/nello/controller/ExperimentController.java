@@ -1,15 +1,18 @@
 package nello.controller;
 
 import nello.model.Experiment;
+import nello.model.NetworkMember;
+import nello.model.Team;
 import nello.observer.ExperimentObserver;
 import nello.view.EditExperimentView;
 import nello.view.ExperimentOverviewView;
 
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import java.util.Date;
+import java.util.List;
 
 public class ExperimentController implements IController {
-    // TODO: 27/11/2019 link log cost income users, network, member and team to the object
     private MainController mainController;
     private Experiment experiment;
 
@@ -21,6 +24,18 @@ public class ExperimentController implements IController {
         experiment.registerObserver(observer);
     }
 
+    public List<Experiment> list( ) {
+        Response response = mainController.getHttpController().get("/experiments/");
+        switch (response.getStatus()) {
+            case 200:
+                return  response.readEntity(new GenericType<List<Experiment>>(){});
+        }
+
+        return null;
+    }
+
+
+
     /**
      * Creates a new Experiment with the data passed through by the view
      *
@@ -29,7 +44,6 @@ public class ExperimentController implements IController {
      * @param name        String with the name of the experiment itself
      * @author Valerie Timmerman
      */
-
     public void create(boolean isService, Experiment.Phase phase, String name, String description) {
         Experiment.Category category = null;
 
@@ -46,8 +60,6 @@ public class ExperimentController implements IController {
 
         setExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
-
-        System.out.println(response.getStatus());
 
         if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
@@ -162,7 +174,21 @@ public class ExperimentController implements IController {
     }
 
     public void onAddNetworkMember(String memberName, boolean isBusiness) {
-        // TODO todo todo
+        NetworkMember networkMember = mainController.getNetworkmemberController().getNetworkmember(memberName);
+
+        if (networkMember == null) {
+            networkMember = mainController.getNetworkmemberController().createnetworkmember(memberName, isBusiness);
+        }
+
+        if (experiment.getId() == 0) {
+            experiment.setId(list().size() + 1);
+        }
+
+        if (! mainController.getTeamController().hasNetworkmember(experiment.getId(), networkMember.getId())) {
+            mainController.getTeamController().createTeam(experiment, networkMember);
+        }
+
+        mainController.getDashboardController().loadDashboard();
     }
 
 

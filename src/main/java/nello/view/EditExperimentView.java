@@ -70,7 +70,6 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
         setTextLimitTextField(255, incomeTextField);
         setTextLimitTextField(255, networkMemberTextField);
         getController().registerObserver(this::update);
-
     }
 
 
@@ -130,7 +129,7 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     }
 
     public void addNetworkMember(MouseEvent event) {
-        getController().onAddNetworkMember(costTextField.getText(), bussinessCheckBox.isSelected());
+        getController().onAddNetworkMember(networkMemberTextField.getText(), bussinessCheckBox.isSelected());
     }
 
     private void setTextLimitTextField(int limit, TextField textfield) {

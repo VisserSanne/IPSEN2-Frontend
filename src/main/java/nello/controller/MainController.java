@@ -18,6 +18,8 @@ public class MainController {
     private UsersTabController usersTabController;
     private LogController logController;
     private AttachmentController attachmentController;
+    private TeamController teamController;
+    private NetworkmemberController networkmemberController;
 
     private MainController() {
         registerControllers();
@@ -45,6 +47,8 @@ public class MainController {
         userController = new UserController(this);
         usersTabController = new UsersTabController(this, new UsersTabModel());
         logController = new LogController(this);
+        teamController = new TeamController(this, new Team());
+        networkmemberController = new NetworkmemberController(this, new NetworkMember());
     }
 
     public DashboardController getDashboardController() {
@@ -97,4 +101,11 @@ public class MainController {
 
     public AttachmentController getAttachmentController() { return attachmentController; }
 
+    public TeamController getTeamController() {
+        return teamController;
+    }
+
+    public NetworkmemberController getNetworkmemberController() {
+        return networkmemberController;
+    }
 }

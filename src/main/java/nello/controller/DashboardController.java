@@ -4,10 +4,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nello.model.DashboardModel;
 import nello.model.Experiment;
+import nello.model.NetworkMember;
+import nello.model.Team;
 import nello.observer.DashboardObserver;
 import nello.view.*;
 
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -72,6 +76,12 @@ public class DashboardController implements IController {
         dashboardModel.registerObserver(observer);
     }
 
+    public void loadDashboard() {
+        this.loadExperiments();
+        this.loadTeams();
+        this.loadNetworkMembers();
+    }
+
     /**
      * laad experiment vanuit backend.
      */
@@ -81,12 +91,29 @@ public class DashboardController implements IController {
         switch (response.getStatus()) {
             case 200:
                 System.out.println("sucess");
-                // TODO: 27/11/2019 here
                 dashboardModel.setExperimentList(response.readEntity(Experiment[].class));
                 break;
             default:
                 System.out.println(String.format("status: %s", response.getStatus()));
         }
+    }
+
+    /**
+     * laad experiment vanuit backend.
+     * @return
+     */
+    public void loadTeams() {
+        List<Team> teamList = mainController.getTeamController().list();
+        dashboardModel.setTeamList(teamList);
+    }
+
+    /**
+     * laad experiment vanuit backend.
+     * @return
+     */
+    public void loadNetworkMembers() {
+        List<NetworkMember> networkMemberList = mainController.getNetworkmemberController().list();
+        dashboardModel.setNetworkMembers(networkMemberList);
     }
 
     /**

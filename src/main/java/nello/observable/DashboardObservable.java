@@ -2,12 +2,17 @@ package nello.observable;
 
 import nello.model.Experiment;
 import nello.model.NetworkMember;
+import nello.model.Team;
 import nello.observer.DashboardObserver;
+
+import java.util.List;
 
 public interface DashboardObservable {
 
     Experiment[] getExperimentList();
-    NetworkMember[] getNetworkMemberList();
+    List<Team> getTeamsList();
+    List<NetworkMember> getNetworkMemberList();
+
 
     /**
      * notify all observers

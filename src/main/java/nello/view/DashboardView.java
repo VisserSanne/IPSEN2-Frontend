@@ -8,10 +8,12 @@ import nello.controller.DashboardController;
 import nello.controller.MainController;
 import nello.model.Experiment;
 import nello.model.NetworkMember;
+import nello.model.Team;
 import nello.observable.DashboardObservable;
 import nello.observer.DashboardObserver;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashboardView implements FXMLView<DashboardController>, DashboardObserver, Initializable {
@@ -58,8 +60,8 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        getController().loadDashboard();
         getController().registerObserver(this::update);
-        getController().loadExperiments();
     }
 
     @Override
@@ -80,6 +82,8 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     @Override
     public void update(DashboardObservable observable) {
         Experiment[] experimentList = observable.getExperimentList();
+        List<Team> teamList = observable.getTeamsList();
+        List<NetworkMember> networkMembers = observable.getNetworkMemberList();
 
         phaseIdeeVbox.getChildren().clear();
         phaseLabIn.getChildren().clear();
@@ -91,7 +95,7 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
         // TODO: 27/11/2019 split into functions
         for (Experiment experiment : experimentList) {
-            ExperimentComponent component = new ExperimentComponent(this, experiment);
+            ExperimentComponent component = new ExperimentComponent(this, experiment, teamList, networkMembers);
             component.setOnMouseClicked(event -> onExperimentClick(event, component, experiment));
             switch (experiment.getPhase()) {
                 case IDEE:
@@ -114,7 +118,6 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
     }
 
     private void onExperimentClick(MouseEvent event, ExperimentComponent component, Experiment experiment) {
-        System.out.println("open ");
         System.out.println(event.getTarget() + " " + component);
         getController().onExperimentClick(experiment);
     }

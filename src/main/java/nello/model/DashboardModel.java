@@ -12,12 +12,13 @@ public class DashboardModel implements DashboardObservable {
      */
     private List<DashboardObserver> observerList;
     private Experiment[] experimentList;
-    private NetworkMember[] networkMembers;
+    private List<Team> teamsList;
+    private List<NetworkMember> networkMemberList;
 
     public DashboardModel() {
         this.observerList = new ArrayList<>();
         this.experimentList = null;
-        this.networkMembers = null;
+        this.networkMemberList = null;
     }
 
     @Override
@@ -26,8 +27,13 @@ public class DashboardModel implements DashboardObservable {
     }
 
     @Override
-    public NetworkMember[] getNetworkMemberList() {
-        return networkMembers;
+    public List<Team> getTeamsList() {
+        return teamsList;
+    }
+
+    @Override
+    public List<NetworkMember> getNetworkMemberList() {
+        return networkMemberList;
     }
 
     public void setExperimentList(Experiment[] experimentList) {
@@ -35,8 +41,14 @@ public class DashboardModel implements DashboardObservable {
         notifyObservers();
     }
 
-    public void setNetworkMembers(NetworkMember[] networkMembers) {
-        this.networkMembers = networkMembers;
+    public void setNetworkMembers(List<NetworkMember> networkMemberList) {
+        this.networkMemberList = networkMemberList;
+        notifyObservers();
+    }
+
+    public void setTeamList(List<Team> teamsList) {
+        this.teamsList = teamsList;
+        notifyObservers();
     }
 
     @Override
@@ -48,6 +60,7 @@ public class DashboardModel implements DashboardObservable {
 
     @Override
     public void registerObserver(DashboardObserver observer) {
+        System.out.println(observer);
         // register observer
         observerList.add(observer);
 

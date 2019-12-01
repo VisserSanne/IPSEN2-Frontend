@@ -12,19 +12,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import nello.model.Experiment;
+import nello.model.NetworkMember;
+import nello.model.Team;
 import nello.util.ResourceUtil;
+
+import java.util.List;
 
 
 public class ExperimentComponent extends HBox {
     private static final int HEIGHT = 150;
     private static final int WIDTH = 290;
 
-    public ExperimentComponent(DashboardView dashboardView, Experiment experiment) {
-        super(getChildrenNodes(experiment, dashboardView));
+    public ExperimentComponent(DashboardView dashboardView, Experiment experiment, List<Team> teamList, List<NetworkMember> networkMemberList) {
+        super(getChildrenNodes(experiment, dashboardView, teamList, networkMemberList));
         setup();
     }
 
-    private static Node[] getChildrenNodes(Experiment experiment, DashboardView masterView) {
+    private static Node[] getChildrenNodes(Experiment experiment, DashboardView masterView, List<Team> teamList, List<NetworkMember> networkMemberList) {
         Node[] childeren = new Node[2];
 
         Rectangle rectangle = new Rectangle();
@@ -33,11 +37,11 @@ public class ExperimentComponent extends HBox {
         rectangle.setFill(experiment.getStatusColor().getAsColor());
 
         childeren[0] = rectangle;
-        childeren[1] = getBody(experiment, masterView);
+        childeren[1] = getBody(experiment, masterView, teamList, networkMemberList);
         return childeren;
     }
 
-    private static AnchorPane getBody(Experiment experiment, DashboardView masterView) {
+    private static AnchorPane getBody(Experiment experiment, DashboardView masterView, List<Team> teamList, List<NetworkMember> networkMemberList) {
         AnchorPane anchorPane = new AnchorPane();
         Label title = titleBuilder(experiment);
         ImageView imageView = menuBuilder();
@@ -48,7 +52,7 @@ public class ExperimentComponent extends HBox {
         });
 
         Label description = descriptionBuilder(experiment);
-        ScrollPane scrollPane = userInitialsBuilder();
+        ScrollPane scrollPane = userInitialsBuilder(experiment, teamList, networkMemberList);
 
         anchorPane.getChildren().addAll(title, imageView, description, scrollPane);
         return anchorPane;
@@ -95,13 +99,23 @@ public class ExperimentComponent extends HBox {
         return description;
     }
 
-    private static ScrollPane userInitialsBuilder() {
+    private static ScrollPane userInitialsBuilder(Experiment experiment, List<Team> teamList, List<NetworkMember> networkMemberList) {
         HBox content = new HBox();
-        for (int i = 0; i < 20; i++) {
-            content.getChildren().add(new UserInitialsComponent("AJ"));
-//            content.getChildren().get()
-        }
         content.setSpacing(5);
+
+        for (Team team : teamList) {
+            if (team.getExperimentId() == experiment.getId()) {
+                for (NetworkMember networkMember : networkMemberList) {
+                    if (team.getNetworkmemberId() == networkMember.getId()) {
+                        // TODO: 01/12/2019 check if name has deleimeter in it 
+                        String[] nameSplit = networkMember.getName().split(" ");
+                        content.getChildren().add(new UserInitialsComponent(
+                            nameSplit[0].substring(0, 1).toUpperCase() +
+                            nameSplit[1].substring(0, 1).toUpperCase()));
+                    }
+                }
+            }
+        }
 
         ScrollPane scrollPane = new ScrollPane(content);
 
