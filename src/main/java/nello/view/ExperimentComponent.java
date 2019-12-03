@@ -107,11 +107,15 @@ public class ExperimentComponent extends HBox {
             if (team.getExperimentId() == experiment.getId()) {
                 for (NetworkMember networkMember : networkMemberList) {
                     if (team.getNetworkmemberId() == networkMember.getId()) {
-                        // TODO: 01/12/2019 check if name has deleimeter in it 
-                        String[] nameSplit = networkMember.getName().split(" ");
-                        content.getChildren().add(new UserInitialsComponent(
-                            nameSplit[0].substring(0, 1).toUpperCase() +
-                            nameSplit[1].substring(0, 1).toUpperCase()));
+                        String name;
+
+                        if (networkMember.getName().contains(" ")) {
+                            String[] nameSplit = networkMember.getName().split(" ");
+                            name = nameSplit[0].substring(0, 1).toUpperCase() + nameSplit[1].substring(0, 1).toUpperCase();
+                        }
+
+                        name = networkMember.getName().substring(0, 1).toUpperCase();
+                        content.getChildren().add(new UserInitialsComponent(name));
                     }
                 }
             }

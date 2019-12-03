@@ -9,8 +9,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
+import nello.model.Team;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
@@ -57,6 +59,9 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     @FXML
     private VBox logVbox;
+
+    @FXML
+    private Rectangle statusColorRectangle;
 
     private ExperimentController controller;
 
@@ -124,6 +129,17 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 
     }
 
+    private void updateTeamMembers(List<Team> teamMembers) {
+        networkMemberVbox.getChildren().clear();
+
+        for (Team member : teamMembers) {
+//            NetworkMemberComponent n = new NetworkMemberComponent(member.getNetworkMember().getName(), member.isEinstein(), member.getNetworkMember().isBusiness());
+//            Line line = new Line(0, 0, 255, 0);
+//            line.setStroke(Color.web("#cecece"));
+//            networkMemberVbox.getChildren().addAll(n, line);
+        }
+
+    }
 
     private boolean randomBoolean() {
         return Math.random() > 0.5;
@@ -147,6 +163,8 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
 //        this.lastModified.setText(String.format(this.lastModified.getText(), o.getLastModified().toString()));
         updateFinance(o.getIncomes(), incomeFlowPane);
         updateFinance(o.getCosts(), costFlowPane);
+        this.statusColorRectangle.setFill(o.getStatusColor().getAsColor());
+//        updateTeamMembers(o.getTeamMembers());
     }
 
     /**

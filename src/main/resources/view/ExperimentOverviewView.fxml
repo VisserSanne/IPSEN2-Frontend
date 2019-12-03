@@ -17,7 +17,8 @@
         <URL value="@../css/ExperimentOverview.css" />
     </stylesheets>
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6ce051" height="720.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" />
+        <Rectangle fx:id="statusColorRectangle" arcHeight="5.0" arcWidth="5.0" fill="#6ce051" height="720.0"
+                   layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0"/>
         <Label layoutX="27.0" layoutY="26.0" text="Beheerders">
             <font>
                 <Font name="System Bold" size="14.0" />
