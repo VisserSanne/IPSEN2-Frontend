@@ -1,7 +1,9 @@
 package nello.view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import nello.controller.DashboardController;
@@ -29,6 +31,9 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     @FXML
     private VBox vastenDienst;
+
+    @FXML
+    private TextField searchTextField;
 
     /**
      * path to fxml file
@@ -141,5 +146,26 @@ public class DashboardView implements FXMLView<DashboardController>, DashboardOb
 
     public void onAddExperimentLabIn(MouseEvent event) {
         getController().onAddExperimentClick(Experiment.Phase.LABIN, event);
+    }
+
+    public void onFilterGreen(ActionEvent actionEvent) {
+        getController().onFilter(Experiment.StatusColor.GROEN);
+    }
+
+    public void onFilterOrange(ActionEvent actionEvent) {
+        getController().onFilter(Experiment.StatusColor.ORANJE);
+
+    }
+
+    public void onFilterRed(ActionEvent actionEvent) {
+        getController().onFilter(Experiment.StatusColor.ROOD);
+    }
+
+    public void onSearchButtonClick(MouseEvent event) {
+        getController().onSearch(searchTextField.getText());
+    }
+
+    public void onClearButtonClick(MouseEvent event) {
+        getController().onClearButtonClick();
     }
 }

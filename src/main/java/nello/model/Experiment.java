@@ -218,6 +218,7 @@ public class Experiment implements ExperimentObservable {
 
     public void setStatusColor(StatusColor statusColor) {
         this.statusColor = statusColor;
+        this.notifyObservers();
     }
 
     @JsonProperty

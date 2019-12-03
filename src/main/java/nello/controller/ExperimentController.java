@@ -194,12 +194,10 @@ public class ExperimentController implements IController {
 
     public void onEditButtonClick() {
         mainController.getStageController().closeAllView();
-        EditExperimentView editView = new EditExperimentView();
+        EditExperimentView editView = new EditExperimentView(false);
         editView.getController().setExperiment(this.experiment);
 
-        mainController.getStageController().displayPopup(editView, event -> {
-            this.updateExperiment(experiment);
-        });
+        mainController.getStageController().displayPopup(editView);
 
         if (isLocked(experiment.getId())) {
           editView.disableEditExperimentItems(true);
@@ -226,5 +224,23 @@ public class ExperimentController implements IController {
         // TODO: 30/11/2019 check for date last_modified
         Response response = mainController.getHttpController().get("/experiments/" + experimentId);
         return response.readEntity(Experiment.class).isLocked();
+    }
+
+    public void onStatusColorChange(Experiment.StatusColor statusColor) {
+        experiment.setStatusColor(statusColor);
+    }
+
+    public void onSaveButtonClick(boolean isNew) {
+        if (isNew) {
+            mainController.getExperimentController().create(experiment);
+            return;
+        } else {
+            mainController.getExperimentController().updateExperiment(experiment);
+        }
+
+    }
+
+    public void onFinishButtonClick() {
+
     }
 }

@@ -11,11 +11,15 @@ import nello.view.*;
 
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.List;
 
 public class DashboardController implements IController {
     private MainController mainController;
     private DashboardModel dashboardModel;
+    private boolean hasSearch;
 
     public DashboardController(MainController mainController, DashboardModel dashboardModel) {
         this.mainController = mainController;
@@ -59,12 +63,10 @@ public class DashboardController implements IController {
      * @author Valerie Timmerman
      */
     public void onAddExperimentClick(Experiment.Phase phase, MouseEvent event) {
-        EditExperimentView view = new EditExperimentView();
+        EditExperimentView view = new EditExperimentView(true);
         Experiment experiment = new Experiment(Experiment.Category.INWERKING, phase);
         view.getController().setExperiment(experiment);
-        mainController.getStageController().displayPopup(view, e -> {
-            view.getController().onExperimentSave(experiment);
-        });
+        mainController.getStageController().displayPopup(view);
     }
 
     /**
@@ -124,5 +126,31 @@ public class DashboardController implements IController {
     public void onExperimentClick(Experiment experiment) {
         mainController.getExperimentController().setExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
+    }
+
+    public void onFilter(Experiment.StatusColor status) {
+        List<Experiment> filterList = Arrays.stream(dashboardModel.getExperimentList())
+                .filter(experiment -> experiment.getStatusColor().equals(status))
+                .collect(Collectors.toList());
+        dashboardModel.setExperimentList(filterList.toArray(new Experiment[0]));
+    }
+
+    /**
+     * hasSearch an experiment by name
+     *
+     * @param searchText
+     */
+    public void onSearch(String searchText) {
+        this.hasSearch = true;
+        this.loadExperiments();
+        List<Experiment> filterList = Arrays
+                .stream(dashboardModel.getExperimentList())
+                .filter(experiment -> experiment.getName().contains(searchText))
+                .collect(Collectors.toList());
+        dashboardModel.setExperimentList(filterList.toArray(new Experiment[0]));
+    }
+
+    public void onClearButtonClick() {
+        this.loadExperiments();
     }
 }

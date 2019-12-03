@@ -1,5 +1,7 @@
 package nello.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,8 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
+import nello.model.Experiment;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
 
@@ -52,10 +56,14 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     @FXML
     private ExperimentController controller;
 
+    private final boolean isNew;
+    @FXML
+    private Rectangle statusColor;
     private String fxmlPath;
 
 
-    public EditExperimentView() {
+    public EditExperimentView(boolean isNew) {
+        this.isNew = isNew;
         this.controller = MainController.getInstance().getExperimentController();
         this.fxmlPath = "/view/EditExperiment.fxml";
     }
@@ -80,6 +88,7 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
         updateTextArea(statusTextField, experiment.getStatus());
         updateFinance(experiment.getCosts(), costFlowPane);
         updateFinance(experiment.getIncomes(), incomeFlowPane);
+        this.statusColor.setFill(experiment.getStatusColor().getAsColor());
     }
 
 
@@ -183,4 +192,24 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     }
 
 
+    public void onStatusGreenMenuItemClick(ActionEvent actionEvent) {
+        getController().onStatusColorChange(Experiment.StatusColor.GROEN);
+    }
+
+    public void onStatusOranjeMenuItemClick(ActionEvent actionEvent) {
+        getController().onStatusColorChange(Experiment.StatusColor.ORANJE);
+
+    }
+
+    public void onStatusRedMenuItemClick(ActionEvent actionEvent) {
+        getController().onStatusColorChange(Experiment.StatusColor.ROOD);
+    }
+
+    public void onFinishButtonClick(MouseEvent event) {
+        getController().onFinishButtonClick();
+    }
+
+    public void onSaveButtonClick(MouseEvent event) {
+        getController().onSaveButtonClick(isNew);
+    }
 }

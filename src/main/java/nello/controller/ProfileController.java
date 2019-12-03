@@ -5,11 +5,7 @@ import nello.model.User;
 import nello.model.UserRole;
 import nello.observer.ProfileObserver;
 import nello.view.AlertBox;
-import nello.view.DashboardView;
-import nello.view.TabView;
-import nello.view.UsersTabView;
 
-import javax.ws.rs.core.Response;
 import java.util.logging.Level;
 
 public class ProfileController implements IController {
@@ -26,7 +22,7 @@ public class ProfileController implements IController {
         mainController.getDashboardController().onGebruikersClick();
     }
 
-    public void onSaveButtonClick(String firstName, String lastName, String email, String userRole, String password, String newPassword, String confirmNewPassword){
+    public void onSaveButtonClick(String firstName, String lastName, String email, String userRole, String password, String newPassword, String confirmNewPassword) {
         User user = profileModel.getUser();
 
         if (saveProfileChecker(firstName, lastName, email, userRole)) {
@@ -35,32 +31,30 @@ public class ProfileController implements IController {
         }
 
         if (profilePasswordChecker(password, newPassword, confirmNewPassword, user)) {
-            user.setPassword(newPassword);
+            mainController.getUserController().updatePassword(user, password, newPassword);
         }
 
         mainController.getUserController().updateUser(user);
     }
 
     public boolean saveProfileChecker(String firstName, String lastName, String email, String userRole) {
-        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || userRole.isEmpty()) {
-//            mainController.getStageController().displayPopup(new AlertBox("Een van de velden is leeg.", Level.WARNING, 3));
-            return false;
-        }
-        return true;
+        //            mainController.getStageController().displayPopup(new AlertBox("Een van de velden is leeg.", Level.WARNING, 3));
+        return !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !userRole.isEmpty();
     }
 
     public boolean profilePasswordChecker(String password, String newPassword, String confirmNewPassword, User user) {
-        if (password.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+        // als wachtwoord leeg is, return false zodat password niet wordt geupdate.
+        if (password.isEmpty())
+            return false;
 
-            if (! user.getPassword().equals(password)) {
-//              mainController.getStageController().displayPopup(new AlertBox("De oude wachtwoordt komt niet overeen.", Level.WARNING, 3));
-                return false;
-            } else if (! newPassword.equals(confirmNewPassword)) {
-//                mainController.getStageController().displayPopup(new AlertBox("De nieuwe wachtwoorden komen niet overeen.", Level.WARNING, 3), 200, 200);
-                return false;
+        if (!newPassword.isEmpty() && !confirmNewPassword.isEmpty()) {
+
+            if (newPassword.equals(confirmNewPassword)) {
+                mainController.getStageController().displayPopup(new AlertBox("De nieuwe wachtwoorden komen niet overeen.", Level.WARNING, 3), 200, 200);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public void registerObserver(ProfileObserver observer) {
@@ -69,7 +63,7 @@ public class ProfileController implements IController {
 
     public UserRole getUserRoleValue(String userRole) {
         for (UserRole role : this.getUserRoles()) {
-            if (role.getName().equals(userRole)){
+            if (role.getName().equals(userRole)) {
                 return role;
             }
         }
