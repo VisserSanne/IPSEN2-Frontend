@@ -26,16 +26,17 @@ public class Log {
     public Log(
             @JsonProperty("experimentId") long experimentId,
             @JsonProperty("status") String status,
-            @JsonProperty("person") String person
+            @JsonProperty("person") String person,
+            @JsonProperty("createDateTime") Date createDateTime
     ) {
         this.experimentId = experimentId;
         this.status = status;
         this.person = person;
+        this.createDateTime = createDateTime;
     }
 
-    public Log(long experimentID, String status, String person, Date localDateTime) {
-        this(experimentID, status, person);
-        this.createDateTime = localDateTime;
+    public Log(Experiment experiment, String status, String name) {
+        this(experiment.getId(), status, name, null);
     }
 
     public long getId() {
@@ -50,8 +51,17 @@ public class Log {
         return experimentId;
     }
 
+    @JsonProperty
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setPerson(String person) {
+        this.person = person;
     }
 
     public void setExperimentId(long experimentId) {

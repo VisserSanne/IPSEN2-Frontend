@@ -63,8 +63,8 @@ public class DashboardController implements IController {
      * @author Valerie Timmerman
      */
     public void onAddExperimentClick(Experiment.Phase phase, MouseEvent event) {
-        EditExperimentView view = new EditExperimentView(true);
         Experiment experiment = new Experiment(Experiment.Category.INWERKING, phase);
+        EditExperimentView view = new EditExperimentView(true, null);
         view.getController().setExperiment(experiment);
         mainController.getStageController().displayPopup(view);
     }

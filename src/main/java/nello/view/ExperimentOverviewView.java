@@ -205,6 +205,6 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
     }
 
     public void onEditButtonClick(MouseEvent event) {
-        getController().onEditButtonClick();
+        getController().onEditButtonClick(statusLabel.getText());
     }
 }

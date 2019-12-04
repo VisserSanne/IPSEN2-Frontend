@@ -251,6 +251,7 @@ public class Experiment implements ExperimentObservable {
 
     public void setStatus(String status) {
         this.status = status;
+        this.notifyObservers();
     }
 
     @JsonProperty

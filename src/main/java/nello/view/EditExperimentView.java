@@ -56,13 +56,15 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     private ExperimentController controller;
 
     private final boolean isNew;
+    private String oldStatus;
     @FXML
     private Rectangle statusColor;
     private String fxmlPath;
 
 
-    public EditExperimentView(boolean isNew) {
+    public EditExperimentView(boolean isNew, String oldStatus) {
         this.isNew = isNew;
+        this.oldStatus = oldStatus;
         this.controller = MainController.getInstance().getExperimentController();
         this.fxmlPath = "/view/EditExperiment.fxml";
     }
@@ -209,7 +211,7 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     }
 
     public void onSaveButtonClick(MouseEvent event) {
-        getController().onSaveButtonClick(isNew);
+        getController().onSaveButtonClick(isNew, oldStatus);
     }
 
     public void onPhaseIdeeClick(ActionEvent actionEvent) {

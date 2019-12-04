@@ -23,16 +23,16 @@ public class ExperimentController implements IController {
         experiment.registerObserver(observer);
     }
 
-    public List<Experiment> list( ) {
+    public List<Experiment> list() {
         Response response = mainController.getHttpController().get("/experiments/");
         switch (response.getStatus()) {
             case 200:
-                return  response.readEntity(new GenericType<List<Experiment>>(){});
+                return response.readEntity(new GenericType<List<Experiment>>() {
+                });
         }
 
         return null;
     }
-
 
 
     /**
@@ -117,12 +117,12 @@ public class ExperimentController implements IController {
      */
 
     public void updateExperiment(String name, String description, String status) {
-
-        experiment.setName(name);
-        experiment.setDescription(description);
-
-        mainController.getLogController().addLogItem(experiment.getId(), status, "Dummy");
-        mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+//
+//        experiment.setName(name);
+//        experiment.setDescription(description);
+//
+//        mainController.getLogController().addLogItem(experiment, status, "Dummy");
+//        mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
 
     }
 
@@ -183,7 +183,7 @@ public class ExperimentController implements IController {
             experiment.setId(list().size() + 1);
         }
 
-        if (! mainController.getTeamController().hasNetworkmember(experiment.getId(), networkMember.getId())) {
+        if (!mainController.getTeamController().hasNetworkmember(experiment.getId(), networkMember.getId())) {
             mainController.getTeamController().createTeam(experiment, networkMember);
         }
 
@@ -191,15 +191,15 @@ public class ExperimentController implements IController {
     }
 
 
-    public void onEditButtonClick() {
+    public void onEditButtonClick(String oldStatus) {
         mainController.getStageController().closeAllView();
-        EditExperimentView editView = new EditExperimentView(false);
+        EditExperimentView editView = new EditExperimentView(false, oldStatus);
         editView.getController().setExperiment(this.experiment);
 
         mainController.getStageController().displayPopup(editView);
 
         if (isLocked(experiment.getId())) {
-          editView.disableEditExperimentItems(true);
+            editView.disableEditExperimentItems(true);
         } else {
             lockExperiment(experiment, true);
         }
@@ -234,11 +234,13 @@ public class ExperimentController implements IController {
         experiment.setStatusColor(statusColor);
     }
 
-    public void onSaveButtonClick(boolean isNew) {
+    public void onSaveButtonClick(boolean isNew, String oldStatus) {
         if (isNew) {
             mainController.getExperimentController().create(experiment);
             return;
         } else {
+            if (oldStatus != null || !oldStatus.isEmpty())
+                mainController.getLogController().addLogItem(experiment, oldStatus, mainController.getProfileController().getUser());
             mainController.getExperimentController().updateExperiment(experiment);
         }
 

@@ -2,6 +2,7 @@ package nello.controller;
 
 import nello.model.Experiment;
 import nello.model.Log;
+import nello.model.User;
 
 import javax.ws.rs.core.Response;
 
@@ -17,21 +18,26 @@ public class LogController implements IController {
     /**
      * Adds a new log item in the logs and sends it to the backend
      *
-     * @param id id of the experiment it belongs to
+     * @param id     id of the experiment it belongs to
      * @param status new status that is set
      * @param person the person who made the new log item
      * @author Valerie Timmerman
      */
 
-    public void addLogItem(long id, String status, String person) {
-//        Log log = new Log(id, status, person, LocalDateTime.now());
-//        mainController.getHttpController().post("log/create", log);
+    public void addLogItem(Experiment experiment, String oldStatus, User user) {
+        System.out.println("calleD");
+        Log log = new Log(experiment, oldStatus, user.getNetworkMember().getName());
+        String route = "log/create/" + experiment.getId() + "/" + oldStatus + "/" + user.getNetworkMember().getName();
+        System.out.println(route);
+        Response response = mainController.getHttpController().post(route, log);
+        System.out.println(response.readEntity(String.class));
     }
 
-    public void setLog(Log log) {this.log = log;}
+    public void setLog(Log log) {
+        this.log = log;
+    }
 
     public void getLogByExperiment(Experiment experiment) {
-        System.out.println("etfdsddfd");
         HTTPController http = new HTTPController();
         Response response = http.get("/log/" + experiment.getId());
 
@@ -42,4 +48,6 @@ public class LogController implements IController {
         }
 
     }
+
 }
+
