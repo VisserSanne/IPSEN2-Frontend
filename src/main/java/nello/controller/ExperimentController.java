@@ -108,6 +108,10 @@ public class ExperimentController implements IController {
         this.experiment = experiment;
     }
 
+    public Experiment getExperiment() {
+        return this.experiment;
+    }
+
     /**
      * Edits the experiment after changes are made in the edit view
      *
