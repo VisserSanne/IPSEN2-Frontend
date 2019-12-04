@@ -1,25 +1,48 @@
 package nello.model;
 
-import nello.observable.LogObservable;
-import nello.observer.LogObserver;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Date;
 
-public class Log implements LogObservable {
+public class Log {
 
+    private long id;
     private long experimentId;
     private String status;
     private String person;
-    private LocalDateTime createDateTime;
+    private Date createDateTime;
 
-    private List<LogObserver> observerList;
+    /**
+     * Creates a Log object from json file send by frontend
+     *
+     * @param experimentId long
+     * @param status       String
+     * @param person       String
+     */
 
-    public Log(long experimentId, String status, String person, LocalDateTime createDateTime) {
+    @JsonCreator
+    public Log(
+            @JsonProperty("experimentId") long experimentId,
+            @JsonProperty("status") String status,
+            @JsonProperty("person") String person
+    ) {
         this.experimentId = experimentId;
         this.status = status;
         this.person = person;
-        this.createDateTime = createDateTime;
+    }
+
+    public Log(long experimentID, String status, String person, Date localDateTime) {
+        this(experimentID, status, person);
+        this.createDateTime = localDateTime;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getExperimentId() {
@@ -30,29 +53,20 @@ public class Log implements LogObservable {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setExperimentId(long experimentId) {
+        this.experimentId = experimentId;
     }
 
     public String getPerson() {
         return person;
     }
 
-    public LocalDateTime getCreateDateTime() {
+    public Date getCreateDateTime() {
         return createDateTime;
     }
 
-    @Override
-    public void notifyObservers() {
-        for(LogObserver o : observerList) {
-            o.update(this);
-        }
-    }
-
-    @Override
-    public void registerObserver(LogObserver logObserver) {
-        observerList.add(logObserver);
-        logObserver.update(this);
+    public void setCreateDateTime(Date createDateTime) {
+        this.createDateTime = createDateTime;
     }
 
 }

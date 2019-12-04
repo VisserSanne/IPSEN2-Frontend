@@ -1,18 +1,14 @@
 package nello.controller;
 
+import nello.model.Experiment;
 import nello.model.Log;
-import nello.observer.LogObserver;
 
-import java.time.LocalDateTime;
+import javax.ws.rs.core.Response;
 
 public class LogController implements IController {
 
     private MainController mainController;
     private Log log;
-
-    public void registerObserver(LogObserver observer) {
-        log.registerObserver(observer);
-    }
 
     public LogController(MainController mainController) {
         this.mainController = mainController;
@@ -28,10 +24,20 @@ public class LogController implements IController {
      */
 
     public void addLogItem(long id, String status, String person) {
-        Log log = new Log(id, status, person, LocalDateTime.now());
-        mainController.getHttpController().post("log/create", log);
+//        Log log = new Log(id, status, person, LocalDateTime.now());
+//        mainController.getHttpController().post("log/create", log);
     }
 
     public void setLog(Log log) {this.log = log;}
 
+    public void getLogByExperiment(Experiment experiment) {
+        HTTPController http = new HTTPController();
+        Response response = http.get("/log/" + experiment.getId());
+
+        if (response.getStatus() == 200) {
+            Log[] logs = response.readEntity(Log[].class);
+            experiment.setLogs(logs);
+        }
+
+    }
 }

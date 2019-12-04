@@ -12,9 +12,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import nello.controller.ExperimentController;
 import nello.controller.MainController;
+import nello.model.Log;
 import nello.model.Team;
 import nello.observable.ExperimentObservable;
 import nello.observer.ExperimentObserver;
+import nello.view.components.LogItemComponent;
 
 import java.net.URL;
 import java.util.List;
@@ -165,6 +167,18 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
         updateFinance(o.getCosts(), costFlowPane);
         this.statusColorRectangle.setFill(o.getStatusColor().getAsColor());
 //        updateTeamMembers(o.getTeamMembers());
+        updateLog(o.getLogs());
+    }
+
+    private void updateLog(List<Log> logs) {
+        logVbox.getChildren().clear();
+        System.out.println("updating log" + logs.toString());
+        for (Log l : logs) {
+            LogItemComponent logItemComponent = new LogItemComponent(l);
+            logVbox.getChildren().add(logItemComponent);
+
+
+        }
     }
 
     /**

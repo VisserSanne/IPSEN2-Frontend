@@ -8,6 +8,7 @@ import nello.observer.ExperimentObserver;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -257,8 +258,9 @@ public class Experiment implements ExperimentObservable {
         return logs;
     }
 
-    public void setLogs(List<Log> logs) {
-        this.logs = logs;
+    public void setLogs(Log[] logs) {
+        this.logs = Arrays.asList(logs);
+        notifyObservers();
     }
 
     @JsonProperty

@@ -9,12 +9,10 @@ import nello.model.Team;
 import nello.observer.DashboardObserver;
 import nello.view.*;
 
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.List;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -32,6 +30,8 @@ public class DashboardController implements IController {
      * @param experiment
      */
     public void onOpenExperimentClick(Experiment experiment) {
+        mainController.getLogController().getLogByExperiment(experiment);
+
         mainController.getExperimentController().setExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
     }
