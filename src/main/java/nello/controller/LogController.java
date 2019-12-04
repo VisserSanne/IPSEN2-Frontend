@@ -31,9 +31,11 @@ public class LogController implements IController {
     public void setLog(Log log) {this.log = log;}
 
     public void getLogByExperiment(Experiment experiment) {
+        System.out.println("etfdsddfd");
         HTTPController http = new HTTPController();
         Response response = http.get("/log/" + experiment.getId());
 
+        System.out.println("shit");
         if (response.getStatus() == 200) {
             Log[] logs = response.readEntity(Log[].class);
             experiment.setLogs(logs);

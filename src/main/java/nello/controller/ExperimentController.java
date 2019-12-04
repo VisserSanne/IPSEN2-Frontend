@@ -224,7 +224,10 @@ public class ExperimentController implements IController {
     private boolean isLocked(long experimentId) {
         // TODO: 30/11/2019 check for date last_modified
         Response response = mainController.getHttpController().get("/experiments/" + experimentId);
-        return response.readEntity(Experiment.class).isLocked();
+        if (response.getStatus() == 200) {
+            return response.readEntity(Experiment.class).isLocked();
+        }
+        return false;
     }
 
     public void onStatusColorChange(Experiment.StatusColor statusColor) {

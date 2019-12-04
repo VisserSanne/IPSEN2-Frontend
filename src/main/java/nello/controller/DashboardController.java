@@ -30,9 +30,9 @@ public class DashboardController implements IController {
      * @param experiment
      */
     public void onOpenExperimentClick(Experiment experiment) {
-        mainController.getLogController().getLogByExperiment(experiment);
-
+        System.out.println("test");
         mainController.getExperimentController().setExperiment(experiment);
+        mainController.getLogController().getLogByExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
     }
 

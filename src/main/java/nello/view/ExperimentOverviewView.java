@@ -176,8 +176,6 @@ public class ExperimentOverviewView implements FXMLView<ExperimentController>, E
         for (Log l : logs) {
             LogItemComponent logItemComponent = new LogItemComponent(l);
             logVbox.getChildren().add(logItemComponent);
-
-
         }
     }
 

@@ -259,8 +259,12 @@ public class Experiment implements ExperimentObservable {
     }
 
     public void setLogs(Log[] logs) {
-        this.logs = Arrays.asList(logs);
-        notifyObservers();
+        this.logs.clear();
+
+        if (logs != null) {
+            this.logs = Arrays.asList(logs);
+            notifyObservers();
+        }
     }
 
     @JsonProperty

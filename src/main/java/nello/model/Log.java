@@ -1,6 +1,7 @@
 package nello.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -61,6 +62,8 @@ public class Log {
         return person;
     }
 
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "YYYY-MM-dd'T'HH:mm:ss.SSS")
     public Date getCreateDateTime() {
         return createDateTime;
     }
