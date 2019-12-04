@@ -15,15 +15,13 @@ public class LogController implements IController {
         this.mainController = mainController;
     }
 
+
     /**
      * Adds a new log item in the logs and sends it to the backend
-     *
-     * @param id     id of the experiment it belongs to
-     * @param status new status that is set
-     * @param person the person who made the new log item
-     * @author Valerie Timmerman
+     * @param experiment the experiment
+     * @param oldStatus the oldstatus
+     * @param user the user
      */
-
     public void addLogItem(Experiment experiment, String oldStatus, User user) {
         System.out.println("calleD");
         Log log = new Log(experiment, oldStatus, user.getNetworkMember().getName());
@@ -48,6 +46,4 @@ public class LogController implements IController {
         }
 
     }
-
 }
-
