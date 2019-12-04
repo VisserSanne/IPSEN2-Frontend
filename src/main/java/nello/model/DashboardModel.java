@@ -4,7 +4,9 @@ import nello.observable.DashboardObservable;
 import nello.observer.DashboardObserver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DashboardModel implements DashboardObservable {
     /**
@@ -37,6 +39,11 @@ public class DashboardModel implements DashboardObservable {
     }
 
     public void setExperimentList(Experiment[] experimentList) {
+        experimentList = Arrays
+                .stream(experimentList)
+                .filter(experiment -> experiment.getCategory().equals(Experiment.Category.INWERKING))
+                .collect(Collectors.toList())
+                .toArray(new Experiment[0]);
         this.experimentList = experimentList;
         notifyObservers();
     }

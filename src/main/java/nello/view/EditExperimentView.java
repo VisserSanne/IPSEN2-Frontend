@@ -1,7 +1,6 @@
 package nello.view;
 
 import javafx.event.ActionEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -211,5 +210,30 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
 
     public void onSaveButtonClick(MouseEvent event) {
         getController().onSaveButtonClick(isNew);
+    }
+
+    public void onPhaseIdeeClick(ActionEvent actionEvent) {
+        getController().onPhaseChange(Experiment.Phase.IDEE);
+    }
+
+    public void OnPhaseLabInClick(ActionEvent actionEvent) {
+        getController().onPhaseChange(Experiment.Phase.LABIN);
+    }
+
+    public void OnPhaseLabUitClick(ActionEvent actionEvent) {
+        getController().onPhaseChange(Experiment.Phase.LABUIT);
+
+    }
+
+    public void onCategoryInwerking(ActionEvent actionEvent) {
+        getController().onCategoryChange(Experiment.Category.INWERKING);
+    }
+
+    public void onCategoryHallOfFame(ActionEvent actionEvent) {
+        getController().onCategoryChange(Experiment.Category.AFGEROND);
+    }
+
+    public void onCategoryKerkhof(ActionEvent actionEvent) {
+        getController().onCategoryChange(Experiment.Category.VASTEDIENST);
     }
 }

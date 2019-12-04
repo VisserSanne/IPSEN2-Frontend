@@ -2,7 +2,6 @@ package nello.controller;
 
 import nello.model.Experiment;
 import nello.model.NetworkMember;
-import nello.model.Team;
 import nello.observer.ExperimentObserver;
 import nello.view.EditExperimentView;
 import nello.view.ExperimentOverviewView;
@@ -87,9 +86,9 @@ public class ExperimentController implements IController {
     public void endExperiment(boolean successful) {
 
         if (successful) {
-            experiment.setCategory(Experiment.Category.HALLOFFAME);
+            experiment.setCategory(Experiment.Category.AFGEROND);
         } else {
-            experiment.setCategory(Experiment.Category.CEMENTARY);
+            experiment.setCategory(Experiment.Category.VASTEDIENST);
         }
 
         experiment.setPhase(Experiment.Phase.AFGEROND);
@@ -208,6 +207,8 @@ public class ExperimentController implements IController {
 
     private void updateExperiment(Experiment experiment) {
         Response response = mainController.getHttpController().put("/experiments/" + experiment.getId(), experiment);
+        System.out.println("updating");
+        System.out.println(response.readEntity(String.class));
         if (response.getStatus() == 200) {
             mainController.getDashboardController().loadExperiments();
         }
@@ -242,5 +243,13 @@ public class ExperimentController implements IController {
 
     public void onFinishButtonClick() {
 
+    }
+
+    public void onPhaseChange(Experiment.Phase phase) {
+        experiment.setPhase(phase);
+    }
+
+    public void onCategoryChange(Experiment.Category category) {
+        experiment.setCategory(category);
     }
 }

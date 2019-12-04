@@ -3,11 +3,9 @@ package nello.controller;
 import nello.model.NetworkMember;
 import nello.model.User;
 import nello.model.UserRole;
-import nello.view.AlertBox;
 
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
-import java.util.logging.Level;
 
 public class UserController {
 
@@ -44,10 +42,10 @@ public class UserController {
         Response response = http.put("/users/" + user.getId(), user);
         switch (response.getStatus()) {
             case 200:
-                mainController.getStageController().displayPopup(new AlertBox("Profiel succesvol geupdated.", Level.FINE, 3));
+//                mainController.getStageController().displayPopup(new AlertBox("Profiel succesvol geupdated.", Level.FINE, 3));
                 return response.readEntity(User.class);
             default:
-                mainController.getStageController().displayPopup(new AlertBox("Profiel succesvol geupdated.", Level.WARNING, 3));
+//                mainController.getStageController().displayPopup(new AlertBox("Profiel succesvol geupdated.", Level.WARNING, 3));
                 return null;
         }
     }
