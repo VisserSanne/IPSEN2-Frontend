@@ -74,6 +74,10 @@ public class ProfileController implements IController {
         profileModel.setUser(u);
     }
 
+    public User getUser() {
+        return profileModel.getUser();
+    }
+
     public MainController getMainController() {
         return mainController;
     }

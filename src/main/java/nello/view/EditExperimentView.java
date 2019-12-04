@@ -1,7 +1,6 @@
 package nello.view;
 
 import javafx.event.ActionEvent;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -57,13 +56,15 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     private ExperimentController controller;
 
     private final boolean isNew;
+    private String oldStatus;
     @FXML
     private Rectangle statusColor;
     private String fxmlPath;
 
 
-    public EditExperimentView(boolean isNew) {
+    public EditExperimentView(boolean isNew, String oldStatus) {
         this.isNew = isNew;
+        this.oldStatus = oldStatus;
         this.controller = MainController.getInstance().getExperimentController();
         this.fxmlPath = "/view/EditExperiment.fxml";
     }
@@ -210,6 +211,31 @@ public class EditExperimentView implements FXMLView<ExperimentController>, Exper
     }
 
     public void onSaveButtonClick(MouseEvent event) {
-        getController().onSaveButtonClick(isNew);
+        getController().onSaveButtonClick(isNew, oldStatus);
+    }
+
+    public void onPhaseIdeeClick(ActionEvent actionEvent) {
+        getController().onPhaseChange(Experiment.Phase.IDEE);
+    }
+
+    public void OnPhaseLabInClick(ActionEvent actionEvent) {
+        getController().onPhaseChange(Experiment.Phase.LABIN);
+    }
+
+    public void OnPhaseLabUitClick(ActionEvent actionEvent) {
+        getController().onPhaseChange(Experiment.Phase.LABUIT);
+
+    }
+
+    public void onCategoryInwerking(ActionEvent actionEvent) {
+        getController().onCategoryChange(Experiment.Category.INWERKING);
+    }
+
+    public void onCategoryHallOfFame(ActionEvent actionEvent) {
+        getController().onCategoryChange(Experiment.Category.AFGEROND);
+    }
+
+    public void onCategoryKerkhof(ActionEvent actionEvent) {
+        getController().onCategoryChange(Experiment.Category.VASTEDIENST);
     }
 }

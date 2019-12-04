@@ -8,33 +8,16 @@ import nello.observer.ExperimentObserver;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 
 public class Experiment implements ExperimentObservable {
 
-    public enum Category {
-        INWERKING(1), HALLOFFAME(2), CEMENTARY(3), VASTEDIENST(4);
-        private int category;
-
-        Category(int category) {
-            this.category = category;
-        }
-
-        public static Category getById(int categoryId) {
-            for (Category category : values()) {
-                if (category.getValue() == categoryId) {
-                    return category;
-                }
-            }
-            // If no phase is defined the standard is "INWERKING"
-            return Category.INWERKING;
-        }
-
-        public int getValue() {
-            return category;
-        }
+    public void setCategory(Category category) {
+        this.category = category;
+        this.notifyObservers();
     }
 
     public enum Phase {
@@ -170,8 +153,9 @@ public class Experiment implements ExperimentObservable {
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setPhase(Phase phase) {
+        this.phase = phase;
+        notifyObservers();
     }
 
     @JsonProperty
@@ -179,8 +163,27 @@ public class Experiment implements ExperimentObservable {
         return phase;
     }
 
-    public void setPhase(Phase phase) {
-        this.phase = phase;
+    public enum Category {
+        INWERKING(1), AFGEROND(2), VASTEDIENST(3);
+        private int category;
+
+        Category(int category) {
+            this.category = category;
+        }
+
+        public static Category getById(int categoryId) {
+            for (Category category : values()) {
+                if (category.getValue() == categoryId) {
+                    return category;
+                }
+            }
+            // If no phase is defined the standard is "INWERKING"
+            return Category.INWERKING;
+        }
+
+        public int getValue() {
+            return category;
+        }
     }
 
     @JsonProperty
@@ -248,6 +251,7 @@ public class Experiment implements ExperimentObservable {
 
     public void setStatus(String status) {
         this.status = status;
+        this.notifyObservers();
     }
 
     @JsonProperty
@@ -255,8 +259,13 @@ public class Experiment implements ExperimentObservable {
         return logs;
     }
 
-    public void setLogs(List<Log> logs) {
-        this.logs = logs;
+    public void setLogs(Log[] logs) {
+        this.logs.clear();
+
+        if (logs != null) {
+            this.logs = Arrays.asList(logs);
+            notifyObservers();
+        }
     }
 
     @JsonProperty

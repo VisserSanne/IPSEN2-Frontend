@@ -9,12 +9,10 @@ import nello.model.Team;
 import nello.observer.DashboardObserver;
 import nello.view.*;
 
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.List;
 
 public class DashboardController implements IController {
     private MainController mainController;
@@ -32,7 +30,9 @@ public class DashboardController implements IController {
      * @param experiment
      */
     public void onOpenExperimentClick(Experiment experiment) {
+        System.out.println("test");
         mainController.getExperimentController().setExperiment(experiment);
+        mainController.getLogController().getLogByExperiment(experiment);
         mainController.getStageController().displayPopup(new ExperimentOverviewView());
     }
 
@@ -63,8 +63,8 @@ public class DashboardController implements IController {
      * @author Valerie Timmerman
      */
     public void onAddExperimentClick(Experiment.Phase phase, MouseEvent event) {
-        EditExperimentView view = new EditExperimentView(true);
         Experiment experiment = new Experiment(Experiment.Category.INWERKING, phase);
+        EditExperimentView view = new EditExperimentView(true, null);
         view.getController().setExperiment(experiment);
         mainController.getStageController().displayPopup(view);
     }

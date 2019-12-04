@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 public class LogFilter implements ClientRequestFilter {
 
     private static final Logger LOG = Logger.getLogger(LoggingFilter.class.getName());
-
     @Override
     public void filter(ClientRequestContext requestContext) throws IOException {
-        if (requestContext.getEntity() != null)
+        if (requestContext.getEntity() != null) {
             LOG.info("Request to server: " + requestContext.getEntity().toString());
+        }
 
     }
 }

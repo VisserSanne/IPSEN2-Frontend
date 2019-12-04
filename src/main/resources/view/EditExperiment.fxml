@@ -6,12 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
 <?import java.net.URL?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" maxHeight="718.0" maxWidth="684.0" prefHeight="718.0" prefWidth="684.0"
-      style="-fx-background-color: fff; -fx-border-radius: 4px; -fx-background-radius: 4px;"
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="parent" maxHeight="718.0" maxWidth="684.0" prefHeight="718.0"
+      prefWidth="684.0" style="-fx-background-color: fff; -fx-border-radius: 4px; -fx-background-radius: 4px;"
       xmlns="http://javafx.com/javafx/8.0.211">
     <stylesheets>
         <URL value="@../css/ExperimentOverview.css"/>
@@ -19,29 +18,18 @@
     <children>
         <Rectangle fx:id="statusColor" arcHeight="5.0" arcWidth="5.0" fill="#6ce051" height="720.0" layoutY="-1.0"
                    stroke="TRANSPARENT" strokeType="INSIDE" width="10.0"/>
-        <Label layoutX="27.0" layoutY="26.0" text="Beheerders">
-            <font>
-                <Font name="System Bold" size="14.0"/>
-            </font>
-        </Label>
-        <HBox fx:id="userList" layoutX="27.0" layoutY="51.0" prefHeight="26.0" prefWidth="200.0">
+        <HBox fx:id="userList" layoutX="29.0" layoutY="24.0" prefHeight="26.0" prefWidth="200.0">
             <children>
-                <StackPane fx:id="dummy_user" prefHeight="150.0" prefWidth="25.0">
-                    <children>
-                        <Circle fill="#ba81eb" radius="12.5" stroke="TRANSPARENT" strokeType="INSIDE"/>
-                        <Label text="JK" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="10.0"/>
-                            </font>
-                        </Label>
-                    </children>
-                    <cursor>
-                        <Cursor fx:constant="HAND"/>
-                    </cursor>
-                </StackPane>
+                <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="fasen">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onPhaseIdeeClick" text="idee"/>
+                        <MenuItem mnemonicParsing="false" onAction="#OnPhaseLabInClick" text="labIn"/>
+                        <MenuItem mnemonicParsing="false" onAction="#OnPhaseLabUitClick" text="labuit"/>
+                    </items>
+                </MenuButton>
             </children>
         </HBox>
-        <VBox layoutX="27.0" layoutY="102.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0" minWidth="275.0"
+        <VBox layoutX="29.0" layoutY="75.0" maxHeight="599.0" maxWidth="315.0" minHeight="402.0" minWidth="275.0"
               prefHeight="599.0" prefWidth="275.0">
             <children>
                 <TextField fx:id="titleTextField" onKeyReleased="#onTitleChange" promptText="Experiment Title"/>
@@ -49,7 +37,7 @@
                           promptText="description" style="-fx-border-color: #e0e0e0;"/>
                 <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
                     <children>
-                        <Label maxHeight="42.0" prefWidth="340.0" text="Status" wrapText="true">
+                        <Label maxHeight="42.0" prefHeight="27.0" prefWidth="59.0" text="Status" wrapText="true">
                             <font>
                                 <Font name="System Bold" size="14.0"/>
                             </font>
@@ -57,7 +45,7 @@
                                 <Insets bottom="2.0" top="5.0"/>
                             </padding>
                         </Label>
-                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="313.0" text="Status Kleur">
+                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Status Kleur">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#onStatusGreenMenuItemClick" text="Groen"/>
                                 <MenuItem mnemonicParsing="false" onAction="#onStatusOranjeMenuItemClick"
@@ -224,9 +212,15 @@
                 </ScrollPane>
             </children>
         </VBox>
-        <Button layoutX="407.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#onFinishButtonClick"
-                prefHeight="42.0" prefWidth="124.0" text="Afronden"/>
         <Button layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onSaveButtonClick"
                 prefHeight="42.0" prefWidth="124.0" text="Opslaan"/>
+        <MenuButton layoutX="411.0" layoutY="16.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="124.0"
+                    text="Afronden">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onCategoryInwerking" text="Inwerking"/>
+                <MenuItem mnemonicParsing="false" onAction="#onCategoryHallOfFame" text="Hall of fame"/>
+                <MenuItem mnemonicParsing="false" onAction="#onCategoryKerkhof" text="kerkhof"/>
+            </items>
+        </MenuButton>
     </children>
 </Pane>
